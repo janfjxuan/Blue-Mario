@@ -47,6 +47,14 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.CompareTag("Ground")) onGroundState = true;
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Collided with goomba!");
+        }
+    }
+
     // FixedUpdate may be called once per frame. See documentation for details.
     void FixedUpdate()
     {
