@@ -1961,7 +1961,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 50, y: 2}
+    newSize: {x: 100, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -2022,7 +2022,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 50, y: 2}
+  m_Size: {x: 100, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2732,7 +2732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d710c96a92e4cbd9d29139d4a564ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  startPosition: {x: 0, y: 0, z: 0}
+  startPosition: {x: 2.13, y: 0, z: 0}
 --- !u!1 &1252674488
 GameObject:
   m_ObjectHideFlags: 0
@@ -4311,7 +4311,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1803813727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4325,11 +4325,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 16
-  scoreText: {fileID: 234973708}
-  enemies: {fileID: 1284934728}
-  jumpOverGoomba: {fileID: 1803813729}
   maxSpeed: 32
   upSpeed: 16
+  scoreText: {fileID: 684971823}
+  enemies: {fileID: 1284934728}
+  jumpOverGoomba: {fileID: 1803813729}
 --- !u!61 &1803813728
 BoxCollider2D:
   m_ObjectHideFlags: 0

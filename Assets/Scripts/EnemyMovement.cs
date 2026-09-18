@@ -15,8 +15,6 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer enemySprite;
     public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
 
-    public Vector3 startPosition = new Vector3(0.0f, 0.0f, 0.0f);
-
     void Start()
     {
         enemyBody = GetComponent<Rigidbody2D>();
