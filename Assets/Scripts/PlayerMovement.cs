@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
+    public TextMeshProUGUI scoreText;
+    public GameObject enemies;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +21,34 @@ public class PlayerMovement : MonoBehaviour
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
 
+    }
+
+    public void RestartButtonCallback(int input)
+    {
+        Debug.Log("Restart!");
+        // reset everything
+        ResetGame();
+        // resume time
+        Time.timeScale = 1.0f;
+    }
+
+    public JumpOverGoomba jumpOverGoomba;
+    private void ResetGame()
+    {
+        // reset position
+        marioBody.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        // reset sprite direction
+        faceRightState = true;
+        marioSprite.flipX = false;
+        // reset score
+        scoreText.text = "Score: 0";
+        // reset Goomba
+        foreach (Transform eachChild in enemies.transform)
+        {
+            eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
+        }
+        // reset score
+        jumpOverGoomba.score = 0;
     }
 
     // Update is called once per frame
@@ -47,14 +78,15 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.CompareTag("Ground")) onGroundState = true;
     }
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Collided with goomba!");
+            Time.timeScale = 0.0f;
         }
     }
-
     // FixedUpdate may be called once per frame. See documentation for details.
     void FixedUpdate()
     {
