@@ -6,14 +6,14 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 10;
+    public float maxSpeed = 20;
+    public float upSpeed = 10;
+    private bool onGroundState = true;
     private Rigidbody2D marioBody;
-
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
-
     public TextMeshProUGUI scoreText;
     public GameObject enemies;
-
     public JumpOverGoomba jumpOverGoomba;
 
     // Start is called before the first frame update
@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
-
     }
 
     // Update is called once per frame
@@ -43,24 +42,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // FixedUpdate is called 50 times a second
-    public float maxSpeed = 20;
-
-    public float upSpeed = 10;
-    private bool onGroundState = true;
-
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground")) onGroundState = true;
     }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Collided with goomba!");
+            Time.timeScale = 0.0f;
         }
     }
-
     // FixedUpdate may be called once per frame. See documentation for details.
     void FixedUpdate()
     {
@@ -78,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
         {
             // stop
-            marioBody.linearVelocity = Vector2.zero;
+            marioBody.linearVelocityX = 0;
         }
 
         if (Input.GetKeyDown("space") && onGroundState)
@@ -117,5 +112,4 @@ public class PlayerMovement : MonoBehaviour
         // reset score
         jumpOverGoomba.score = 0;
     }
-
 }
