@@ -6,8 +6,10 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 10;
+    public float maxSpeed = 20;
+    public float upSpeed = 10;
+    private bool onGroundState = true;
     private Rigidbody2D marioBody;
-
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
     public TextMeshProUGUI scoreText;
@@ -20,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
-
     }
 
     public void RestartButtonCallback(int input)
@@ -36,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private void ResetGame()
     {
         // reset position
-        marioBody.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        marioBody.transform.position = new Vector3(6.0f, 2.5f, 0.0f);
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
@@ -68,11 +69,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // FixedUpdate is called 50 times a second
-    public float maxSpeed = 20;
-
-    public float upSpeed = 10;
-    private bool onGroundState = true;
-
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground")) onGroundState = true;
@@ -104,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
         {
             // stop
-            marioBody.linearVelocity = Vector2.zero;
+            marioBody.linearVelocityX = 0;
         }
 
         if (Input.GetKeyDown("space") && onGroundState)
@@ -113,6 +109,4 @@ public class PlayerMovement : MonoBehaviour
             onGroundState = false;
         }
     }
-
-
 }
