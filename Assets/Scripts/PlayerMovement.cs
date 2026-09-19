@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
     public void ResetGame()
     {
         // reset position
-        marioBody.transform.position = new Vector3(-2.65f, 0.0f, 0.0f);
+        marioBody.transform.position = new Vector3(5.0f, 2.5f, 0.0f);
         marioBody.transform.rotation = Quaternion.identity;
         marioBody.linearVelocity = Vector2.zero;
         marioBody.angularVelocity = 0f;
