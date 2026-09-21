@@ -4334,6 +4334,8 @@ MonoBehaviour:
   jumpOverGoomba: {fileID: 1803813729}
   marioAnimator: {fileID: 1803813730}
   marioAudio: {fileID: 1803813731}
+  marioDeath: {fileID: 8300000, guid: be79cdf12fa7b4c9e8c01551934257f9, type: 3}
+  deathImpulse: 45
 --- !u!61 &1803813728
 BoxCollider2D:
   m_ObjectHideFlags: 0
