@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource marioAudio;
     public AudioClip marioDeath;
     public float deathImpulse = 15;
+    public Transform gameCamera;
+    public GameOverUI gameOverUI;
 
     // state
     [System.NonSerialized]
@@ -42,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         // stop time
         Time.timeScale = 0.0f;
         // set gameover scene
-        // gameManager.GameOver(); // replace this with whichever way you triggered the game over screen for Checkoff 1
+        gameOverUI.Show(jumpOverGoomba.score);
     }
     // FixedUpdate is called 50 times a second
     void OnCollisionEnter2D(Collision2D col)
@@ -53,18 +55,32 @@ public class PlayerMovement : MonoBehaviour
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (col.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Collided with goomba!");
-            // play death animation
-            marioAnimator.Play("mario-die");
-            marioAudio.PlayOneShot(marioDeath);
-            alive = false;
+            ContactPoint2D contact = col.GetContact(0);
+            if (contact.normal.y < 0.5f)
+            {
+                Debug.Log("Collided with goomba!");
+                marioBody.linearVelocity = Vector2.zero;
+                marioAnimator.Play("mario-die");
+                marioAudio.PlayOneShot(marioDeath);
+                alive = false;
+                GameOverScene();
+            }
         }
     }
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.gameObject.CompareTag("Enemy"))
+    //     {
+    //         Debug.Log("Collided with goomba!");
+    //         // play death animation
+    //         marioAnimator.Play("mario-die");
+    //         marioAudio.PlayOneShot(marioDeath);
+    //         alive = false;
+    //         GameOverScene();
+    //     }
+    // }
     // Update is called once per frame
     void Update()
     {
@@ -111,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKeyDown("space") && onGroundState)
             {
+                marioBody.linearVelocity = new Vector2(marioBody.linearVelocity.x, 0f);
                 marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
                 onGroundState = false;
                 // update animator state
@@ -126,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
         ResetGame();
         // resume time
         Time.timeScale = 1.0f;
+        gameOverUI.Hide();
     }
 
     public void ResetGame()
@@ -150,6 +168,8 @@ public class PlayerMovement : MonoBehaviour
         // reset animation
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
+        // reset camera position
+        gameCamera.position = new Vector3(10, 5, -10);
     }
 
     // for audio

@@ -16,7 +16,7 @@ public class JumpOverGoomba : MonoBehaviour
     public Vector3 boxSize;
     public float maxDistance;
     public LayerMask layerMask;
-    public GameOverUI gameOverUI;
+    // public GameOverUI gameOverUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,16 +56,16 @@ public class JumpOverGoomba : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Ground")) onGroundState = true;
 
-        if (col.gameObject.CompareTag("Enemy"))
-        {
-            // crude check: if collision normal is mostly sideways, it's a death hit
-            ContactPoint2D contact = col.GetContact(0);
-            if (contact.normal.y < 0.5f)
-            {
-                gameOverUI.Show(score);
-                Time.timeScale = 0f;
-            }
-        }
+        // if (col.gameObject.CompareTag("Enemy"))
+        // {
+        //     // crude check: if collision normal is mostly sideways, it's a death hit
+        //     ContactPoint2D contact = col.GetContact(0);
+        //     if (contact.normal.y < 0.5f)
+        //     {
+        //         gameOverUI.Show(score);
+        //         Time.timeScale = 0f;
+        //     }
+        // }
     }
 
 
