@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public float deathImpulse = 15;
     public Transform gameCamera;
     public GameOverUI gameOverUI;
+    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
+
 
     // state
     [System.NonSerialized]
@@ -49,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate is called 50 times a second
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground") && !onGroundState)
+        if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundState)
         {
             onGroundState = true;
             // update animator state
