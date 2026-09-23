@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class JumpOverGoomba : MonoBehaviour
 {
-    public Transform enemyLocation;
+    // public Transform enemyLocation;
+    public GameObject enemies;
     public TextMeshProUGUI scoreText;
     private bool onGroundState;
 
@@ -16,6 +18,7 @@ public class JumpOverGoomba : MonoBehaviour
     public Vector3 boxSize;
     public float maxDistance;
     public LayerMask layerMask;
+    public Image blueScreen;
     // public GameOverUI gameOverUI;
     // Start is called before the first frame update
     void Start()
@@ -33,7 +36,7 @@ public class JumpOverGoomba : MonoBehaviour
     void FixedUpdate()
     {
         // mario jumps
-        if (Input.GetKeyDown("space") && onGroundCheck())
+        if (Input.GetKeyDown("space") && OnGroundCheck())
         {
             onGroundState = false;
             countScoreState = true;
@@ -42,12 +45,22 @@ public class JumpOverGoomba : MonoBehaviour
         // when jumping, and Goomba is near Mario and we haven't registered our score
         if (!onGroundState && countScoreState)
         {
-            if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
+            foreach (Transform child in enemies.transform)
             {
-                countScoreState = false;
-                score++;
-                scoreText.text = "Score: " + score.ToString();
-                Debug.Log(score);
+                if (Mathf.Abs(transform.position.x - child.position.x) < 0.5f && child.gameObject.GetComponent<SpriteRenderer>().enabled)
+                {
+                    countScoreState = false;
+                    score++;
+                    scoreText.text = "Score: " + score.ToString();
+                    Debug.Log(score);
+                    if(score < enemies.transform.childCount)
+                    {
+                        enemies.transform.GetChild(score).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                        enemies.transform.GetChild(score).gameObject.GetComponent<Collider2D>().enabled = true;
+                    }
+
+                    blueScreen.color = new Color(255, 255, 255, blueScreen.color.a + score * 0.005f);
+                }
             }
         }
     }
@@ -56,20 +69,10 @@ public class JumpOverGoomba : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Ground")) onGroundState = true;
 
-        // if (col.gameObject.CompareTag("Enemy"))
-        // {
-        //     // crude check: if collision normal is mostly sideways, it's a death hit
-        //     ContactPoint2D contact = col.GetContact(0);
-        //     if (contact.normal.y < 0.5f)
-        //     {
-        //         gameOverUI.Show(score);
-        //         Time.timeScale = 0f;
-        //     }
-        // }
     }
 
 
-    private bool onGroundCheck()
+    private bool OnGroundCheck()
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, layerMask))
         {

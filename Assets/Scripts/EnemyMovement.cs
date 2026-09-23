@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private float timer = 0f;
-    private float originalX;
     private float maxOffset = 5.0f;
     private float enemyPatroltime = 2.0f;
     private int moveRight = -1;
@@ -13,14 +12,14 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D enemyBody;
     private SpriteRenderer enemySprite;
-    public Vector3 startPosition = new Vector3(10.0f, 2.5f, 0.0f);
+    public Vector3 startPosition;
 
     void Start()
     {
         enemyBody = GetComponent<Rigidbody2D>();
         enemySprite = GetComponent<SpriteRenderer>();
         // get the starting position
-        originalX = transform.position.x;
+        startPosition = transform.position;
         ComputeVelocity();
     }
     void ComputeVelocity()
@@ -37,19 +36,19 @@ public class EnemyMovement : MonoBehaviour
         Debug.Log(other.gameObject.name);
     }
 
-    void Update()
-    {
-        timer += Time.deltaTime;
-        if (timer >= 1f)
-        {
-            enemySprite.flipX = !enemySprite.flipX;
-            timer = 0;
-        }
-    }
+    // void Update()
+    // {
+    //     timer += Time.deltaTime;
+    //     if (timer >= 1f)
+    //     {
+    //         enemySprite.flipX = !enemySprite.flipX;
+    //         timer = 0;
+    //     }
+    // }
 
     void FixedUpdate()
     {
-        if (Mathf.Abs(enemyBody.position.x - originalX) < maxOffset)
+        if (Mathf.Abs(enemyBody.position.x - startPosition.x) < maxOffset)
         {// move goomba
             Movegoomba();
         }

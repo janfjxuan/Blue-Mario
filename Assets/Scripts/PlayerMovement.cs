@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator marioAnimator;
     public AudioSource marioAudio;
     public AudioClip marioDeath;
-    public float deathImpulse = 15;
+    public float deathImpulse = 5;
     public Transform gameCamera;
     public GameOverUI gameOverUI;
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
@@ -33,12 +33,19 @@ public class PlayerMovement : MonoBehaviour
     {
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
+        this.GetComponent<Collider2D>().enabled = true;
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
+        for (int i = 1; i < enemies.transform.childCount; i++)
+        {
+            enemies.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            enemies.transform.GetChild(i).gameObject.GetComponent<Collider2D>().enabled = false;
+        }
     }
     void PlayDeathImpulse()
     {
+        marioBody.linearVelocity = new Vector2(0f, 0f);
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
     }
     void GameOverScene()
@@ -57,32 +64,19 @@ public class PlayerMovement : MonoBehaviour
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
-        if (col.gameObject.CompareTag("Enemy"))
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            ContactPoint2D contact = col.GetContact(0);
-            if (contact.normal.y < 0.5f)
-            {
-                Debug.Log("Collided with goomba!");
-                marioBody.linearVelocity = Vector2.zero;
-                marioAnimator.Play("mario-die");
-                marioAudio.PlayOneShot(marioDeath);
-                alive = false;
-                GameOverScene();
-            }
+            Debug.Log("Collided with goomba!");
+            this.GetComponent<Collider2D>().enabled = false;
+            // play death animation
+            marioAnimator.Play("mario-die");
+            marioAudio.PlayOneShot(marioDeath);
+            alive = false;
         }
     }
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.gameObject.CompareTag("Enemy"))
-    //     {
-    //         Debug.Log("Collided with goomba!");
-    //         // play death animation
-    //         marioAnimator.Play("mario-die");
-    //         marioAudio.PlayOneShot(marioDeath);
-    //         alive = false;
-    //         GameOverScene();
-    //     }
-    // }
     // Update is called once per frame
     void Update()
     {
@@ -161,17 +155,24 @@ public class PlayerMovement : MonoBehaviour
         // reset score
         scoreText.text = "Score: 0";
         // reset Goomba
-        foreach (Transform eachChild in enemies.transform)
+        for (int i = 0; i < enemies.transform.childCount; i++)
         {
-            eachChild.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
+            enemies.transform.GetChild(i).localPosition = enemies.transform.GetChild(i).GetComponent<EnemyMovement>().startPosition;
+            if(i > 0)
+            {
+                enemies.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                enemies.transform.GetChild(i).gameObject.GetComponent<Collider2D>().enabled = false;
+            }
         }
         // reset score
         jumpOverGoomba.score = 0;
+        jumpOverGoomba.blueScreen.color = new Color(255, 255, 255, 0);
         // reset animation
+        this.GetComponent<Collider2D>().enabled = true;
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
         // reset camera position
-        gameCamera.position = new Vector3(10, 5, -10);
+        gameCamera.position = new Vector3(8.89f, 5, -10);
     }
 
     // for audio
