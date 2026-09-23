@@ -59,7 +59,7 @@ public class JumpOverGoomba : MonoBehaviour
                         enemies.transform.GetChild(score).gameObject.GetComponent<Collider2D>().enabled = true;
                     }
 
-                    blueScreen.color = new Color(255, 255, 255, blueScreen.color.a + score * 0.005f);
+                    blueScreen.color = new Color(255, 255, 255, blueScreen.color.a + score * 0.01f);
                 }
             }
         }

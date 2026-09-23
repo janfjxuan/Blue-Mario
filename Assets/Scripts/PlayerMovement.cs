@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float deathImpulse = 5;
     public Transform gameCamera;
     public GameOverUI gameOverUI;
+    public AudioSource musicSource;
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
 
@@ -52,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // stop time
         Time.timeScale = 0.0f;
+        // stop mario music
+        musicSource.Pause();
         // set gameover scene
         gameOverUI.Show(jumpOverGoomba.score);
     }
@@ -63,6 +66,25 @@ public class PlayerMovement : MonoBehaviour
             onGroundState = true;
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
+        }
+        if (col.gameObject.CompareTag("QuestionBox"))
+        {
+            ContactPoint2D contact = col.GetContact(0);
+            if (contact.normal.y < -0.5f)
+            {
+                Transform coinTransform = col.transform.parent.Find("Coin");
+                if (coinTransform != null)
+                {
+                    coinTransform.gameObject.SetActive(true);
+                    Animator coinAnimator = coinTransform.GetComponent<Animator>();
+                    coinAnimator.SetTrigger("popUp");
+                    AudioSource coinAudio = coinTransform.GetComponent<AudioSource>();
+                    if (coinAudio != null)
+                    {
+                        coinAudio.Play();
+                    }
+                }
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -140,6 +162,10 @@ public class PlayerMovement : MonoBehaviour
         // resume time
         Time.timeScale = 1.0f;
         gameOverUI.Hide();
+        // restart mario music from the beginning
+        musicSource.Stop();
+        musicSource.time = 0f;
+        musicSource.Play();
     }
 
     public void ResetGame()
@@ -158,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
         for (int i = 0; i < enemies.transform.childCount; i++)
         {
             enemies.transform.GetChild(i).localPosition = enemies.transform.GetChild(i).GetComponent<EnemyMovement>().startPosition;
-            if(i > 0)
+            if (i > 0)
             {
                 enemies.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 enemies.transform.GetChild(i).gameObject.GetComponent<Collider2D>().enabled = false;
