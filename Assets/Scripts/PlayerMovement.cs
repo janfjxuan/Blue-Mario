@@ -5,8 +5,10 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private float moveHorizontal;
     public float speed = 10;
     public float maxSpeed = 20;
+    private bool jumpPressed = false;
     public float upSpeed = 10;
     private bool onGroundState = true;
     private Rigidbody2D marioBody;
@@ -95,6 +97,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        moveHorizontal = Input.GetAxisRaw("Horizontal");
+        if(Input.GetKeyDown("space"))
+        {
+            jumpPressed = true;
+        }
+        
         if (Input.GetKeyDown("a") && faceRightState)
         {
             faceRightState = false;
@@ -118,8 +126,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (alive)
         {
-            float moveHorizontal = Input.GetAxisRaw("Horizontal");
-
             if (Mathf.Abs(moveHorizontal) > 0)
             {
                 Vector2 movement = new Vector2(moveHorizontal, 0);
@@ -135,11 +141,12 @@ public class PlayerMovement : MonoBehaviour
                 marioBody.linearVelocityX = 0;
             }
 
-            if (Input.GetKeyDown("space") && onGroundState)
+            if (jumpPressed && onGroundState)
             {
                 marioBody.linearVelocity = new Vector2(marioBody.linearVelocity.x, 0f);
                 marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
                 onGroundState = false;
+                jumpPressed = false;
                 // update animator state
                 marioAnimator.SetBool("onGround", onGroundState);
             }
