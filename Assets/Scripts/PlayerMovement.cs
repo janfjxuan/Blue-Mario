@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D marioBody;
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
-    public TextMeshProUGUI scoreText;
     public GameObject enemies;
     public JumpOverGoomba jumpOverGoomba;
     public Animator marioAnimator;
@@ -90,11 +89,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            this.GetComponent<Collider2D>().enabled = false;
-            // play death animation
-            marioAnimator.Play("mario-die");
-            marioAudio.PlayOneShot(marioDeath);
-            alive = false;
+            KillMario();
         }
     }
     // Update is called once per frame
@@ -151,6 +146,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void KillMario()
+    {
+        if(alive)
+        {
+            this.GetComponent<Collider2D>().enabled = false;
+            // play death animation
+            marioAnimator.Play("mario-die");
+            marioAudio.PlayOneShot(marioDeath);
+            alive = false;
+        }
+    }
+
     public void RestartButtonCallback(int input)
     {
         // reset everything
@@ -174,8 +181,6 @@ public class PlayerMovement : MonoBehaviour
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
-        // reset score
-        scoreText.text = "Score: 0";
         // reset Goomba
         for (int i = 0; i < enemies.transform.childCount; i++)
         {
@@ -189,6 +194,10 @@ public class PlayerMovement : MonoBehaviour
         }
         // reset score
         jumpOverGoomba.score = 0;
+        jumpOverGoomba.scoreText.text = "Score: 0";
+        jumpOverGoomba.timer = 10f;
+        jumpOverGoomba.timerText.text = "Timer: 10";
+        jumpOverGoomba.audioSource.clip = jumpOverGoomba.bgMusic;
         jumpOverGoomba.blueScreen.color = new Color(255, 255, 255, 0);
         // reset animation
         this.GetComponent<Collider2D>().enabled = true;
