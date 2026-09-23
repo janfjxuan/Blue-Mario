@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource musicSource;
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
-
     // state
     [System.NonSerialized]
     public bool alive = true;
@@ -91,7 +90,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Collided with goomba!");
             this.GetComponent<Collider2D>().enabled = false;
             // play death animation
             marioAnimator.Play("mario-die");
@@ -102,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown("a") && faceRightState)
         {
             faceRightState = false;
@@ -156,7 +153,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void RestartButtonCallback(int input)
     {
-        Debug.Log("Restart!");
         // reset everything
         ResetGame();
         // resume time
@@ -183,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
         // reset Goomba
         for (int i = 0; i < enemies.transform.childCount; i++)
         {
+            // enemies.transform.GetChild(i).gameObject.GetComponent<EnemyMovement>().moveRight = -1;
             enemies.transform.GetChild(i).localPosition = enemies.transform.GetChild(i).GetComponent<EnemyMovement>().startPosition;
             if (i > 0)
             {

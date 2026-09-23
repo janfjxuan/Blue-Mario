@@ -23,13 +23,12 @@ public class JumpOverGoomba : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
 
     }
 
@@ -52,7 +51,6 @@ public class JumpOverGoomba : MonoBehaviour
                     countScoreState = false;
                     score++;
                     scoreText.text = "Score: " + score.ToString();
-                    Debug.Log(score);
                     if(score < enemies.transform.childCount)
                     {
                         enemies.transform.GetChild(score).gameObject.GetComponent<SpriteRenderer>().enabled = true;
@@ -71,17 +69,14 @@ public class JumpOverGoomba : MonoBehaviour
 
     }
 
-
     private bool OnGroundCheck()
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, layerMask))
         {
-            Debug.Log("on ground");
             return true;
         }
         else
         {
-            Debug.Log("not on ground");
             return false;
         }
     }
