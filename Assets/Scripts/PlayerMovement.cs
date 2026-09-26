@@ -5,59 +5,37 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameManager gameManager;
+    public Rigidbody2D marioBody;
+    public SpriteRenderer marioSprite;
+    public AudioSource marioAudio;
+    public Animator marioAnimator;
+    public Collider2D marioCollider;
     private float moveHorizontal;
     public float speed = 10;
     public float maxSpeed = 20;
     private bool jumpPressed = false;
     public float upSpeed = 10;
-    private bool onGroundState = true;
-    private Rigidbody2D marioBody;
-    private SpriteRenderer marioSprite;
-    private bool faceRightState = true;
-    public GameObject enemies;
+    public bool onGroundState = true;
+    public bool faceRightState = true;
     public JumpOverGoomba jumpOverGoomba;
-    public Animator marioAnimator;
-    public AudioSource marioAudio;
-    public AudioClip marioDeath;
     public float deathImpulse = 5;
-    public Transform gameCamera;
-    public GameOverUI gameOverUI;
-    public AudioSource musicSource;
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
-
-    // state
-    [System.NonSerialized]
-    public bool alive = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Set to be 30 FPS
-        Application.targetFrameRate = 30;
-        this.GetComponent<Collider2D>().enabled = true;
+        marioCollider.enabled = true;
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
-        for (int i = 1; i < enemies.transform.childCount; i++)
-        {
-            enemies.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            enemies.transform.GetChild(i).gameObject.GetComponent<Collider2D>().enabled = false;
-        }
     }
     void PlayDeathImpulse()
     {
         marioBody.linearVelocity = new Vector2(0f, 0f);
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
     }
-    void GameOverScene()
-    {
-        // stop time
-        Time.timeScale = 0.0f;
-        // stop mario music
-        musicSource.Pause();
-        // set gameover scene
-        gameOverUI.Show(jumpOverGoomba.score);
-    }
+
     // FixedUpdate is called 50 times a second
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -91,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            KillMario();
+            gameManager.KillMario();
         }
     }
     // Update is called once per frame
@@ -124,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate may be called once per frame. See documentation for details.
     void FixedUpdate()
     {
-        if (alive)
+        if (gameManager.alive)
         {
             if (Mathf.Abs(moveHorizontal) > 0)
             {
@@ -152,68 +130,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-    public void KillMario()
-    {
-        if(alive)
-        {
-            this.GetComponent<Collider2D>().enabled = false;
-            // play death animation
-            marioAnimator.Play("mario-die");
-            marioAudio.PlayOneShot(marioDeath);
-            alive = false;
-        }
-    }
-
-    public void RestartButtonCallback(int input)
-    {
-        // reset everything
-        ResetGame();
-        // resume time
-        Time.timeScale = 1.0f;
-        gameOverUI.Hide();
-        // restart mario music from the beginning
-        musicSource.Stop();
-        musicSource.time = 0f;
-        musicSource.Play();
-    }
-
-    public void ResetGame()
-    {
-        // reset position
-        marioBody.transform.position = new Vector3(5.0f, 2.5f, 0.0f);
-        marioBody.transform.rotation = Quaternion.identity;
-        marioBody.linearVelocity = Vector2.zero;
-        marioBody.angularVelocity = 0f;
-        // reset sprite direction
-        faceRightState = true;
-        marioSprite.flipX = false;
-        // reset Goomba
-        for (int i = 0; i < enemies.transform.childCount; i++)
-        {
-            // enemies.transform.GetChild(i).gameObject.GetComponent<EnemyMovement>().moveRight = -1;
-            enemies.transform.GetChild(i).localPosition = enemies.transform.GetChild(i).GetComponent<EnemyMovement>().startPosition;
-            if (i > 0)
-            {
-                enemies.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                enemies.transform.GetChild(i).gameObject.GetComponent<Collider2D>().enabled = false;
-            }
-        }
-        // reset score
-        jumpOverGoomba.score = 0;
-        jumpOverGoomba.scoreText.text = "Score: 0";
-        jumpOverGoomba.timer = 10f;
-        jumpOverGoomba.timerText.text = "Timer: 10";
-        jumpOverGoomba.audioSource.clip = jumpOverGoomba.bgMusic;
-        jumpOverGoomba.blueScreen.color = new Color(255, 255, 255, 0);
-        // reset animation
-        this.GetComponent<Collider2D>().enabled = true;
-        marioAnimator.SetTrigger("gameRestart");
-        alive = true;
-        // reset camera position
-        gameCamera.position = new Vector3(8.89f, 5, -10);
-    }
-
     // for audio
     void PlayJumpSound()
     {

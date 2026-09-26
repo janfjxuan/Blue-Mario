@@ -7,7 +7,7 @@ using TMPro;
 public class JumpOverGoomba : MonoBehaviour
 {
     // public Transform enemyLocation;
-    public GameObject enemies;
+    public GameManager gameManager;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timerText;
     private bool onGroundState;
@@ -22,7 +22,6 @@ public class JumpOverGoomba : MonoBehaviour
     public Vector3 boxSize;
     public float maxDistance;
     public LayerMask layerMask;
-    public AudioSource audioSource;
     public AudioClip bgMusic;
     public AudioClip castleMusic;
     public AudioClip winError;
@@ -46,7 +45,7 @@ public class JumpOverGoomba : MonoBehaviour
         {
             timer = 0;
             timerText.text = "Timer: " + timer.ToString();
-            playerMovement.KillMario();
+            gameManager.KillMario();
         }
 
     }
@@ -63,7 +62,7 @@ public class JumpOverGoomba : MonoBehaviour
         // when jumping, and Goomba is near Mario and we haven't registered our score
         if (!onGroundState && countScoreState)
         {
-            foreach (Transform child in enemies.transform)
+            foreach (Transform child in gameManager.enemies.transform)
             {
                 if (Mathf.Abs(transform.position.x - child.position.x) < 0.5f && child.gameObject.GetComponent<SpriteRenderer>().enabled)
                 {
@@ -72,10 +71,10 @@ public class JumpOverGoomba : MonoBehaviour
                     timer = 10f;
                     scoreText.text = "Score: " + score.ToString();
                     timerText.text = "Timer: " + timer.ToString();
-                    if (score < enemies.transform.childCount)
+                    if (score < gameManager.enemies.transform.childCount)
                     {
-                        enemies.transform.GetChild(score).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                        enemies.transform.GetChild(score).gameObject.GetComponent<Collider2D>().enabled = true;
+                        gameManager.enemies.transform.GetChild(score).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                        gameManager.enemies.transform.GetChild(score).gameObject.GetComponent<Collider2D>().enabled = true;
                     }
                     if (score == 2)
                     {
@@ -84,8 +83,8 @@ public class JumpOverGoomba : MonoBehaviour
                     if (score == 5)
                     {
                         StartCoroutine(DamageEffect());
-                        audioSource.clip = castleMusic;
-                        audioSource.Play();
+                        gameManager.musicSource.clip = castleMusic;
+                        gameManager.musicSource.Play();
                     }
                     if (score > 5)
                     {
@@ -93,8 +92,8 @@ public class JumpOverGoomba : MonoBehaviour
                     }
                     if (score > 10)
                     {
-                        audioSource.clip = winError;
-                        audioSource.Play();
+                        gameManager.musicSource.clip = winError;
+                        gameManager.musicSource.Play();
                         StartCoroutine(DelayedKillMario());
                     }
                 }
@@ -120,6 +119,16 @@ public class JumpOverGoomba : MonoBehaviour
         }
     }
 
+    void GameOverScene()
+    {
+        // stop time
+        Time.timeScale = 0.0f;
+        // stop mario music
+        gameManager.musicSource.Pause();
+        // set gameover scene
+        gameManager.gameOverUI.Show(score);
+    }
+
     private IEnumerator DamageEffect()
     {
         blueScreen.color = new Color(255, 255, 255, 1f);
@@ -130,6 +139,6 @@ public class JumpOverGoomba : MonoBehaviour
     private IEnumerator DelayedKillMario()
     {
         yield return new WaitForSeconds(2f);
-        playerMovement.KillMario();
+        gameManager.KillMario();
     }
 }
