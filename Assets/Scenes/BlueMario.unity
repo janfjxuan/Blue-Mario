@@ -181,11 +181,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
   m_PrefabInstance: {fileID: 1861321829}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &180483702 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-  m_PrefabInstance: {fileID: 1947443945}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &211483400
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +768,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4322421340405887452, guid: 0670d899bc7642944869311a1dac442b, type: 3}
   m_PrefabInstance: {fileID: 585614101}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &482367993
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 529622285}
+    m_Modifications:
+    - target: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159473720036385399, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+      propertyPath: m_Name
+      value: Brick-Bounce-Coin
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
 --- !u!1 &516947522
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +985,7 @@ Transform:
   - {fileID: 442177223}
   - {fileID: 1650221979}
   - {fileID: 1274042436}
-  - {fileID: 180483702}
+  - {fileID: 1166448252}
   - {fileID: 1394730158}
   - {fileID: 833237496}
   - {fileID: 1693509467}
@@ -1654,7 +1706,7 @@ Transform:
   m_GameObject: {fileID: 833237495}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40, y: 6, z: 0}
+  m_LocalPosition: {x: 33.5, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2347,6 +2399,11 @@ PolygonCollider2D:
       - {x: 0.9877968, y: 0.026398182}
       - {x: 1, y: 1}
   m_UseDelaunayMesh: 1
+--- !u!4 &1166448252 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1818013133469556086, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
+  m_PrefabInstance: {fileID: 482367993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1207814429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1839191339936747386, guid: da41deed0b404d14393e68a6b8e519a8, type: 3}
@@ -2402,7 +2459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8159473720036385399, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
       propertyPath: m_Name
-      value: Bricks (2)
+      value: Brick-Bounce (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3808,7 +3865,7 @@ GameObject:
   - component: {fileID: 1803813731}
   m_Layer: 0
   m_Name: Mario
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4251,63 +4308,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
---- !u!1001 &1947443945
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 529622285}
-    m_Modifications:
-    - target: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 18.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818013133469556086, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159473720036385399, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
-      propertyPath: m_Name
-      value: Bricks (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
 --- !u!4 &1959294444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 726575457852192962, guid: 5fcb7254704323f47922ecf96b74d9db, type: 3}
@@ -4520,6 +4520,7 @@ MonoBehaviour:
   gameCamera: {fileID: 330585546}
   playerMovement: {fileID: 1803813727}
   jumpOverGoomba: {fileID: 1803813729}
+  questionBoxes: {fileID: 529622284}
   musicSource: {fileID: 2109920112}
   gameOverUI: {fileID: 516947527}
   marioDeath: {fileID: 8300000, guid: be79cdf12fa7b4c9e8c01551934257f9, type: 3}
@@ -4869,7 +4870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8159473720036385399, guid: b68a5d28686faa04a96a451a789060ff, type: 3}
       propertyPath: m_Name
-      value: Bricks
+      value: Brick-Bounce
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

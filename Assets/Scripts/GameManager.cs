@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Transform gameCamera;
     public PlayerMovement playerMovement;
     public JumpOverGoomba jumpOverGoomba;
+    public GameObject questionBoxes;
     public AudioSource musicSource;
     public GameOverUI gameOverUI;
     public AudioClip marioDeath;
@@ -55,6 +56,29 @@ public class GameManager : MonoBehaviour
         jumpOverGoomba.timer = 10f;
         jumpOverGoomba.timerText.text = "Timer: 10";
         jumpOverGoomba.blueScreen.color = new Color(255, 255, 255, 0);
+        // reset question box
+        foreach (Transform transform in questionBoxes.transform)
+        {
+            Transform questionBoxTransform = transform.Find("Question-Box");
+            if (questionBoxTransform != null)
+            {
+                QuestionBox questionBox = questionBoxTransform.GetComponent<QuestionBox>();
+                questionBox.currentHitCount = questionBox.hitCount;
+                questionBox.questionBoxAnimator.SetBool("isEmpty", false);
+                questionBox.questionBoxAnimator.Rebind();
+                questionBox.questionBoxAnimator.Update(0f);
+                questionBox.ceiling.SetActive(false);
+            }
+            Transform brickTransform = transform.Find("Brick-Coin");
+            if (brickTransform != null)
+            {
+                BrickCoin brickCoin = brickTransform.GetComponent<BrickCoin>();
+                brickCoin.currentHitCount = brickCoin.hitCount;
+                // brickCoin.brickAnimator.Rebind();
+                // brickCoin.brickAnimator.Update(0f);
+            }
+        }
+
         // reset animation
         playerMovement.marioCollider.enabled = true;
         playerMovement.marioAnimator.SetTrigger("gameRestart");

@@ -200,9 +200,8 @@ GameObject:
   - component: {fileID: 1940249829875522304}
   - component: {fileID: 8304740613547685797}
   - component: {fileID: -8700606087733585489}
-  - component: {fileID: 5100943631333652100}
   m_Layer: 7
-  m_Name: Bricks
+  m_Name: Brick-Bounce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,27 +356,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!231 &5100943631333652100
-SpringJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8159473720036385399}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 17.392527
-  m_DampingRatio: 0
-  m_Frequency: 1
 --- !u!1001 &2297071206588635939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -388,11 +366,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5993005086823171764, guid: b0043638bfe5c25419151788513cbca0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5993005086823171764, guid: b0043638bfe5c25419151788513cbca0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.018
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5993005086823171764, guid: b0043638bfe5c25419151788513cbca0, type: 3}
       propertyPath: m_LocalPosition.z

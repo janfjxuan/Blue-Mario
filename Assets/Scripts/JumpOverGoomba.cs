@@ -36,17 +36,17 @@ public class JumpOverGoomba : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer > 0)
-        {
-            timer -= Time.deltaTime;
-            timerText.text = "Timer: " + Mathf.Round(timer).ToString();
-        } 
-        else
-        {
-            timer = 0;
-            timerText.text = "Timer: " + timer.ToString();
-            gameManager.KillMario();
-        }
+        // if (timer > 0)
+        // {
+        //     timer -= Time.deltaTime;
+        //     timerText.text = "Timer: " + Mathf.Round(timer).ToString();
+        // } 
+        // else
+        // {
+        //     timer = 0;
+        //     timerText.text = "Timer: " + timer.ToString();
+        //     gameManager.KillMario();
+        // }
 
     }
 
@@ -71,11 +71,11 @@ public class JumpOverGoomba : MonoBehaviour
                     timer = 10f;
                     scoreText.text = "Score: " + score.ToString();
                     timerText.text = "Timer: " + timer.ToString();
-                    if (score < gameManager.enemies.transform.childCount)
-                    {
-                        gameManager.enemies.transform.GetChild(score).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                        gameManager.enemies.transform.GetChild(score).gameObject.GetComponent<Collider2D>().enabled = true;
-                    }
+                    // if (score < gameManager.enemies.transform.childCount)
+                    // {
+                    //     gameManager.enemies.transform.GetChild(score).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                    //     gameManager.enemies.transform.GetChild(score).gameObject.GetComponent<Collider2D>().enabled = true;
+                    // }
                     if (score == 2)
                     {
                         StartCoroutine(DamageEffect());

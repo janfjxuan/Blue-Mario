@@ -26,8 +26,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         marioCollider.enabled = true;
-        marioBody = GetComponent<Rigidbody2D>();
-        marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
     }
     void PlayDeathImpulse()
@@ -45,25 +43,25 @@ public class PlayerMovement : MonoBehaviour
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
-        if (col.gameObject.CompareTag("QuestionBox"))
-        {
-            ContactPoint2D contact = col.GetContact(0);
-            if (contact.normal.y < -0.5f)
-            {
-                Transform coinTransform = col.transform.parent.Find("Coin");
-                if (coinTransform != null)
-                {
-                    coinTransform.gameObject.SetActive(true);
-                    Animator coinAnimator = coinTransform.GetComponent<Animator>();
-                    coinAnimator.SetTrigger("popUp");
-                    AudioSource coinAudio = coinTransform.GetComponent<AudioSource>();
-                    if (coinAudio != null)
-                    {
-                        coinAudio.Play();
-                    }
-                }
-            }
-        }
+        // if (col.gameObject.CompareTag("QuestionBox"))
+        // {
+        //     ContactPoint2D contact = col.GetContact(0);
+        //     if (contact.normal.y < -0.5f)
+        //     {
+        //         Transform coinTransform = col.transform.parent.Find("Coin");
+        //         if (coinTransform != null)
+        //         {
+        //             coinTransform.gameObject.SetActive(true);
+        //             Animator coinAnimator = coinTransform.GetComponent<Animator>();
+        //             coinAnimator.SetTrigger("popUp");
+        //             AudioSource coinAudio = coinTransform.GetComponent<AudioSource>();
+        //             if (coinAudio != null)
+        //             {
+        //                 coinAudio.Play();
+        //             }
+        //         }
+        //     }
+        // }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -75,29 +73,38 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveHorizontal = Input.GetAxisRaw("Horizontal");
-        if(Input.GetKeyDown("space"))
-        {
-            jumpPressed = true;
-        }
-        
-        if (Input.GetKeyDown("a") && faceRightState)
-        {
-            faceRightState = false;
-            marioSprite.flipX = true;
-            if (marioBody.linearVelocity.x > 0.1f)
-                marioAnimator.SetTrigger("onSkid");
-        }
+        if(gameManager.alive){
+            moveHorizontal = Input.GetAxisRaw("Horizontal");
+            if(Input.GetKeyDown("space"))
+            {
+                jumpPressed = true;
+            }
+            
+            if (Input.GetKeyDown("a") && faceRightState)
+            {
+                faceRightState = false;
+                marioSprite.flipX = true;
+                if (marioBody.linearVelocity.x > 0.1f)
+                    marioAnimator.SetTrigger("onSkid");
+            }
 
-        if (Input.GetKeyDown("d") && !faceRightState)
-        {
-            faceRightState = true;
-            marioSprite.flipX = false;
-            if (marioBody.linearVelocity.x < -0.1f)
-                marioAnimator.SetTrigger("onSkid");
-        }
+            if (Input.GetKeyDown("d") && !faceRightState)
+            {
+                faceRightState = true;
+                marioSprite.flipX = false;
+                if (marioBody.linearVelocity.x < -0.1f)
+                    marioAnimator.SetTrigger("onSkid");
+            }
 
-        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
+            // stop
+                if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
+                {
+                    // stop
+                    marioBody.linearVelocityX = 0;
+                }
+
+            marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
+        }
     }
     // FixedUpdate may be called once per frame. See documentation for details.
     void FixedUpdate()
@@ -110,13 +117,6 @@ public class PlayerMovement : MonoBehaviour
                 // check if it doesn't go beyond maxSpeed
                 if (marioBody.linearVelocity.magnitude < maxSpeed)
                     marioBody.AddForce(movement * speed);
-            }
-
-            // stop
-            if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
-            {
-                // stop
-                marioBody.linearVelocityX = 0;
             }
 
             if (jumpPressed && onGroundState)
