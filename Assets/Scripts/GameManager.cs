@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         playerMovement.marioBody.transform.rotation = Quaternion.identity;
         playerMovement.marioBody.linearVelocity = Vector2.zero;
         playerMovement.marioBody.angularVelocity = 0f;
+        playerMovement.ResetMovementState();
         // reset sprite direction
         playerMovement.faceRightState = true;
         playerMovement.marioSprite.flipX = false;
