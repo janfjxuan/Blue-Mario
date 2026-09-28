@@ -182,13 +182,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void KillMario()
     {
-        if(alive)
+        if (alive)
         {
             marioCollider.enabled = false;
             // play death animation
             marioAnimator.Play("mario-die");
             marioAudio.PlayOneShot(marioDeath);
-            alive = false; 
+            alive = false;
         }
     }
 
@@ -224,5 +224,10 @@ public class PlayerMovement : MonoBehaviour
 
         // reset camera position
         gameCamera.position = new Vector3(8.89f, 5, -10);
+    }
+
+    public void GameOverScene()
+    {
+        gameManager.GameOver();
     }
 }

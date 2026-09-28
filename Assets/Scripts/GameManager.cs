@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    
+
     public void GameRestart()
     {
         // reset score
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         SetScore(score);
         gameRestart.Invoke();
         Time.timeScale = 1.0f;
-        
+
         // restart mario music from the beginning
         musicSource.Stop();
         musicSource.time = 0f;
@@ -104,10 +104,10 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0.0f;
-        // stop mario music
-        musicSource.Pause();
-        // set gameover scene
-        hudManager.GameOver();
+        // // stop mario music
+        // musicSource.Pause();
+        // // set gameover scene
+        // hudManager.GameOver();
         gameOver.Invoke();
     }
 }
