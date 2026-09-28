@@ -1,62 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject mario;
-    // state
-    [System.NonSerialized]
-    public bool alive = true;
-    public GameObject enemies;
-    public Transform gameCamera;
-    public PlayerMovement playerMovement;
-    public JumpOverGoomba jumpOverGoomba;
+    // events
+    public UnityEvent gameStart;
+    public UnityEvent gameRestart;
+    public UnityEvent<int> scoreChange;
+    public UnityEvent gameOver;
+
+    public int score = 0;
+
     public GameObject questionBoxes;
     public AudioSource musicSource;
-    public GameOverUI gameOverUI;
-    public AudioClip marioDeath;
+    public HUDManager hudManager;
 
 
     void Start()
     {
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
-        for (int i = 1; i < enemies.transform.childCount; i++)
-        {
-            enemies.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            enemies.transform.GetChild(i).gameObject.GetComponent<Collider2D>().enabled = false;
-        }
+
+        gameStart.Invoke();
+        Time.timeScale = 1.0f;
     }
-    public void ResetGame()
+
+    // Update is called once per frame
+    void Update()
     {
-        // reset position
-        playerMovement.marioBody.transform.position = new Vector3(5.0f, 2.5f, 0.0f);
-        playerMovement.marioBody.transform.rotation = Quaternion.identity;
-        playerMovement.marioBody.linearVelocity = Vector2.zero;
-        playerMovement.marioBody.angularVelocity = 0f;
-        playerMovement.ResetMovementState();
-        // reset sprite direction
-        playerMovement.faceRightState = true;
-        playerMovement.marioSprite.flipX = false;
-        // reset Goomba
-        for (int i = 0; i < enemies.transform.childCount; i++)
-        {
-            // enemies.transform.GetChild(i).gameObject.GetComponent<EnemyMovement>().moveRight = -1;
-            enemies.transform.GetChild(i).localPosition = enemies.transform.GetChild(i).GetComponent<EnemyMovement>().startPosition;
-            if (i > 0)
-            {
-                enemies.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                enemies.transform.GetChild(i).gameObject.GetComponent<Collider2D>().enabled = false;
-            }
-        }
+
+    }
+    
+    public void GameRestart()
+    {
         // reset score
-        jumpOverGoomba.score = 0;
-        jumpOverGoomba.scoreText.text = "Score: 0";
-        jumpOverGoomba.timer = 10f;
-        jumpOverGoomba.timerText.text = "Timer: 10";
-        jumpOverGoomba.blueScreen.color = new Color(255, 255, 255, 0);
+        score = 0;
+        SetScore(score);
+        gameRestart.Invoke();
+        Time.timeScale = 1.0f;
+        
+        // restart mario music from the beginning
+        musicSource.Stop();
+        musicSource.time = 0f;
+        musicSource.Play();
+
+        // jumpOverGoomba.score = 0;
+        // jumpOverGoomba.scoreText.text = "Score: 0";
+        // jumpOverGoomba.timer = 10f;
+        // jumpOverGoomba.timerText.text = "Timer: 10";
+        // jumpOverGoomba.blueScreen.color = new Color(255, 255, 255, 0);
+
         // reset question box
         foreach (Transform transform in questionBoxes.transform)
         {
@@ -79,40 +75,39 @@ public class GameManager : MonoBehaviour
                 // brickCoin.brickAnimator.Update(0f);
             }
         }
-
-        // reset animation
-        playerMovement.marioCollider.enabled = true;
-        playerMovement.marioAnimator.SetTrigger("gameRestart");
-        alive = true;
-        // reset music
-        musicSource.clip = jumpOverGoomba.bgMusic;
-        musicSource.Play();
-        // reset camera position
-        gameCamera.position = new Vector3(8.89f, 5, -10);
     }
 
-    public void RestartButtonCallback(int input)
+    // public void RestartButtonCallback(int input)
+    // {
+    //     // reset everything
+    //     GameRestart();
+    //     // resume time
+    //     Time.timeScale = 1.0f;
+    //     hudManager.Hide();
+    //     // restart mario music from the beginning
+    //     musicSource.Stop();
+    //     musicSource.time = 0f;
+    //     musicSource.Play();
+    // }
+
+    public void IncreaseScore(int increment)
     {
-        // reset everything
-        ResetGame();
-        // resume time
-        Time.timeScale = 1.0f;
-        gameOverUI.Hide();
-        // restart mario music from the beginning
-        musicSource.Stop();
-        musicSource.time = 0f;
-        musicSource.Play();
+        score += increment;
+        SetScore(score);
     }
 
-    public void KillMario()
+    public void SetScore(int score)
     {
-        if(alive)
-        {
-            playerMovement.marioCollider.enabled = false;
-            // play death animation
-            playerMovement.marioAnimator.Play("mario-die");
-            playerMovement.marioAudio.PlayOneShot(marioDeath);
-            alive = false; 
-        }
+        scoreChange.Invoke(score);
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0.0f;
+        // stop mario music
+        musicSource.Pause();
+        // set gameover scene
+        hudManager.GameOver();
+        gameOver.Invoke();
     }
 }

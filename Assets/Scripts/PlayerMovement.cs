@@ -11,19 +11,28 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource marioAudio;
     public Animator marioAnimator;
     public Collider2D marioCollider;
+    public Vector3 initialPosition;
+
+    public Transform gameCamera;
+    public Vector3 initialCameraPosition;
+
     private float moveHorizontal;
     public float speed = 10;
     public float maxSpeed = 20;
-    private bool jumpPressed = false;
     public float upSpeed = 10;
     public bool onGroundState = true;
     public bool faceRightState = true;
-    public JumpOverGoomba jumpOverGoomba;
     public float deathImpulse = 5;
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
+    // state
+    [System.NonSerialized]
+    public bool alive = true;
     private bool moving = false;
     private bool jumpedState = false;
+
+    // audio
+    public AudioClip marioDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
+        initialPosition = marioBody.transform.position;
+        initialCameraPosition = gameCamera.position;
     }
     void PlayDeathImpulse()
     {
@@ -72,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            gameManager.KillMario();
+            KillMario();
         }
     }
 
@@ -103,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate may be called once per frame. See documentation for details.
     void FixedUpdate()
     {
-        if (gameManager.alive && moving)
+        if (alive && moving)
         {
             Debug.Log("FixedUpdate: moving is true, calling Move");
 
@@ -123,9 +134,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveCheck(int value)
     {
-        Debug.Log($"MoveCheck called with value {value}, alive={gameManager.alive}");
+        Debug.Log($"MoveCheck called with value {value}, alive={alive}");
 
-        if (!gameManager.alive) return;
+        if (!alive) return;
 
         if (value == 0)
         {
@@ -142,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (gameManager.alive && onGroundState)
+        if (alive && onGroundState)
         {
             marioBody.linearVelocity = new Vector2(marioBody.linearVelocity.x, 0f);
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
@@ -155,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpHold()
     {
-        if (gameManager.alive && jumpedState)
+        if (alive && jumpedState)
         {
             marioBody.AddForce(Vector2.up * upSpeed * 30, ForceMode2D.Force);
             jumpedState = false;
@@ -169,10 +180,49 @@ public class PlayerMovement : MonoBehaviour
         marioAudio.PlayOneShot(marioAudio.clip);
     }
 
+    public void KillMario()
+    {
+        if(alive)
+        {
+            marioCollider.enabled = false;
+            // play death animation
+            marioAnimator.Play("mario-die");
+            marioAudio.PlayOneShot(marioDeath);
+            alive = false; 
+        }
+    }
+
+    private IEnumerator DelayedKillMario()
+    {
+        yield return new WaitForSeconds(2f);
+        KillMario();
+    }
+
     public void ResetMovementState()
     {
         moving = false;
         jumpedState = false;
         onGroundState = true;
+    }
+
+    public void GameRestart()
+    {
+        // reset position
+        marioBody.transform.position = initialPosition;
+        marioBody.transform.rotation = Quaternion.identity;
+        marioBody.linearVelocity = Vector2.zero;
+        marioBody.angularVelocity = 0f;
+        ResetMovementState();
+        // reset sprite direction
+        faceRightState = true;
+        marioSprite.flipX = false;
+
+        // reset animation
+        marioCollider.enabled = true;
+        marioAnimator.SetTrigger("gameRestart");
+        alive = true;
+
+        // reset camera position
+        gameCamera.position = new Vector3(8.89f, 5, -10);
     }
 }

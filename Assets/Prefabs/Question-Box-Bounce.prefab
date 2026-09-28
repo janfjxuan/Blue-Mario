@@ -476,13 +476,44 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 954609300398124481, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6672706842202431824}
   m_SourcePrefab: {fileID: 100100000, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
 --- !u!1 &7968442964762604005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 954609300398124481, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
   m_PrefabInstance: {fileID: 7181812803938884644}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6672706842202431824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968442964762604005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0514f49df011247799845ae978107641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEventIntTool
+  parameter: 0
+  useInt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: IncreaseScore
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &8842395246239526892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1809482852083217352, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}

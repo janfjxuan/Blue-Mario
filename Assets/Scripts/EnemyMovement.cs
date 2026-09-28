@@ -41,4 +41,11 @@ public class EnemyMovement : MonoBehaviour
             Movegoomba();
         }
     }
+
+    public void GameRestart()
+    {
+        transform.localPosition = startPosition;
+        moveRight = -1;
+        ComputeVelocity();
+    }
 }
