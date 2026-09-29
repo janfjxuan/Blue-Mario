@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Audio;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -17,6 +18,11 @@ public class GameManager : MonoBehaviour
     public GameObject questionBoxes;
     public AudioSource musicSource;
     public HUDManager hudManager;
+
+    public AudioMixerSnapshot defaultSnapshot;
+    public AudioMixerSnapshot gameOverSnapshot;
+
+    public AudioMixer mixer;
 
 
     void Start()
@@ -36,11 +42,14 @@ public class GameManager : MonoBehaviour
 
     public void GameRestart()
     {
+        Debug.Log("GameRestart called, transitioning to Default snapshot");
         // reset score
         score = 0;
         SetScore(score);
         gameRestart.Invoke();
         Time.timeScale = 1.0f;
+
+        defaultSnapshot.TransitionTo(0.1f);
 
         // restart mario music from the beginning
         musicSource.Stop();
@@ -103,11 +112,20 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 0.0f;
-        // // stop mario music
-        // musicSource.Pause();
-        // // set gameover scene
-        // hudManager.GameOver();
+        gameOverSnapshot.TransitionTo(0.5f);
+        StartCoroutine(FreezeAfterTransition());
         gameOver.Invoke();
     }
+
+    private IEnumerator FreezeAfterTransition()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        Time.timeScale = 0.0f;
+    }
+
+    // private IEnumerator FreezeAfterTransition()
+    // {
+    //     yield return new WaitForSeconds(0.5f);
+    //     Time.timeScale = 0.0f;
+    // }
 }
