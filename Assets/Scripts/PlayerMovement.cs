@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D marioBody;
     public SpriteRenderer marioSprite;
     public AudioSource marioAudio;
+    public AudioSource marioDeathAudio;
     public Animator marioAnimator;
     public Collider2D marioCollider;
     public Vector3 initialPosition;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpedState = false;
 
     // audio
-    public AudioClip marioDeath;
+    // public AudioClip marioDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -187,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
             marioCollider.enabled = false;
             // play death animation
             marioAnimator.Play("mario-die");
-            marioAudio.PlayOneShot(marioDeath);
+            marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
             alive = false;
         }
     }
