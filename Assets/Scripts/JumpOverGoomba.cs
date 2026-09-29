@@ -28,17 +28,6 @@ public class JumpOverGoomba : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (timer > 0)
-        // {
-        //     timer -= Time.deltaTime;
-        //     timerText.text = "Timer: " + Mathf.Round(timer).ToString();
-        // } 
-        // else
-        // {
-        //     timer = 0;
-        //     timerText.text = "Timer: " + timer.ToString();
-        //     gameManager.KillMario();
-        // }
     }
 
     void FixedUpdate()
@@ -84,14 +73,4 @@ public class JumpOverGoomba : MonoBehaviour
             return false;
         }
     }
-
-    // void GameOverScene()
-    // {
-    //     // stop time
-    //     Time.timeScale = 0.0f;
-    //     // stop mario music
-    //     gameManager.musicSource.Pause();
-    //     // set gameover scene
-    //     gameManager.hudManager.GameOver();
-    // }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - QuestionBox
   - Manager
+  - EndLimit
   layers:
   - Default
   - TransparentFX

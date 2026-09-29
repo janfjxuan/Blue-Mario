@@ -12,60 +12,44 @@ public class HUDManager : MonoBehaviour
     //     new Vector3(0, -150, 0)
     // };
     public GameObject scoreText;
+    public GameObject timerText;
     public Transform restartButton;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI finalScoreText;
-
-    // Start is called before the first frame update
-    // void Start()
-    // {
-    // }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-
-    // }
-
-    // public void GameStart()
-    // {
-    //     // hide gameover panel
-    //     gameOverPanel.SetActive(false);
-    //     scoreText.transform.localPosition = scoreTextPosition[0];
-    //     restartButton.localPosition = restartButtonPosition[0];
-    // }
+    [SerializeField] private GameObject levelCompletePanel;
+    [SerializeField] private TextMeshProUGUI levelCompleteScoreText;
 
     public void GameStart()
     {
         // hide gameover panel
         gameOverPanel.SetActive(false);
+        levelCompletePanel.SetActive(false);
     }
 
     public void SetScore(int score)
     {
         scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
     }
+    public void SetTimer(float timer)
+    {
+        timerText.GetComponent<TextMeshProUGUI>().text = "Timer: " + Mathf.Round(timer).ToString();
+    }
 
-    // public void Show(int score)
-    // {
-    //     finalScoreText.text = "Score: " + score;
-    //     gameOverPanel.SetActive(true);
-    // }
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
         finalScoreText.text = scoreText.GetComponent<TextMeshProUGUI>().text;
     }
 
-    // public void GameOver()
-    // {
-    //     gameOverPanel.SetActive(true);
-    //     scoreText.transform.localPosition = scoreTextPosition[1];
-    //     restartButton.localPosition = restartButtonPosition[1];
-    // }
+    public void LevelComplete()
+    {
+        levelCompletePanel.SetActive(true);
+        levelCompleteScoreText.text = scoreText.GetComponent<TextMeshProUGUI>().text;
+    }
 
     public void Hide()
     {
         gameOverPanel.SetActive(false);
+        levelCompletePanel.SetActive(false);
     }
 }

@@ -11,9 +11,13 @@ public class GameManager : MonoBehaviour
     public UnityEvent gameStart;
     public UnityEvent gameRestart;
     public UnityEvent<int> scoreChange;
+    public UnityEvent<float> timerChange;
     public UnityEvent gameOver;
+    public UnityEvent levelComplete;
 
+    private bool levelCompleted = false;
     public int score = 0;
+    public float timer = 60f;
 
     public GameObject questionBoxes;
     public AudioSource musicSource;
@@ -22,9 +26,6 @@ public class GameManager : MonoBehaviour
 
     public AudioMixerSnapshot defaultSnapshot;
     public AudioMixerSnapshot gameOverSnapshot;
-
-    public AudioMixer mixer;
-
 
     void Start()
     {
@@ -38,17 +39,32 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Time.timeScale > 0 && timer > 0)
+        {
+            timer -= Time.deltaTime;
+            timerChange.Invoke(Mathf.Max(timer, 0));
+            if (timer <= 0)
+            {
+                timer = 0;
+                timerChange.Invoke(0);
+                GameOver();
+            }
+        }
     }
 
     public void GameRestart()
     {
-        Debug.Log("GameRestart called, transitioning to Default snapshot");
         // reset score
         score = 0;
         SetScore(score);
+
+        timer = 60f;
+        timerChange.Invoke(timer);
+
         gameRestart.Invoke();
         Time.timeScale = 1.0f;
+
+        levelCompleted = false;
 
         defaultSnapshot.TransitionTo(0.1f);
 
@@ -56,12 +72,6 @@ public class GameManager : MonoBehaviour
         musicSource.Stop();
         musicSource.time = 0f;
         musicSource.Play();
-
-        // jumpOverGoomba.score = 0;
-        // jumpOverGoomba.scoreText.text = "Score: 0";
-        // jumpOverGoomba.timer = 10f;
-        // jumpOverGoomba.timerText.text = "Timer: 10";
-        // jumpOverGoomba.blueScreen.color = new Color(255, 255, 255, 0);
 
         // reset question box
         foreach (Transform transform in questionBoxes.transform)
@@ -90,23 +100,11 @@ public class GameManager : MonoBehaviour
         gameCameraController.ResetCamera();
     }
 
-    // public void RestartButtonCallback(int input)
-    // {
-    //     // reset everything
-    //     GameRestart();
-    //     // resume time
-    //     Time.timeScale = 1.0f;
-    //     hudManager.Hide();
-    //     // restart mario music from the beginning
-    //     musicSource.Stop();
-    //     musicSource.time = 0f;
-    //     musicSource.Play();
-    // }
-
     public void IncreaseScore(int increment)
     {
         score += increment;
         SetScore(score);
+        timer = 60f;
     }
 
     public void SetScore(int score)
@@ -116,20 +114,16 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        gameOverSnapshot.TransitionTo(0.5f);
-        StartCoroutine(FreezeAfterTransition());
+        gameOverSnapshot.TransitionTo(0f);
         gameOver.Invoke();
-    }
-
-    private IEnumerator FreezeAfterTransition()
-    {
-        yield return new WaitForSecondsRealtime(0.5f);
         Time.timeScale = 0.0f;
     }
 
-    // private IEnumerator FreezeAfterTransition()
-    // {
-    //     yield return new WaitForSeconds(0.5f);
-    //     Time.timeScale = 0.0f;
-    // }
+    public void LevelComplete()
+    {
+        if (levelCompleted) return;
+        levelCompleted = true;
+        levelComplete.Invoke();
+        Time.timeScale = 0.0f;
+    }
 }

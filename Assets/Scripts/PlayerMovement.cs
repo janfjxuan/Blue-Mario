@@ -14,9 +14,6 @@ public class PlayerMovement : MonoBehaviour
     public Collider2D marioCollider;
     public Vector3 initialPosition;
 
-    // public Transform gameCamera;
-    // public Vector3 initialCameraPosition;
-
     private float moveHorizontal;
     public float speed = 10;
     public float maxSpeed = 20;
@@ -32,9 +29,6 @@ public class PlayerMovement : MonoBehaviour
     private bool moving = false;
     private bool jumpedState = false;
 
-    // audio
-    // public AudioClip marioDeath;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
         initialPosition = marioBody.transform.position;
-        // initialCameraPosition = gameCamera.position;
     }
     void PlayDeathImpulse()
     {
@@ -85,6 +78,10 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             KillMario();
+        }
+        else if (other.gameObject.CompareTag("EndLimit"))
+        {
+            gameManager.LevelComplete();
         }
     }
 
@@ -214,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
         marioBody.linearVelocity = Vector2.zero;
         marioBody.angularVelocity = 0f;
         ResetMovementState();
+
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
