@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public Collider2D marioCollider;
     public Vector3 initialPosition;
 
-    public Transform gameCamera;
-    public Vector3 initialCameraPosition;
+    // public Transform gameCamera;
+    // public Vector3 initialCameraPosition;
 
     private float moveHorizontal;
     public float speed = 10;
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
         initialPosition = marioBody.transform.position;
-        initialCameraPosition = gameCamera.position;
+        // initialCameraPosition = gameCamera.position;
     }
     void PlayDeathImpulse()
     {
@@ -222,9 +222,6 @@ public class PlayerMovement : MonoBehaviour
         marioCollider.enabled = true;
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
-
-        // reset camera position
-        gameCamera.position = new Vector3(8.89f, 5, -10);
     }
 
     public void GameOverScene()

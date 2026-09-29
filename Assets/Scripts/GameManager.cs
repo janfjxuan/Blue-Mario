@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject questionBoxes;
     public AudioSource musicSource;
     public HUDManager hudManager;
+    public CameraController gameCameraController;
 
     public AudioMixerSnapshot defaultSnapshot;
     public AudioMixerSnapshot gameOverSnapshot;
@@ -84,6 +85,9 @@ public class GameManager : MonoBehaviour
                 // brickCoin.brickAnimator.Update(0f);
             }
         }
+
+        // reset camera 
+        gameCameraController.ResetCamera();
     }
 
     // public void RestartButtonCallback(int input)

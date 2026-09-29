@@ -7,7 +7,7 @@ using TMPro;
 public class JumpOverGoomba : MonoBehaviour
 {
     // public Transform enemyLocation;
-    GameManager gameManager;
+    // GameManager gameManager;
     // private bool onGroundState;
 
     // [System.NonSerialized]
