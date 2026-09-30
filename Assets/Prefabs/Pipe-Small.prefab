@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1969226383478413497}
   - component: {fileID: 141136734982392844}
   - component: {fileID: 7082592653642709918}
-  m_Layer: 0
+  - component: {fileID: 8027143174581975217}
+  m_Layer: 7
   m_Name: Pipe-Head
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +100,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151934415257032774}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 77cd77b15dad04995b5d397aefcba286, type: 2}
@@ -138,6 +139,61 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!60 &8027143174581975217
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151934415257032774}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -1, y: 1}
+      - {x: -0.99287796, y: 0.032770872}
+      - {x: -0.8874798, y: 0.032770872}
+      - {x: -0.89668655, y: -0.99727225}
+      - {x: 0.882864, y: -0.99027014}
+      - {x: 0.88736916, y: 0.033074617}
+      - {x: 0.99326134, y: 0.038657904}
+      - {x: 1, y: 1}
+  m_UseDelaunayMesh: 1
 --- !u!1 &2421586323684659623
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1839191339936747386}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe-Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}

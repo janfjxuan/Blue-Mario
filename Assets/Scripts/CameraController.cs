@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
     private float offset; // initial x-offset between camera and Mario
     private float startX; // smallest x-coordinate of the Camera
     private float endX; // largest x-coordinate of the camera
+    private Vector3 initialPosition;
     private float viewportHalfWidth;
 
     void Start()
@@ -18,9 +19,10 @@ public class CameraController : MonoBehaviour
         // z doesn't matter since the camera is orthographic
         Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)); // the z-component is the distance of the resulting plane from the camera 
         viewportHalfWidth = Mathf.Abs(bottomLeft.x - this.transform.position.x);
-        offset = this.transform.position.x - player.position.x;
+        offset = 6.0f;
         startX = this.transform.position.x;
         endX = endLimit.transform.position.x - viewportHalfWidth;
+        initialPosition = this.transform.position;
     }
 
     void Update()
@@ -31,4 +33,8 @@ public class CameraController : MonoBehaviour
             this.transform.position = new Vector3(desiredX, this.transform.position.y, this.transform.position.z);
     }
 
+    public void ResetCamera()
+    {
+        this.transform.position = initialPosition;
+    }
 }

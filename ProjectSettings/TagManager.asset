@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Enemy
   - QuestionBox
+  - Manager
+  - GapHole
+  - Goal
   layers:
   - Default
   - TransparentFX
