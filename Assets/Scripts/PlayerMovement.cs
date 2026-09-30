@@ -53,25 +53,6 @@ public class PlayerMovement : MonoBehaviour
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
-        if (col.gameObject.CompareTag("QuestionBox"))
-        {
-            ContactPoint2D contact = col.GetContact(0);
-            if (contact.normal.y < -0.5f)
-            {
-                Transform coinTransform = col.transform.parent.Find("Coin");
-                if (coinTransform != null)
-                {
-                    coinTransform.gameObject.SetActive(true);
-                    Animator coinAnimator = coinTransform.GetComponent<Animator>();
-                    coinAnimator.SetTrigger("popUp");
-                    AudioSource coinAudio = coinTransform.GetComponent<AudioSource>();
-                    if (coinAudio != null)
-                    {
-                        coinAudio.Play();
-                    }
-                }
-            }
-        }
     }
     void OnTriggerEnter2D(Collider2D other)
     {

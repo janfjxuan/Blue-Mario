@@ -20,27 +20,24 @@ public class BrickCoin : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             ContactPoint2D contact = other.GetContact(0);
-            if (contact.normal.y > 0.5f)
+            if (contact.normal.y > 0.5f && currentHitCount > 0)
             {
-                if (currentHitCount > 0)
+                if (coin.activeSelf == false)
                 {
-                    if (coin.activeSelf == false)
-                    {
-                        coin.SetActive(true);
-                    }
-                    Animator coinAnimator = coin.GetComponent<Animator>();
-                    coinAnimator.SetTrigger("popUp");
-                    AudioSource coinAudio = coin.GetComponent<AudioSource>();
-                    if (coinAudio != null)
-                    {
-                        coinAudio.Play();
-                    }
+                    coin.SetActive(true);
+                }
+                Animator coinAnimator = coin.GetComponent<Animator>();
+                coinAnimator.SetTrigger("popUp");
+                AudioSource coinAudio = coin.GetComponent<AudioSource>();
+                if (coinAudio != null)
+                {
+                    coinAudio.Play();
                 }
                 currentHitCount--;
-            }
-            if (currentHitCount == 0)
-            {
-                StartCoroutine(DisableCoin());
+                if (currentHitCount == 0)
+                {
+                    StartCoroutine(DisableCoin());
+                }
             }
         }
     }
@@ -48,5 +45,12 @@ public class BrickCoin : MonoBehaviour
     {
         yield return new WaitForSeconds(1.2f);
         coin.SetActive(false);
+    }
+
+    public void ResetBrick()
+    {
+        currentHitCount = hitCount;
+        // brickAnimator.Rebind();
+        // brickAnimator.Update(0f);
     }
 }

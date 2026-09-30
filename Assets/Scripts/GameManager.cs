@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public float timer = 60f;
 
-    public GameObject questionBoxes;
+    public GameObject obstacles;
     public AudioSource musicSource;
     public HUDManager hudManager;
     public CameraController gameCameraController;
@@ -74,25 +74,19 @@ public class GameManager : MonoBehaviour
         musicSource.Play();
 
         // reset question box
-        foreach (Transform transform in questionBoxes.transform)
+        foreach (Transform transform in obstacles.transform)
         {
             Transform questionBoxTransform = transform.Find("Question-Box");
             if (questionBoxTransform != null)
             {
                 QuestionBox questionBox = questionBoxTransform.GetComponent<QuestionBox>();
-                questionBox.currentHitCount = questionBox.hitCount;
-                questionBox.questionBoxAnimator.SetBool("isEmpty", false);
-                questionBox.questionBoxAnimator.Rebind();
-                questionBox.questionBoxAnimator.Update(0f);
-                questionBox.ceiling.SetActive(false);
+                questionBox.ResetQuestionBox();
             }
             Transform brickTransform = transform.Find("Brick-Coin");
             if (brickTransform != null)
             {
                 BrickCoin brickCoin = brickTransform.GetComponent<BrickCoin>();
-                brickCoin.currentHitCount = brickCoin.hitCount;
-                // brickCoin.brickAnimator.Rebind();
-                // brickCoin.brickAnimator.Update(0f);
+                brickCoin.ResetBrick();
             }
         }
 
