@@ -64,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
         {
             gameManager.LevelComplete();
         }
+        else if (other.gameObject.CompareTag("GapHole"))
+        {
+            KillMario();
+        }
     }
 
     // Update is called once per frame

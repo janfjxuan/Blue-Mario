@@ -9,6 +9,7 @@ TagManager:
   - QuestionBox
   - Manager
   - EndLimit
+  - GapHole
   layers:
   - Default
   - TransparentFX

@@ -15,9 +15,11 @@ public class HUDManager : MonoBehaviour
     public GameObject timerText;
     public Transform restartButton;
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private TextMeshProUGUI finalScoreText;
+    [SerializeField] private TextMeshProUGUI gameOverScoreText;
+    [SerializeField] private TextMeshProUGUI gameOverTimeText;
     [SerializeField] private GameObject levelCompletePanel;
     [SerializeField] private TextMeshProUGUI levelCompleteScoreText;
+    [SerializeField] private TextMeshProUGUI levelCompleteTimeText;
 
     public void GameStart()
     {
@@ -32,19 +34,23 @@ public class HUDManager : MonoBehaviour
     }
     public void SetTimer(float timer)
     {
-        timerText.GetComponent<TextMeshProUGUI>().text = "Timer: " + Mathf.Round(timer).ToString();
+        int minutes = Mathf.FloorToInt(timer / 60f);
+        int seconds = Mathf.FloorToInt(timer % 60f);
+        timerText.GetComponent<TextMeshProUGUI>().text = "Time: " + minutes + ":" + seconds.ToString("00");
     }
 
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
-        finalScoreText.text = scoreText.GetComponent<TextMeshProUGUI>().text;
+        gameOverScoreText.text = scoreText.GetComponent<TextMeshProUGUI>().text;
+        gameOverTimeText.text = timerText.GetComponent<TextMeshProUGUI>().text;
     }
 
     public void LevelComplete()
     {
         levelCompletePanel.SetActive(true);
         levelCompleteScoreText.text = scoreText.GetComponent<TextMeshProUGUI>().text;
+        levelCompleteTimeText.text = timerText.GetComponent<TextMeshProUGUI>().text;
     }
 
     public void Hide()

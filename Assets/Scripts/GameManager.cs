@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent levelComplete;
 
     private bool levelCompleted = false;
+    private bool timerRunning = true;
     public int score = 0;
     public float timer = 60f;
 
@@ -39,16 +40,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale > 0 && timer > 0)
+        if (timerRunning)
         {
-            timer -= Time.deltaTime;
-            timerChange.Invoke(Mathf.Max(timer, 0));
-            if (timer <= 0)
-            {
-                timer = 0;
-                timerChange.Invoke(0);
-                GameOver();
-            }
+            timer += Time.deltaTime;
+            timerChange.Invoke(timer);
         }
     }
 
@@ -58,7 +53,8 @@ public class GameManager : MonoBehaviour
         score = 0;
         SetScore(score);
 
-        timer = 60f;
+        timerRunning = true;
+        timer = 0f;
         timerChange.Invoke(timer);
 
         gameRestart.Invoke();
@@ -98,7 +94,6 @@ public class GameManager : MonoBehaviour
     {
         score += increment;
         SetScore(score);
-        timer = 60f;
     }
 
     public void SetScore(int score)
@@ -108,6 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        timerRunning = false;
         gameOverSnapshot.TransitionTo(0f);
         gameOver.Invoke();
         Time.timeScale = 0.0f;
@@ -117,6 +113,7 @@ public class GameManager : MonoBehaviour
     {
         if (levelCompleted) return;
         levelCompleted = true;
+        timerRunning = false;
         levelComplete.Invoke();
         Time.timeScale = 0.0f;
     }
