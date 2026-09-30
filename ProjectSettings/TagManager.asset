@@ -8,8 +8,8 @@ TagManager:
   - Enemy
   - QuestionBox
   - Manager
-  - EndLimit
   - GapHole
+  - Goal
   layers:
   - Default
   - TransparentFX

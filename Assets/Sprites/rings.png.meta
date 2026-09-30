@@ -104,7 +104,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 9
-        y: 12
+        y: 23
         width: 16
         height: 16
       alignment: 0
@@ -122,11 +122,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ring_1
+      name: ring_2
       rect:
         serializedVersion: 2
         x: 35
-        y: 12
+        y: 23
         width: 12
         height: 16
       alignment: 0
@@ -137,18 +137,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d16aa000facbf467db25f96b172d348b
-      internalID: -2132844682
+      spriteID: 6ef6a83d1f8904556b8a5ba905c929ac
+      internalID: -2066250383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ring_2
+      name: ring_
       rect:
         serializedVersion: 2
         x: 58
-        y: 12
+        y: 23
         width: 6
         height: 16
       alignment: 0
@@ -159,8 +159,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 184108d57ab574ccf916981219a5d4c3
-      internalID: -2085728504
+      spriteID: 66a9fd240b6e74f41a90157f3afe30fe
+      internalID: 195902296
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 75
-        y: 12
+        y: 23
         width: 12
         height: 16
       alignment: 0
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96097f1da4b094909bf18e66dd8e5eef
-      internalID: 782605823
+      spriteID: 5185af3d63bf34838a4f1a15d0f9aeea
+      internalID: 1361233594
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sparkle_0
+      name: speed-boots-1
       rect:
         serializedVersion: 2
-        x: 97
-        y: 14
+        x: 22
+        y: 3
         width: 16
-        height: 14
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,64 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f1d6733614304a51b1546d197abab9f
-      internalID: -1427912100
+      spriteID: ca7da210936fa4d2aba606d85796f07f
+      internalID: -1413582518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rings_5
+      name: speed-boots-0
       rect:
         serializedVersion: 2
-        x: 106
-        y: 21
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e4b12baaaefdb4670999d41da61a8258
-      internalID: -1722930778
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rings_6
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 12
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9344327629654d96925b291d3e30054
-      internalID: -543459396
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sparkle_1
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 12
+        x: 62
+        y: 3
         width: 16
-        height: 14
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,118 +225,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a4fda6f77a444ce6abb24fdafc43702
-      internalID: 1843974423
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rings_8
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 21
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b5ba3d244441945649321a601e614ee8
-      internalID: 2123858798
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sparkle_2
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 14
-        width: 16
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f6d1e7d10f0544a4bb34f67f27ebd61
-      internalID: -396499249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sparkle_3
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 12
-        width: 16
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a7e5b32d0e478412d92087ae18e8e889
-      internalID: 475460042
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: speed-boots
-      rect:
-        serializedVersion: 2
-        x: 204
-        y: 4
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: efc698d783ee540aaa939f5e1a010be7
-      internalID: 491537245
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rings_12
-      rect:
-        serializedVersion: 2
-        x: 178
-        y: 12
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7be262865ff8b44c990060037e0a4203
-      internalID: -2094393644
+      spriteID: e8000562470194e04b64bce95a9c258c
+      internalID: -1417483085
       vertices: []
       indices: 
       edges: []
@@ -389,7 +235,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 637a2d7e0e384441aa3310d3a3afe65d
+    spriteID: fed7c324dc7f641dc83079f9ce7f7972
     internalID: 0
     vertices: []
     indices: 
@@ -401,19 +247,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
+      ring_: 195902296
       ring_0: -8706687748432112674
-      ring_1: -2132844682
-      ring_2: -2085728504
-      ring_3: 782605823
-      rings_12: -2094393644
-      rings_5: -1722930778
-      rings_6: -543459396
-      rings_8: 2123858798
-      sparkle_0: -1427912100
-      sparkle_1: 1843974423
-      sparkle_2: -396499249
-      sparkle_3: 475460042
-      speed-boots: 491537245
+      ring_2: -2066250383
+      ring_3: 1361233594
+      speed-boots-0: -1417483085
+      speed-boots-1: -1413582518
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

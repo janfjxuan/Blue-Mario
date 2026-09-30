@@ -60,13 +60,13 @@ public class PlayerMovement : MonoBehaviour
         {
             KillMario();
         }
-        else if (other.gameObject.CompareTag("EndLimit"))
-        {
-            gameManager.LevelComplete();
-        }
+        // else if (other.gameObject.CompareTag("Goal"))
+        // {
+        //     gameManager.LevelComplete();
+        // }
         else if (other.gameObject.CompareTag("GapHole"))
         {
-            KillMario();
+            KillMario(); // can change to different event 
         }
     }
 

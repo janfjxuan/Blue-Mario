@@ -76,13 +76,18 @@ public class GameManager : MonoBehaviour
             if (questionBoxTransform != null)
             {
                 QuestionBox questionBox = questionBoxTransform.GetComponent<QuestionBox>();
-                questionBox.ResetQuestionBox();
+                if (questionBox != null)
+                    questionBox.ResetQuestionBox();
+                ShoeBox shoeBox = questionBoxTransform.GetComponent<ShoeBox>();
+                if (shoeBox != null)
+                    shoeBox.ResetQuestionBox();
             }
             Transform brickTransform = transform.Find("Brick-Coin");
             if (brickTransform != null)
             {
                 BrickCoin brickCoin = brickTransform.GetComponent<BrickCoin>();
-                brickCoin.ResetBrick();
+                if (brickCoin != null)
+                    brickCoin.ResetBrick();
             }
         }
 

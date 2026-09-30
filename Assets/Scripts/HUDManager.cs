@@ -36,7 +36,7 @@ public class HUDManager : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(timer / 60f);
         int seconds = Mathf.FloorToInt(timer % 60f);
-        timerText.GetComponent<TextMeshProUGUI>().text = "Time: " + minutes + ":" + seconds.ToString("00");
+        timerText.GetComponent<TextMeshProUGUI>().text = "Time : " + minutes + ":" + seconds.ToString("00");
     }
 
     public void GameOver()
