@@ -23,6 +23,11 @@ public class CameraController : MonoBehaviour
         startX = this.transform.position.x;
         endX = endLimit.transform.position.x - viewportHalfWidth;
         initialPosition = this.transform.position;
+
+        // Handling reference to the correct (Singleton) Mario #1: using tag (assuming Mario's tag is "Player")
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        // Handling reference to the correct (Singleton) Mario #2: referring to the Singleton directly
+        // player = PlayerMovement.instance.gameObject.transform;
     }
 
     void Update()

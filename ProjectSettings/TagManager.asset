@@ -19,7 +19,7 @@ TagManager:
   - UI
   - Enemies
   - Obstacles
-  - 
+  - Interactive
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Castle
+    uniqueID: 2855143115
     locked: 0
   m_RenderingLayers:
   - Default

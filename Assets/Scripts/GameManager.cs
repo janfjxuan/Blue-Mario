@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.Audio;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     // events
     public UnityEvent gameStart;

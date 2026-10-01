@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameManager gameManager;
+    // public GameManager gameManager;  
     public Rigidbody2D marioBody;
     public SpriteRenderer marioSprite;
     public AudioSource marioAudio;
@@ -37,7 +38,32 @@ public class PlayerMovement : MonoBehaviour
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
         initialPosition = marioBody.transform.position;
+
+        // subscribe to scene manager scene change
+        // SceneManager.activeSceneChanged += SetStartingPosition;
     }
+
+    void Awake()
+    {
+        // subscribe to Game Restart event
+        GameManager.instance.gameRestart.AddListener(GameRestart);
+    }
+
+    void OnDestroy()
+    {
+        if (GameManager.instance != null)
+            GameManager.instance.gameRestart.RemoveListener(GameRestart);
+    }
+
+    // public void SetStartingPosition(Scene current, Scene next)
+    // {
+    //     if (next.name == "World-1-2")
+    //     {
+    //         // change the position accordingly in your World-1-2 case
+    //         this.transform.position = new Vector3(-10.2399998f, -4.3499999f, 0.0f);
+    //     }
+    // }
+
     void PlayDeathImpulse()
     {
         marioBody.linearVelocity = new Vector2(0f, 0f);
@@ -209,6 +235,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameOverScene()
     {
-        gameManager.GameOver();
+        // gameManager.GameOver();
+        GameManager.instance.GameOver();
     }
 }
