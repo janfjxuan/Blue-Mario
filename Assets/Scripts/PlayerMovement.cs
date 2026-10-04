@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public UnityEvent stomp;
     public GameManager gameManager;
     public Rigidbody2D marioBody;
     public SpriteRenderer marioSprite;
@@ -47,24 +49,38 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate is called 50 times a second
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundState)
+        if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) && !onGroundState)
         {
             onGroundState = true;
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
+
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            ContactPoint2D contact = col.GetContact(0);
+            if (contact.normal.y > 0.5f)
+            {
+                col.gameObject.GetComponent<EnemyMovement>().Stomp();
+                marioBody.linearVelocity = new Vector2(marioBody.linearVelocityX, 0f);
+                marioBody.AddForce(Vector2.up * upSpeed * 0.6f, ForceMode2D.Impulse); 
+            } else
+            {
+                KillMario();
+            }
+        }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            KillMario();
-        }
+        // if (other.gameObject.CompareTag("Enemy"))
+        // {
+        //     KillMario();
+        // }
         // else if (other.gameObject.CompareTag("Goal"))
         // {
         //     gameManager.LevelComplete();
         // }
-        else if (other.gameObject.CompareTag("GapHole"))
+        if (other.gameObject.CompareTag("GapHole"))
         {
             KillMario(); // can change to different event 
         }
@@ -154,6 +170,11 @@ public class PlayerMovement : MonoBehaviour
             marioBody.AddForce(Vector2.up * upSpeed * 30, ForceMode2D.Force);
             jumpedState = false;
         }
+    }
+
+    public void Stomp()
+    {
+
     }
 
     // for audio
