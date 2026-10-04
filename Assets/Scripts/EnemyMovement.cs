@@ -38,7 +38,12 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!alive) return;
+        if (!alive)
+        {
+            enemyBody.linearVelocity = Vector2.zero;
+            return;
+        }
+        ;
         enemyBody.linearVelocity = new Vector2(moveRight * speed, enemyBody.linearVelocity.y);
         // if (Mathf.Abs(enemyBody.position.x - startPosition.x) < maxOffset)
         // {// move goomba
@@ -72,6 +77,7 @@ public class EnemyMovement : MonoBehaviour
         if (!alive) return;
         alive = false;
         enemyCollider.enabled = false;
+        enemyBody.bodyType = RigidbodyType2D.Kinematic;
         enemyAnimator.SetTrigger("killGoomba");
         stomped.Invoke();
     }
@@ -85,6 +91,7 @@ public class EnemyMovement : MonoBehaviour
     {
         goomba.SetActive(true);
         alive = true;
+        enemyBody.bodyType = RigidbodyType2D.Dynamic;
         enemyCollider.enabled = true;
         enemyAnimator.Rebind();
         enemyAnimator.Update(0f);
