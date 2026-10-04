@@ -237,6 +237,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -397,6 +421,30 @@ PrefabInstance:
     - target: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -778,6 +826,30 @@ PrefabInstance:
     - target: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2603,6 +2675,30 @@ PrefabInstance:
     - target: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4618,6 +4714,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5637,6 +5757,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5759,6 +5903,30 @@ PrefabInstance:
     - target: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6665,6 +6833,30 @@ PrefabInstance:
     - target: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8077,6 +8269,30 @@ PrefabInstance:
     - target: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11495,6 +11711,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12623,6 +12863,30 @@ PrefabInstance:
     - target: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13986,6 +14250,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14192,6 +14480,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2479afef19964c4081234d380f09fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  stomp:
+    m_PersistentCalls:
+      m_Calls: []
   marioBody: {fileID: 1803813726}
   marioSprite: {fileID: 1803813724}
   marioAudio: {fileID: 1803813731}
@@ -14951,6 +15242,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15631,6 +15946,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16247,6 +16586,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16468,6 +16831,30 @@ PrefabInstance:
     - target: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16708,6 +17095,30 @@ PrefabInstance:
     - target: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2109920113}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncreaseScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824602270527771065, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
+      propertyPath: stomped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
