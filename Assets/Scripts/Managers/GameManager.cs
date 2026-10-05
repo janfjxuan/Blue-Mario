@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : Singleton<GameManager>
@@ -30,11 +31,17 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        // Set to be 30 FPS
-        Application.targetFrameRate = 30;
-
         gameStart.Invoke();
         Time.timeScale = 1.0f;
+        // subscribe to scene manager scene change
+        SceneManager.activeSceneChanged += SceneSetup;
+    }
+
+    public void SceneSetup(Scene current, Scene next)
+    {
+        // Setup code for the new scene
+        gameStart.Invoke();
+        SetScore(score);
     }
 
     // Update is called once per frame
