@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class QuestionBox : MonoBehaviour
+public class CoinBox : MonoBehaviour
 {
     public GameObject questionBox;
     public Animator questionBoxAnimator;

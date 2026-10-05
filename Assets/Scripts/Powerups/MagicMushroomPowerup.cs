@@ -6,10 +6,15 @@ public class MagicMushroomPowerup : BasePowerup
 {
     // setup this object's type
     // instantiate variables
+    private Collider2D magicMushroomCollider;
+    private Animator magicMushroomAnimator;
     protected override void Start()
     {
         base.Start(); // call base class Start()
         this.type = PowerupType.MagicMushroom;
+        this.magicMushroomCollider = GetComponent<Collider2D>();
+        this.magicMushroomAnimator = GetComponent<Animator>();
+        magicMushroomCollider.enabled = false;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -37,6 +42,9 @@ public class MagicMushroomPowerup : BasePowerup
     public override void SpawnPowerup()
     {
         spawned = true;
+        magicMushroomAnimator.enabled = false;
+        magicMushroomCollider.enabled = true;
+        Debug.Log("Magic Mushroom spawned");
         rigidBody.AddForce(Vector2.right * 3, ForceMode2D.Impulse); // move to the right
     }
 

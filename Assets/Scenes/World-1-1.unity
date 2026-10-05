@@ -542,6 +542,33 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &44751245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4819660264575365765, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+  m_PrefabInstance: {fileID: 1198026574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &44751246 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+  m_PrefabInstance: {fileID: 1198026574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &44751249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44751245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9de11fac8c02914f95506f363da5cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicMushroom
+  questionBox: {fileID: 0}
+  questionBoxAnimator: {fileID: 0}
+  ceiling: {fileID: 0}
+  magicMushroom: {fileID: 0}
+  hitCount: 1
 --- !u!1 &54075935
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,6 +3975,7 @@ Transform:
   - {fileID: 271017200}
   - {fileID: 400974221}
   - {fileID: 135010627}
+  - {fileID: 44751246}
   - {fileID: 833237496}
   - {fileID: 1693509467}
   m_Father: {fileID: 0}
@@ -10224,6 +10252,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182426885}
   m_CullTransparentMesh: 1
+--- !u!1001 &1198026574
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 529622285}
+    m_Modifications:
+    - target: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 167.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819660264575365765, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      propertyPath: m_Name
+      value: Question-Box-Magic-Mushroom
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4819660264575365765, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 44751249}
+  m_SourcePrefab: {fileID: 100100000, guid: 39265c26bdd97454e9f622499b8870e6, type: 3}
 --- !u!4 &1205656554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}

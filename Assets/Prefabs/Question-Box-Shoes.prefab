@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4322421340405887452}
   - component: {fileID: 52043442565627892}
   m_Layer: 7
-  m_Name: Question-Box-Bounce-Shoes
+  m_Name: Question-Box-Shoes
   m_TagString: QuestionBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

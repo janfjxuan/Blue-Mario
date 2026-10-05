@@ -82,9 +82,9 @@ public class GameManager : Singleton<GameManager>
             Transform questionBoxTransform = transform.Find("Question-Box");
             if (questionBoxTransform != null)
             {
-                QuestionBox questionBox = questionBoxTransform.GetComponent<QuestionBox>();
-                if (questionBox != null)
-                    questionBox.ResetQuestionBox();
+                CoinBox coinBox = questionBoxTransform.GetComponent<CoinBox>();
+                if (coinBox != null)
+                    coinBox.ResetQuestionBox();
                 ShoeBox shoeBox = questionBoxTransform.GetComponent<ShoeBox>();
                 if (shoeBox != null)
                     shoeBox.ResetQuestionBox();
