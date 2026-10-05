@@ -18,7 +18,7 @@ public class EnemyMovement : MonoBehaviour
     private Collider2D enemyCollider;
     public Vector3 startPosition;
 
-    void Start()
+    void Awake()
     {
         enemyBody = GetComponent<Rigidbody2D>();
         enemyAnimator = GetComponent<Animator>();

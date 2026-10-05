@@ -30,6 +30,7 @@ public class CoinBox : MonoBehaviour
                 }
                 Animator coinAnimator = coin.GetComponent<Animator>();
                 coinAnimator.SetTrigger("popUp");
+                
                 AudioSource coinAudio = coin.GetComponent<AudioSource>();
                 if (coinAudio != null)
                 {

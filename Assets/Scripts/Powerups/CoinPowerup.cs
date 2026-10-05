@@ -5,19 +5,23 @@ using UnityEngine.Events;
 
 public class CoinPowerup : BasePowerup
 {
+    private AudioSource coinAudio;
     // start is called before the first frame update
     protected override void Start()
     {
         base.Start(); // call base class Start()
         this.type = PowerupType.Coin;
+        this.coinAudio = GetComponent<AudioSource>();
     }
 
     public override void SpawnPowerup()
     {
         spawned = true;
-        // play the sound
-        AudioSource source = this.GetComponent<AudioSource>();
-        source.PlayOneShot(source.clip);
+        Debug.Log("Coin spawned");
+        if (coinAudio != null)
+        {
+            coinAudio.PlayOneShot(coinAudio.clip);
+        }
         // invoke PowerupCollectedEvent
         // PowerUpManager.instance.powerupCollected.Invoke(this);
     }

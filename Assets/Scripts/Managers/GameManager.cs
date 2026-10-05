@@ -64,7 +64,6 @@ public class GameManager : Singleton<GameManager>
         timer = 0f;
         timerChange.Invoke(timer);
 
-        gameRestart.Invoke();
         Time.timeScale = 1.0f;
 
         levelCompleted = false;
@@ -88,6 +87,9 @@ public class GameManager : Singleton<GameManager>
                 ShoeBox shoeBox = questionBoxTransform.GetComponent<ShoeBox>();
                 if (shoeBox != null)
                     shoeBox.ResetQuestionBox();
+                MagicMushroomBox magicMushroomBox = questionBoxTransform.GetComponent<MagicMushroomBox>();
+                if (magicMushroomBox != null)
+                    magicMushroomBox.ResetQuestionBox();
             }
             Transform brickTransform = transform.Find("Brick-Coin");
             if (brickTransform != null)
@@ -100,6 +102,7 @@ public class GameManager : Singleton<GameManager>
 
         // reset camera 
         gameCameraController.ResetCamera();
+        gameRestart.Invoke();
     }
 
     public void IncreaseScore(int increment)

@@ -41,12 +41,12 @@ public class ShoeBox : MonoBehaviour
                     questionBoxAnimator.SetBool("isEmpty", true);
                     questionBoxAnimator.Play("question-box-empty");
                     ceiling.SetActive(true);
-                    StartCoroutine(DisableCoin());
+                    StartCoroutine(DisableShoe());
                 }
             }
         }
     }
-    private IEnumerator DisableCoin()
+    private IEnumerator DisableShoe()
     {
         yield return new WaitForSeconds(1.2f);
         shoes.SetActive(false);
