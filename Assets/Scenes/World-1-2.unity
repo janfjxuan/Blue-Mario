@@ -1840,6 +1840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2479afef19964c4081234d380f09fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  gameConstants: {fileID: 11400000, guid: df9717ebdefb89d48ac45dadd6e96c27, type: 2}
   stomp:
     m_PersistentCalls:
       m_Calls: []
@@ -1849,13 +1850,8 @@ MonoBehaviour:
   marioDeathAudio: {fileID: 558740673}
   marioAnimator: {fileID: 558740666}
   marioCollider: {fileID: 558740668}
-  initialPosition: {x: -5, y: -2.5, z: 0}
-  speed: 32
-  maxSpeed: 5
-  upSpeed: 20
   onGroundState: 1
   faceRightState: 1
-  deathImpulse: 16
 --- !u!50 &558740670
 Rigidbody2D:
   serializedVersion: 5

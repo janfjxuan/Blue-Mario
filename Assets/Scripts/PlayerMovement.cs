@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameConstants gameConstants;
     public UnityEvent stomp;
     // public GameManager gameManager;
     public Rigidbody2D marioBody;
@@ -15,15 +16,15 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource marioDeathAudio;
     public Animator marioAnimator;
     public Collider2D marioCollider;
-    public Vector3 initialPosition;
+    public Vector3 marioStartingPosition;
 
-    private float moveHorizontal;
-    public float speed = 10;
-    public float maxSpeed = 20;
-    public float upSpeed = 10;
+    float deathImpulse;
+    float upSpeed;
+    float maxSpeed;
+    float speed;
+
     public bool onGroundState = true;
     public bool faceRightState = true;
-    public float deathImpulse = 5;
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
     // state
@@ -35,11 +36,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set constants
+        speed = gameConstants.speed;
+        maxSpeed = gameConstants.maxSpeed;
+        deathImpulse = gameConstants.deathImpulse;
+        upSpeed = gameConstants.upSpeed;
+
         marioCollider.enabled = true;
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
-        initialPosition = marioBody.transform.position;
+        marioStartingPosition = marioBody.transform.position;
 
         // subscribe to scene manager scene change
         // SceneManager.activeSceneChanged += SetStartingPosition;
@@ -89,8 +96,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 col.gameObject.GetComponent<EnemyMovement>().Stomp();
                 marioBody.linearVelocity = new Vector2(marioBody.linearVelocityX, 0f);
-                marioBody.AddForce(Vector2.up * upSpeed * 0.6f, ForceMode2D.Impulse); 
-            } else
+                marioBody.AddForce(Vector2.up * upSpeed * 0.6f, ForceMode2D.Impulse);
+            }
+            else
             {
                 KillMario();
             }
@@ -238,7 +246,7 @@ public class PlayerMovement : MonoBehaviour
     public void GameRestart()
     {
         // reset position
-        marioBody.transform.position = initialPosition;
+        marioBody.transform.position = marioStartingPosition;
         marioBody.transform.rotation = Quaternion.identity;
         marioBody.linearVelocity = Vector2.zero;
         marioBody.angularVelocity = 0f;

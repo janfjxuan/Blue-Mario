@@ -11355,7 +11355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1360613210}
   m_Layer: 0
-  m_Name: BackgrondScenery
+  m_Name: BackgroundScenery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14260,7 +14260,7 @@ Transform:
   m_GameObject: {fileID: 1803813723}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 2.5, z: 0}
+  m_LocalPosition: {x: 161, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14305,6 +14305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2479afef19964c4081234d380f09fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  gameConstants: {fileID: 11400000, guid: df9717ebdefb89d48ac45dadd6e96c27, type: 2}
   stomp:
     m_PersistentCalls:
       m_Calls: []
@@ -14314,13 +14315,8 @@ MonoBehaviour:
   marioDeathAudio: {fileID: 1803813734}
   marioAnimator: {fileID: 1803813730}
   marioCollider: {fileID: 1803813728}
-  initialPosition: {x: -5, y: -2.5, z: 0}
-  speed: 32
-  maxSpeed: 5
-  upSpeed: 20
   onGroundState: 1
   faceRightState: 1
-  deathImpulse: 16
 --- !u!61 &1803813728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16965,7 +16961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692075852036689689, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6684360586347945608, guid: b933fd297f60baa4f89c47247fa0c81a, type: 3}
       propertyPath: m_LocalPosition.x
