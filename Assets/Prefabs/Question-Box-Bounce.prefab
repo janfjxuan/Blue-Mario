@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 2050726906073768604}
   - component: {fileID: 2966482368750859013}
   - component: {fileID: 7573877321863129415}
-  - component: {fileID: 2311408625750325088}
+  - component: {fileID: 7614224550375116372}
   m_Layer: 7
   m_Name: Question-Box
   m_TagString: QuestionBox
@@ -275,7 +275,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2311408625750325088
+--- !u!114 &7614224550375116372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,14 +284,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7078671223151696755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 128d7679427c544799d2e4bd08f3cdb5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c740f78ba201f8409d5a79fa880cc4a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinBox
-  questionBox: {fileID: 7078671223151696755}
-  questionBoxAnimator: {fileID: 7573877321863129415}
+  m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
+  powerupAnimator: {fileID: 6712391400286620594}
+  powerup: {fileID: 7942371036080464269}
   ceiling: {fileID: 6426806209581938314}
-  coin: {fileID: 7968442964762604005}
-  hitCount: 2
 --- !u!1001 &2510544385437552582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -481,6 +479,22 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6672706842202431824}
   m_SourcePrefab: {fileID: 100100000, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
+--- !u!95 &6712391400286620594 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4507497239615739798, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
+  m_PrefabInstance: {fileID: 7181812803938884644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7942371036080464269 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 977866960359161257, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
+  m_PrefabInstance: {fileID: 7181812803938884644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968442964762604005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d13289bd1e93b947aa0f6c5abc8b98e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinPowerup
 --- !u!1 &7968442964762604005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 954609300398124481, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}

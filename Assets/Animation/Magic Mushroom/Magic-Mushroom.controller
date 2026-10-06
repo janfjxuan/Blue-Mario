@@ -11,10 +11,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -5670652102895727501}
-    m_Position: {x: 250, y: 120, z: 0}
+    m_Position: {x: 270, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -864817398527455075}
-    m_Position: {x: 300, y: 190, z: 0}
+    m_Position: {x: 530, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -84,10 +84,10 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: big_mushroom
+  m_Name: Magic-Mushroom
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: popUp
+  - m_Name: spawn
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -115,7 +115,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: popUp
+    m_ConditionEvent: spawn
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -864817398527455075}

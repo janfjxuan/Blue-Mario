@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface Powerup
+public interface IPowerup
 {
     void DestroyPowerup();
     void SpawnPowerup();
@@ -18,7 +18,7 @@ public interface Powerup
 }
 
 
-public interface PowerupApplicable
+public interface IPowerupApplicable
 {
-    public void RequestPowerupEffect(Powerup i);
+    public void RequestPowerupEffect(IPowerup i);
 }

@@ -106,14 +106,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        // if (other.gameObject.CompareTag("Enemy"))
-        // {
-        //     KillMario();
-        // }
-        // else if (other.gameObject.CompareTag("Goal"))
-        // {
-        //     gameManager.LevelComplete();
-        // }
         if (other.gameObject.CompareTag("GapHole"))
         {
             KillMario(); // can change to different event 
@@ -139,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
         {
             faceRightState = true;
             marioSprite.flipX = false;
+            Debug.Log($"flip left, vx = {marioBody.linearVelocity.x}");
             if (marioBody.linearVelocity.x < -0.05f)
                 marioAnimator.SetTrigger("onSkid");
         }
@@ -150,7 +143,6 @@ public class PlayerMovement : MonoBehaviour
         if (alive && moving)
         {
             Debug.Log("FixedUpdate: moving is true, calling Move");
-
             Move(faceRightState == true ? 1 : -1);
         }
     }
@@ -259,6 +251,7 @@ public class PlayerMovement : MonoBehaviour
         // reset animation
         marioCollider.enabled = true;
         marioAnimator.SetTrigger("gameRestart");
+
         alive = true;
     }
 

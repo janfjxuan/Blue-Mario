@@ -5,23 +5,21 @@ using UnityEngine.Events;
 
 public class CoinPowerup : BasePowerup
 {
-    private AudioSource coinAudio;
+    private Animator coinAnimator;
+    private void Awake()
+    {
+        coinAnimator = GetComponent<Animator>();
+    }
     // start is called before the first frame update
     protected override void Start()
     {
         base.Start(); // call base class Start()
-        this.type = PowerupType.Coin;
-        this.coinAudio = GetComponent<AudioSource>();
+        type = PowerupType.Coin;
     }
 
     public override void SpawnPowerup()
     {
         spawned = true;
-        Debug.Log("Coin spawned");
-        if (coinAudio != null)
-        {
-            coinAudio.PlayOneShot(coinAudio.clip);
-        }
         // invoke PowerupCollectedEvent
         // PowerUpManager.instance.powerupCollected.Invoke(this);
     }
@@ -40,5 +38,13 @@ public class CoinPowerup : BasePowerup
         {
             // manager.IncreaseScore(i);
         }
+    }
+
+    public override void ResetPowerup()
+    {
+        spawned = false;
+        coinAnimator.ResetTrigger("spawn");
+        coinAnimator.Rebind();
+        coinAnimator.Update(0f);
     }
 }

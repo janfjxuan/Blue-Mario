@@ -24,7 +24,7 @@ public class HUDManager : MonoBehaviour
 
     void Start()
     {
-        SetScore(GameManager.instance.score);
+        SetScore(GameManager.instance.gameScore.Value);
     }
     void Awake()
     {

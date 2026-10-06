@@ -18,8 +18,8 @@ public class GameManager : Singleton<GameManager>
 
     private bool levelCompleted = false;
     private bool timerRunning = true;
-    public int score = 0;
-    public float timer = 60f;
+    public IntVariable gameScore;
+    public float timer = 0f;
 
     public GameObject obstacles;
     public AudioSource musicSource;
@@ -31,6 +31,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        gameScore.Value = 0;
         gameStart.Invoke();
         Time.timeScale = 1.0f;
         // subscribe to scene manager scene change
@@ -41,7 +42,7 @@ public class GameManager : Singleton<GameManager>
     {
         // Setup code for the new scene
         gameStart.Invoke();
-        SetScore(score);
+        SetScore(gameScore.Value);
     }
 
     // Update is called once per frame
@@ -57,8 +58,8 @@ public class GameManager : Singleton<GameManager>
     public void GameRestart()
     {
         // reset score
-        score = 0;
-        SetScore(score);
+        gameScore.Value = 0;
+        SetScore(gameScore.Value);
 
         timerRunning = true;
         timer = 0f;
@@ -81,22 +82,16 @@ public class GameManager : Singleton<GameManager>
             Transform questionBoxTransform = transform.Find("Question-Box");
             if (questionBoxTransform != null)
             {
-                CoinBox coinBox = questionBoxTransform.GetComponent<CoinBox>();
-                if (coinBox != null)
-                    coinBox.ResetQuestionBox();
-                ShoeBox shoeBox = questionBoxTransform.GetComponent<ShoeBox>();
-                if (shoeBox != null)
-                    shoeBox.ResetQuestionBox();
-                MagicMushroomBox magicMushroomBox = questionBoxTransform.GetComponent<MagicMushroomBox>();
-                if (magicMushroomBox != null)
-                    magicMushroomBox.ResetQuestionBox();
+                QuestionBoxPowerupController questionBox = questionBoxTransform.GetComponent<QuestionBoxPowerupController>();
+                if (questionBox != null)
+                    questionBox.ResetQuestionBox();
             }
-            Transform brickTransform = transform.Find("Brick-Coin");
+            Transform brickTransform = transform.Find("Brick");
             if (brickTransform != null)
             {
-                BrickCoin brickCoin = brickTransform.GetComponent<BrickCoin>();
-                if (brickCoin != null)
-                    brickCoin.ResetBrick();
+                BrickPowerupController brick = brickTransform.GetComponent<BrickPowerupController>();
+                if (brick != null)
+                    brick.ResetBrick();
             }
         }
 
@@ -107,8 +102,8 @@ public class GameManager : Singleton<GameManager>
 
     public void IncreaseScore(int increment)
     {
-        score += increment;
-        SetScore(score);
+        gameScore.ApplyChange(increment);
+        SetScore(gameScore.Value);
     }
 
     public void SetScore(int score)

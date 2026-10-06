@@ -8,12 +8,17 @@ public class MagicMushroomPowerup : BasePowerup
     // instantiate variables
     private Collider2D magicMushroomCollider;
     private Animator magicMushroomAnimator;
+    private void Awake()
+    {
+        magicMushroomAnimator = GetComponent<Animator>();
+        magicMushroomCollider = GetComponent<Collider2D>();
+        gameObject.SetActive(false);
+    }
     protected override void Start()
     {
         base.Start(); // call base class Start()
-        this.type = PowerupType.MagicMushroom;
-        this.magicMushroomCollider = GetComponent<Collider2D>();
-        this.magicMushroomAnimator = GetComponent<Animator>();
+        type = PowerupType.MagicMushroom;
+        magicMushroomAnimator.enabled = true;
         magicMushroomCollider.enabled = false;
     }
 
@@ -24,8 +29,8 @@ public class MagicMushroomPowerup : BasePowerup
             // TODO: do something when colliding with Player
             // PowerupManager.instance.powerupCollected.Invoke(this);
             // then destroy powerup (optional)
-            DestroyPowerup();
-
+            // DestroyPowerup();
+            gameObject.SetActive(false);
         }
         else if (col.gameObject.layer == 10) // else if hitting Pipe, flip travel direction
         {
@@ -59,5 +64,13 @@ public class MagicMushroomPowerup : BasePowerup
         // {
         //     mario.MakeSuperMario();
         // }
-    }   
+    }
+
+    public override void ResetPowerup()
+    {
+        spawned = false;
+        magicMushroomAnimator.enabled = true;
+        magicMushroomCollider.enabled = false;
+        gameObject.SetActive(false);
+    }
 }

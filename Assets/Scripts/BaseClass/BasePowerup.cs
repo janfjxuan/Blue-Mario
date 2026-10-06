@@ -1,5 +1,5 @@
 using UnityEngine;
-public abstract class BasePowerup : MonoBehaviour, Powerup
+public abstract class BasePowerup : MonoBehaviour, IPowerup
 {
     public PowerupType type;
     public bool spawned = false;
@@ -39,4 +39,5 @@ public abstract class BasePowerup : MonoBehaviour, Powerup
     // 2. abstract methods, must be implemented by derived classes
     public abstract void SpawnPowerup();
     public abstract void ApplyPowerup(MonoBehaviour i);
+    public abstract void ResetPowerup();
 }
