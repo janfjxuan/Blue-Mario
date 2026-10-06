@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
   highScoreText: {fileID: 1560576388}
-  gameScore: {fileID: 11400000, guid: 5c23acb05c6d702409f3c890c6bb9cb7, type: 2}
+  gameScore: {fileID: 11400000, guid: a0d62164732424e0f8cfbf7a4095e693, type: 2}
 --- !u!114 &989055676
 MonoBehaviour:
   m_ObjectHideFlags: 0

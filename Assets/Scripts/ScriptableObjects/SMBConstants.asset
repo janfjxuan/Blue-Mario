@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0dca6974dfb87546a9af57ab096c98a, type: 3}
-  m_Name: GameScore
-  m_EditorClassIdentifier: Assembly-CSharp::IntVariable
-  DeveloperDescription: 
-  previousHighestValue: 0
+  m_Script: {fileID: 11500000, guid: f1c5d259b2ea60e4c847d1b9410fc4bf, type: 3}
+  m_Name: SMBConstants
+  m_EditorClassIdentifier: Assembly-CSharp::GameConstants
+  maxLives: 10
+  speed: 32
+  maxSpeed: 5
+  upSpeed: 20
+  deceleration: 30
+  deathImpulse: 16

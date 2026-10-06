@@ -8,7 +8,6 @@ using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour
 {
     public GameConstants gameConstants;
-    public UnityEvent stomp;
     // public GameManager gameManager;
     public Rigidbody2D marioBody;
     public SpriteRenderer marioSprite;
@@ -22,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     float upSpeed;
     float maxSpeed;
     float speed;
+    float deceleration;
 
     public bool onGroundState = true;
     public bool faceRightState = true;
@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         maxSpeed = gameConstants.maxSpeed;
         deathImpulse = gameConstants.deathImpulse;
         upSpeed = gameConstants.upSpeed;
+        deceleration = gameConstants.deceleration;
 
         marioCollider.enabled = true;
         marioBody = GetComponent<Rigidbody2D>();
@@ -131,7 +132,6 @@ public class PlayerMovement : MonoBehaviour
         {
             faceRightState = true;
             marioSprite.flipX = false;
-            Debug.Log($"flip left, vx = {marioBody.linearVelocity.x}");
             if (marioBody.linearVelocity.x < -0.05f)
                 marioAnimator.SetTrigger("onSkid");
         }
@@ -144,6 +144,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("FixedUpdate: moving is true, calling Move");
             Move(faceRightState == true ? 1 : -1);
+        }
+        else if (alive && onGroundState)
+        {
+            float oldX = marioBody.linearVelocity.x;
+            float newX = Mathf.MoveTowards(oldX, 0f, deceleration * Time.fixedDeltaTime);
+            marioBody.linearVelocity = new Vector2(newX, marioBody.linearVelocity.y);
         }
     }
 
@@ -166,7 +172,6 @@ public class PlayerMovement : MonoBehaviour
         if (value == 0)
         {
             moving = false;
-            marioBody.linearVelocityX = 0;
         }
         else
         {
