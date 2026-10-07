@@ -178,6 +178,7 @@ MonoBehaviour:
   powerupAnimator: {fileID: 0}
   powerup: {fileID: 0}
   isBreakable: 1
+--- !u!82 &8225355405187865667
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
