@@ -45,7 +45,6 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
                 powerupAnimator.SetTrigger("spawn"); // this is the animator belonging to the powerup in that question box
                 if (powerupAudio != null)
                 {
-                    Debug.Log("audio");
                     powerupAudio.Play();
                 }
             }

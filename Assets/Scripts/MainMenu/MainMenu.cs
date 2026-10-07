@@ -15,7 +15,6 @@ public class MainMenu : MonoBehaviour
 
     public void GoToLoadScene()
     {
-        Debug.Log("Go to LoadingScene");
         SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Single);
     }
 

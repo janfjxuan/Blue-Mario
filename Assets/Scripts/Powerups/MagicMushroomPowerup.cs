@@ -49,7 +49,6 @@ public class MagicMushroomPowerup : BasePowerup
         spawned = true;
         magicMushroomAnimator.enabled = false;
         magicMushroomCollider.enabled = true;
-        Debug.Log("Magic Mushroom spawned");
         rigidBody.AddForce(Vector2.right * 3, ForceMode2D.Impulse); // move to the right
     }
 

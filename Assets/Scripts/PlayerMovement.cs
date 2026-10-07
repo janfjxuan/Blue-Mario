@@ -8,7 +8,6 @@ using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour
 {
     public GameConstants gameConstants;
-    // public GameManager gameManager;
     public Rigidbody2D marioBody;
     public SpriteRenderer marioSprite;
     public AudioSource marioAudio;
@@ -142,7 +141,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (alive && moving)
         {
-            Debug.Log("FixedUpdate: moving is true, calling Move");
             Move(faceRightState == true ? 1 : -1);
         }
         else if (alive)
@@ -155,8 +153,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Move(int value)
     {
-        Debug.Log($"Move() called with value {value}, current velocity: {marioBody.linearVelocity}");
-
         Vector2 movement = new Vector2(value, 0);
         // check if it doesn't go beyond maxSpeed
         if (marioBody.linearVelocity.magnitude < maxSpeed)
@@ -165,8 +161,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveCheck(int value)
     {
-        Debug.Log($"MoveCheck called with value {value}, alive={alive}");
-
         if (!alive) return;
 
         if (value == 0)
