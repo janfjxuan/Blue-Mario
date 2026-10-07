@@ -16,13 +16,15 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D enemyBody;
     private Animator enemyAnimator;
     private Collider2D enemyCollider;
+    private AudioSource enemyAudio;
     public Vector3 startPosition;
 
-    void Start()
+    void Awake()
     {
         enemyBody = GetComponent<Rigidbody2D>();
         enemyAnimator = GetComponent<Animator>();
         enemyCollider = GetComponent<Collider2D>();
+        enemyAudio = GetComponent<AudioSource>();
         // get the starting position
         startPosition = transform.position;
         // ComputeVelocity();
@@ -38,7 +40,12 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!alive) return;
+        if (!alive)
+        {
+            enemyBody.linearVelocity = Vector2.zero;
+            return;
+        }
+        ;
         enemyBody.linearVelocity = new Vector2(moveRight * speed, enemyBody.linearVelocity.y);
         // if (Mathf.Abs(enemyBody.position.x - startPosition.x) < maxOffset)
         // {// move goomba
@@ -72,6 +79,8 @@ public class EnemyMovement : MonoBehaviour
         if (!alive) return;
         alive = false;
         enemyCollider.enabled = false;
+        enemyBody.bodyType = RigidbodyType2D.Kinematic;
+        enemyAudio.Play();
         enemyAnimator.SetTrigger("killGoomba");
         stomped.Invoke();
     }
@@ -85,6 +94,7 @@ public class EnemyMovement : MonoBehaviour
     {
         goomba.SetActive(true);
         alive = true;
+        enemyBody.bodyType = RigidbodyType2D.Dynamic;
         enemyCollider.enabled = true;
         enemyAnimator.Rebind();
         enemyAnimator.Update(0f);

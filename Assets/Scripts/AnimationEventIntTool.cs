@@ -21,7 +21,6 @@ public class AnimationEventIntTool : MonoBehaviour
 
     public void TriggerIntEvent()
     {
-        Debug.Log("TriggerIntEvent fired, parameter = " + parameter);
         useInt.Invoke(parameter); // safe to invoke even without callbacks   
     }
 }

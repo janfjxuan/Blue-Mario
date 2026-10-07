@@ -6,7 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/BlueMario.unity
+    path: Assets/Scenes/MainMenu.unity
+    guid: 5a935e24575325e4ca536410a288cb20
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 6ce3bfdf2d99346449e973ca6b02a909
+  - enabled: 1
+    path: Assets/Scenes/World-1-1.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/World-1-2.unity
+    guid: 67201e9adbffbf04f8b09ae05325123e
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

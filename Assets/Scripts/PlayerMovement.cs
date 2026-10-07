@@ -1,28 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public UnityEvent stomp;
-    public GameManager gameManager;
+    public GameConstants gameConstants;
     public Rigidbody2D marioBody;
     public SpriteRenderer marioSprite;
     public AudioSource marioAudio;
     public AudioSource marioDeathAudio;
     public Animator marioAnimator;
     public Collider2D marioCollider;
-    public Vector3 initialPosition;
+    public Vector3 marioStartingPosition;
 
-    private float moveHorizontal;
-    public float speed = 10;
-    public float maxSpeed = 20;
-    public float upSpeed = 10;
+    float deathImpulse;
+    float upSpeed;
+    float maxSpeed;
+    float speed;
+    float deceleration;
+
     public bool onGroundState = true;
     public bool faceRightState = true;
-    public float deathImpulse = 5;
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
     // state
@@ -34,12 +35,44 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set constants
+        speed = gameConstants.speed;
+        maxSpeed = gameConstants.maxSpeed;
+        deathImpulse = gameConstants.deathImpulse;
+        upSpeed = gameConstants.upSpeed;
+        deceleration = gameConstants.deceleration;
+
         marioCollider.enabled = true;
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
-        initialPosition = marioBody.transform.position;
+        marioStartingPosition = marioBody.transform.position;
+
+        // subscribe to scene manager scene change
+        // SceneManager.activeSceneChanged += SetStartingPosition;
     }
+
+    void Awake()
+    {
+        // subscribe to Game Restart event
+        GameManager.instance.gameRestart.AddListener(GameRestart);
+    }
+
+    void OnDestroy()
+    {
+        if (GameManager.instance != null)
+            GameManager.instance.gameRestart.RemoveListener(GameRestart);
+    }
+
+    // public void SetStartingPosition(Scene current, Scene next)
+    // {
+    //     if (next.name == "World-1-2")
+    //     {
+    //         // change the position accordingly in your World-1-2 case
+    //         this.transform.position = new Vector3(-10.2399998f, -4.3499999f, 0.0f);
+    //     }
+    // }
+
     void PlayDeathImpulse()
     {
         marioBody.linearVelocity = new Vector2(0f, 0f);
@@ -63,8 +96,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 col.gameObject.GetComponent<EnemyMovement>().Stomp();
                 marioBody.linearVelocity = new Vector2(marioBody.linearVelocityX, 0f);
-                marioBody.AddForce(Vector2.up * upSpeed * 0.6f, ForceMode2D.Impulse); 
-            } else
+                marioBody.AddForce(Vector2.up * upSpeed * 0.6f, ForceMode2D.Impulse);
+            }
+            else
             {
                 KillMario();
             }
@@ -72,14 +106,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        // if (other.gameObject.CompareTag("Enemy"))
-        // {
-        //     KillMario();
-        // }
-        // else if (other.gameObject.CompareTag("Goal"))
-        // {
-        //     gameManager.LevelComplete();
-        // }
         if (other.gameObject.CompareTag("GapHole"))
         {
             KillMario(); // can change to different event 
@@ -115,16 +141,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (alive && moving)
         {
-            Debug.Log("FixedUpdate: moving is true, calling Move");
-
             Move(faceRightState == true ? 1 : -1);
+        }
+        else if (alive)
+        {
+            float oldX = marioBody.linearVelocity.x;
+            float newX = Mathf.MoveTowards(oldX, 0f, deceleration * Time.fixedDeltaTime);
+            marioBody.linearVelocity = new Vector2(newX, marioBody.linearVelocity.y);
         }
     }
 
     void Move(int value)
     {
-        Debug.Log($"Move() called with value {value}, current velocity: {marioBody.linearVelocity}");
-
         Vector2 movement = new Vector2(value, 0);
         // check if it doesn't go beyond maxSpeed
         if (marioBody.linearVelocity.magnitude < maxSpeed)
@@ -133,14 +161,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveCheck(int value)
     {
-        Debug.Log($"MoveCheck called with value {value}, alive={alive}");
-
         if (!alive) return;
 
         if (value == 0)
         {
             moving = false;
-            marioBody.linearVelocityX = 0;
         }
         else
         {
@@ -212,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
     public void GameRestart()
     {
         // reset position
-        marioBody.transform.position = initialPosition;
+        marioBody.transform.position = marioStartingPosition;
         marioBody.transform.rotation = Quaternion.identity;
         marioBody.linearVelocity = Vector2.zero;
         marioBody.angularVelocity = 0f;
@@ -225,11 +250,13 @@ public class PlayerMovement : MonoBehaviour
         // reset animation
         marioCollider.enabled = true;
         marioAnimator.SetTrigger("gameRestart");
+
         alive = true;
     }
 
     public void GameOverScene()
     {
-        gameManager.GameOver();
+        // gameManager.GameOver();
+        GameManager.instance.GameOver();
     }
 }

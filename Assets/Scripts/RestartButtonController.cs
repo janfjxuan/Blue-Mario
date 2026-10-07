@@ -1,0 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// later on, teach interface
+public class RestartButtonController : MonoBehaviour, InteractiveButton
+{
+    // implements the interface
+    public void ButtonClick()
+    {
+        GameManager.instance.GameRestart();
+    }
+}
