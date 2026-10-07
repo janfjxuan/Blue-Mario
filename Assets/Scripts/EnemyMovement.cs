@@ -16,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D enemyBody;
     private Animator enemyAnimator;
     private Collider2D enemyCollider;
+    private AudioSource enemyAudio;
     public Vector3 startPosition;
 
     void Awake()
@@ -23,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
         enemyBody = GetComponent<Rigidbody2D>();
         enemyAnimator = GetComponent<Animator>();
         enemyCollider = GetComponent<Collider2D>();
+        enemyAudio = GetComponent<AudioSource>();
         // get the starting position
         startPosition = transform.position;
         // ComputeVelocity();
@@ -78,6 +80,7 @@ public class EnemyMovement : MonoBehaviour
         alive = false;
         enemyCollider.enabled = false;
         enemyBody.bodyType = RigidbodyType2D.Kinematic;
+        enemyAudio.Play();
         enemyAnimator.SetTrigger("killGoomba");
         stomped.Invoke();
     }

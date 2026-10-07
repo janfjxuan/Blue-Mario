@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("FixedUpdate: moving is true, calling Move");
             Move(faceRightState == true ? 1 : -1);
         }
-        else if (alive && onGroundState)
+        else if (alive)
         {
             float oldX = marioBody.linearVelocity.x;
             float newX = Mathf.MoveTowards(oldX, 0f, deceleration * Time.fixedDeltaTime);

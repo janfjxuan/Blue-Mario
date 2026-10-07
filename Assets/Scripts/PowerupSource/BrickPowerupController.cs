@@ -10,6 +10,7 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
     private Vector2 powerupStartPosition;
     public bool isBreakable = false;
     private Animator brickAnimator;
+    private AudioSource brickAudio;
     void Start()
     {
         if(powerup != null)
@@ -23,6 +24,7 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
             isBreakable = true; // no coin means breakable
         }
         brickAnimator = GetComponent<Animator>();
+        brickAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,6 +46,7 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
                     // // enable sprite
                     // this.GetComponent<SpriteRenderer>().enabled = true;
                     // bounce
+                    brickAudio.Play();
                     brickAnimator.SetTrigger("bounce");
                     // spawn powerup (FOR LOOP this)
                     if (powerupGameObject.activeSelf == false)
@@ -67,6 +70,7 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
                 }
                 else // breakable and small mario
                 {
+                    brickAudio.Play();
                     brickAnimator.SetTrigger("bounce");
                 }
             }
