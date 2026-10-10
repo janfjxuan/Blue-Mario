@@ -15,17 +15,18 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent<float> timerChange;
     public UnityEvent gameOver;
     public UnityEvent levelComplete;
+    public UnityEvent<bool> pauseChange;
 
     private bool levelCompleted = false;
     private bool timerRunning = true;
+    private bool isPaused = false;
     public IntVariable gameScore;
     public float timer = 0f;
 
     public GameObject obstacles;
     public AudioSource musicSource;
-    public HUDManager hudManager;
     public CameraController gameCameraController;
-
+    
     public AudioMixerSnapshot defaultSnapshot;
     public AudioMixerSnapshot gameOverSnapshot;
 
@@ -66,6 +67,10 @@ public class GameManager : Singleton<GameManager>
         timerChange.Invoke(timer);
 
         Time.timeScale = 1.0f;
+
+        isPaused = false;
+        AudioListener.pause = false;
+        pauseChange.Invoke(false);
 
         levelCompleted = false;
 
@@ -126,5 +131,13 @@ public class GameManager : Singleton<GameManager>
         timerRunning = false;
         levelComplete.Invoke();
         Time.timeScale = 0.0f;
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0.0f : 1.0f;
+        AudioListener.pause = isPaused;
+        pauseChange.Invoke(isPaused);
     }
 }
