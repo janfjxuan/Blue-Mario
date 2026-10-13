@@ -30,6 +30,9 @@ public class MagicMushroomPowerup : BasePowerup
             // PowerupManager.instance.powerupCollected.Invoke(this);
             // then destroy powerup (optional)
             // DestroyPowerup();
+            Debug.Log("Mushroom collected");
+            if (spawned)
+                PowerupManager.instance.powerupCollected.Invoke(this);
             gameObject.SetActive(false);
         }
         else if (col.gameObject.layer == 10) // else if hitting Pipe, flip travel direction
@@ -63,6 +66,8 @@ public class MagicMushroomPowerup : BasePowerup
         // {
         //     mario.MakeSuperMario();
         // }
+        if (i.TryGetComponent<PlayerMovement>(out var mario))
+            mario.MakeSuperMario();
     }
 
     public override void ResetPowerup()

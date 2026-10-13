@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
     private Animator enemyAnimator;
     private Collider2D enemyCollider;
     private AudioSource enemyAudio;
-    public Vector3 startPosition;
+    private Vector3 startPosition;
 
     void Awake()
     {

@@ -229,8 +229,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicMushroomPowerup
   type: 1
   spawned: 0
-  magicMushroomCollider: {fileID: 8892559748834353103}
-  magicMushroomAnimator: {fileID: 3390493613363127668}
 --- !u!61 &8892559748834353103
 BoxCollider2D:
   m_ObjectHideFlags: 0
