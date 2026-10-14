@@ -23,15 +23,16 @@ public class GameManager : Singleton<GameManager>
     public IntVariable gameScore;
     public float timer = 0f;
 
-    public GameObject obstacles;
-    public AudioSource musicSource;
-    public CameraController gameCameraController;
-    
+    private GameObject obstacles;
+    private AudioSource musicSource;
+    private CameraController gameCameraController;
+
     public AudioMixerSnapshot defaultSnapshot;
     public AudioMixerSnapshot gameOverSnapshot;
 
     void Start()
     {
+        FindSceneReferences();
         gameScore.Value = 0;
         gameStart.Invoke();
         Time.timeScale = 1.0f;
@@ -41,9 +42,29 @@ public class GameManager : Singleton<GameManager>
 
     public void SceneSetup(Scene current, Scene next)
     {
+        if (next.name == "MainMenu" || next.name == "LoadingScene") return;
+        FindSceneReferences();
+        levelCompleted = false;
+        timerRunning = true;
+        timer = 0f;
+        isPaused = false;
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        if (next.name == "World-1-1")
+            gameScore.Value = 0;
         // Setup code for the new scene
         gameStart.Invoke();
         SetScore(gameScore.Value);
+    }
+
+    private void FindSceneReferences()
+    {
+        SceneReferences refs = FindFirstObjectByType<SceneReferences>();
+        if (refs == null) return;   // e.g. MainMenu or LoadingScene
+
+        obstacles = refs.obstacles;
+        musicSource = refs.musicSource;
+        gameCameraController = refs.gameCameraController;
     }
 
     // Update is called once per frame
@@ -54,6 +75,11 @@ public class GameManager : Singleton<GameManager>
             timer += Time.deltaTime;
             timerChange.Invoke(timer);
         }
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.activeSceneChanged -= SceneSetup;
     }
 
     public void GameRestart()
@@ -133,11 +159,26 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 0.0f;
     }
 
+    public void AfterLevelComplete()
+    {
+        Time.timeScale = 1.0f;
+    }
+
     public void TogglePause()
     {
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0.0f : 1.0f;
         AudioListener.pause = isPaused;
         pauseChange.Invoke(isPaused);
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1.0f;
+        AudioListener.pause = false;
+        isPaused = false;
+        defaultSnapshot.TransitionTo(0f);
+
+        SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
     }
 }

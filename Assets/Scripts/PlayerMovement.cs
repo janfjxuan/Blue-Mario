@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
     private bool isSuper = false;
     public bool IsSuper => isSuper;
     private bool isInvincible = false;
+    private bool inputLocked = false;
+    public bool startWithCastleWalk = false;
     private BoxCollider2D box;
     private Vector2 smallSize;
     private Vector2 smallOffset;
@@ -71,6 +73,9 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         // SceneManager.activeSceneChanged += SetStartingPosition;
 
         PowerupManager.instance.powerupAffectsPlayer.AddListener(RequestPowerupEffect);
+
+        if (startWithCastleWalk)
+            StartCoroutine(WalkOutOfCastle());
     }
 
     void Awake()
@@ -195,7 +200,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     public void MoveCheck(int value)
     {
-        if (!alive) return;
+        if (!alive || inputLocked) return;
 
         if (value == 0)
         {
@@ -211,7 +216,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     public void Jump()
     {
-        if (alive && onGroundState && !growing)
+        if (alive && onGroundState && !growing && !inputLocked)
         {
             marioBody.linearVelocity = new Vector2(marioBody.linearVelocity.x, 0f);
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
@@ -226,7 +231,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     public void JumpHold()
     {
-        if (alive && jumpedState && !growing)
+        if (alive && jumpedState && !growing && !inputLocked)
         {
             marioBody.AddForce(Vector2.up * upSpeed * 30, ForceMode2D.Force);
             jumpedState = false;
@@ -367,6 +372,20 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         Color c = marioSprite.color;
         c.a = a;
         marioSprite.color = c;
+    }
+
+    private IEnumerator WalkOutOfCastle()
+    {
+        inputLocked = true;
+        FlipMarioSprite(1);
+        moving = true;
+
+        float targetX = transform.position.x + 2f;
+        while (transform.position.x < targetX)
+            yield return null;
+
+        moving = false;
+        inputLocked = false;
     }
 
     public void ResetMovementState()

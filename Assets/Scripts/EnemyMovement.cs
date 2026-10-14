@@ -82,7 +82,8 @@ public class EnemyMovement : MonoBehaviour
         enemyBody.bodyType = RigidbodyType2D.Kinematic;
         enemyAudio.Play();
         enemyAnimator.SetTrigger("killGoomba");
-        stomped.Invoke();
+        // stomped.Invoke();
+        GameManager.instance.IncreaseScore(100);
     }
 
     public void KillGoomba()
