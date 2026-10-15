@@ -5,14 +5,28 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Events;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 {
     public GameConstants gameConstants;
+    private bool growing = false;
+    private bool isSuper = false;
+    public bool IsSuper => isSuper;
+    private bool isInvincible = false;
+    private bool inputLocked = false;
+    public bool startWithCastleWalk = false;
+    private BoxCollider2D box;
+    private Vector2 smallSize;
+    private Vector2 smallOffset;
     public Rigidbody2D marioBody;
     public SpriteRenderer marioSprite;
     public AudioSource marioAudio;
     public AudioSource marioDeathAudio;
+    public AudioClip marioSuperJumpClip;
+    public AudioClip marioGrowClip;
+    public AudioClip marioShrinkClip;
     public Animator marioAnimator;
+    public RuntimeAnimatorController superMarioController;
+    private RuntimeAnimatorController smallMarioController;
     public Collider2D marioCollider;
     public Vector3 marioStartingPosition;
 
@@ -21,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     float maxSpeed;
     float speed;
     float deceleration;
+    public float invincibleDuration = 2f;   // or put it in GameConstants
+    public float blinkInterval = 0.1f;
 
     public bool onGroundState = true;
     public bool faceRightState = true;
@@ -46,10 +62,20 @@ public class PlayerMovement : MonoBehaviour
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
+        smallMarioController = marioAnimator.runtimeAnimatorController;
         marioStartingPosition = marioBody.transform.position;
+
+        box = marioCollider as BoxCollider2D;
+        smallSize = box.size;
+        smallOffset = box.offset;
 
         // subscribe to scene manager scene change
         // SceneManager.activeSceneChanged += SetStartingPosition;
+
+        PowerupManager.instance.powerupAffectsPlayer.AddListener(RequestPowerupEffect);
+
+        if (startWithCastleWalk)
+            StartCoroutine(WalkOutOfCastle());
     }
 
     void Awake()
@@ -62,6 +88,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.instance != null)
             GameManager.instance.gameRestart.RemoveListener(GameRestart);
+
+        if (PowerupManager.instance != null)
+            PowerupManager.instance.powerupAffectsPlayer.RemoveListener(RequestPowerupEffect);
     }
 
     // public void SetStartingPosition(Scene current, Scene next)
@@ -98,9 +127,12 @@ public class PlayerMovement : MonoBehaviour
                 marioBody.linearVelocity = new Vector2(marioBody.linearVelocityX, 0f);
                 marioBody.AddForce(Vector2.up * upSpeed * 0.6f, ForceMode2D.Impulse);
             }
-            else
+            else if (!isInvincible)
             {
-                KillMario();
+                if (isSuper)
+                    UnmakeSuperMario();
+                else
+                    KillMario();
             }
         }
     }
@@ -153,15 +185,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Move(int value)
     {
-        Vector2 movement = new Vector2(value, 0);
-        // check if it doesn't go beyond maxSpeed
-        if (marioBody.linearVelocity.magnitude < maxSpeed)
-            marioBody.AddForce(movement * speed);
+        // Vector2 movement = new Vector2(value, 0);
+        // // check if it doesn't go beyond maxSpeed
+        // if (marioBody.linearVelocity.magnitude < maxSpeed)
+        //     marioBody.AddForce(movement * speed);
+
+        float speedX = marioBody.linearVelocity.x;
+        // allow force if under max speed, OR if pushing against current motion
+        if (Mathf.Abs(speedX) < maxSpeed || Mathf.Sign(speedX) != value)
+        {
+            marioBody.AddForce(new Vector2(value, 0) * speed);
+        }
     }
 
     public void MoveCheck(int value)
     {
-        if (!alive) return;
+        if (!alive || inputLocked) return;
 
         if (value == 0)
         {
@@ -177,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (alive && onGroundState)
+        if (alive && onGroundState && !growing && !inputLocked)
         {
             marioBody.linearVelocity = new Vector2(marioBody.linearVelocity.x, 0f);
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
@@ -185,12 +224,14 @@ public class PlayerMovement : MonoBehaviour
             jumpedState = true;
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
+            if (!isSuper) PlayJumpSound();
+            else PlaySuperJumpSound();
         }
     }
 
     public void JumpHold()
     {
-        if (alive && jumpedState)
+        if (alive && jumpedState && !growing && !inputLocked)
         {
             marioBody.AddForce(Vector2.up * upSpeed * 30, ForceMode2D.Force);
             jumpedState = false;
@@ -207,6 +248,21 @@ public class PlayerMovement : MonoBehaviour
     {
         // play jump sound
         marioAudio.PlayOneShot(marioAudio.clip);
+    }
+
+    void PlaySuperJumpSound()
+    {
+        marioAudio.PlayOneShot(marioSuperJumpClip);
+    }
+
+    void PlayGrowSound()
+    {
+        marioAudio.PlayOneShot(marioGrowClip);
+    }
+
+    void PlayShrinkSound()
+    {
+        marioAudio.PlayOneShot(marioShrinkClip);
     }
 
     public void KillMario()
@@ -227,6 +283,111 @@ public class PlayerMovement : MonoBehaviour
         KillMario();
     }
 
+    public void RequestPowerupEffect(IPowerup i)
+    {
+        i.ApplyPowerup(this);
+    }
+
+    public void MakeSuperMario()
+    {
+        if (isSuper || growing) return;
+        PlayGrowSound();
+        StartCoroutine(GrowRoutine());
+    }
+
+    private IEnumerator GrowRoutine()
+    {
+        growing = true;
+        Time.timeScale = 0f;
+
+        marioAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        marioAnimator.Play("mario-grow");
+
+        yield return new WaitForSecondsRealtime(1f);
+
+        // swap to the super Mario setup
+        isSuper = true;
+        box.size = new Vector2(smallSize.x, smallSize.y * 2f);
+        box.offset = new Vector2(smallOffset.x, smallOffset.y + smallSize.y / 2f);
+        marioAnimator.runtimeAnimatorController = superMarioController;
+        marioAnimator.updateMode = AnimatorUpdateMode.Normal;
+        marioAnimator.Rebind();
+        marioAnimator.Update(0f);
+        marioAnimator.SetBool("onGround", onGroundState);
+
+        Time.timeScale = 1f;
+        growing = false;
+    }
+
+    public void UnmakeSuperMario()
+    {
+        if (!isSuper || growing) return;
+        PlayShrinkSound();
+        StartCoroutine(ShrinkRoutine());
+    }
+
+    private IEnumerator ShrinkRoutine()
+    {
+        growing = true;
+        Time.timeScale = 0f;
+
+        marioAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        marioAnimator.Play("mario-shrink");
+
+        yield return new WaitForSecondsRealtime(1f);
+
+        // swap to the small Mario setup
+        isSuper = false;
+        box.size = smallSize;
+        box.offset = smallOffset;
+        marioAnimator.runtimeAnimatorController = smallMarioController;
+        marioAnimator.updateMode = AnimatorUpdateMode.Normal;
+        marioAnimator.Rebind();
+        marioAnimator.Update(0f);
+        marioAnimator.SetBool("onGround", onGroundState);
+
+        Time.timeScale = 1f;
+        growing = false;
+    }
+
+    private IEnumerator InvincibilityRoutine()
+    {
+        isInvincible = true;
+        float elapsed = 0f;
+
+        while (elapsed < invincibleDuration)
+        {
+            SetSpriteAlpha(marioSprite.color.a < 1f ? 1f : 0.3f);
+            yield return new WaitForSeconds(blinkInterval);
+            elapsed += blinkInterval;
+        }
+
+        SetSpriteAlpha(1f);
+        isInvincible = false;
+        StartCoroutine(InvincibilityRoutine());
+    }
+
+    private void SetSpriteAlpha(float a)
+    {
+        Color c = marioSprite.color;
+        c.a = a;
+        marioSprite.color = c;
+    }
+
+    private IEnumerator WalkOutOfCastle()
+    {
+        inputLocked = true;
+        FlipMarioSprite(1);
+        moving = true;
+
+        float targetX = transform.position.x + 2f;
+        while (transform.position.x < targetX)
+            yield return null;
+
+        moving = false;
+        inputLocked = false;
+    }
+
     public void ResetMovementState()
     {
         moving = false;
@@ -236,6 +397,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameRestart()
     {
+        StopAllCoroutines();
+        growing = false;
+        Time.timeScale = 1f;
+        marioAnimator.updateMode = AnimatorUpdateMode.Normal;
+
         // reset position
         marioBody.transform.position = marioStartingPosition;
         marioBody.transform.rotation = Quaternion.identity;
@@ -248,9 +414,18 @@ public class PlayerMovement : MonoBehaviour
         marioSprite.flipX = false;
 
         // reset animation
+        isSuper = false;
+        box.size = smallSize;
+        box.offset = smallOffset;
+        marioAnimator.runtimeAnimatorController = smallMarioController;
+
+        marioAnimator.SetBool("onGround", onGroundState);
+
         marioCollider.enabled = true;
         marioAnimator.SetTrigger("gameRestart");
 
+        isInvincible = false;
+        SetSpriteAlpha(1f);
         alive = true;
     }
 

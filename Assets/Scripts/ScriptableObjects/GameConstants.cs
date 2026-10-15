@@ -12,5 +12,4 @@ public class GameConstants : ScriptableObject
     public int upSpeed;
     public int deceleration;
     public int deathImpulse;
-    // public Vector3 marioStartingPosition;
 }
