@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class JumpOverGoomba : MonoBehaviour
 {
@@ -20,41 +16,6 @@ public class JumpOverGoomba : MonoBehaviour
     public Vector3 boxSize;
     public float maxDistance;
     public LayerMask layerMask;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    void FixedUpdate()
-    {
-        // // mario jumps
-        // if (Input.GetKeyDown("space") && OnGroundCheck())
-        // {
-        //     onGroundState = false;
-        //     countScoreState = true;
-        // }
-
-        // // when jumping, and Goomba is near Mario and we haven't registered our score
-        // if (!onGroundState && countScoreState)
-        // {
-        //     foreach (Transform child in gameManager.enemies.transform)
-        //     {
-        //         if (Mathf.Abs(transform.position.x - child.position.x) < 0.5f && child.gameObject.GetComponent<SpriteRenderer>().enabled)
-        //         {
-        //             countScoreState = false;
-        //             score++;
-        //             timer = 10f;
-        //             scoreText.text = "Score: " + score.ToString();
-        //             timerText.text = "Timer: " + timer.ToString();
-        //         }
-        //     }
-        // }
-    }
 
     void OnCollisionEnter2D(Collision2D col)
     {

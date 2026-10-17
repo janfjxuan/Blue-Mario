@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using TMPro;
 using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour, IPowerupApplicable
@@ -22,6 +19,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
     private RuntimeAnimatorController smallMarioController;
     public Collider2D marioCollider;
     public Vector3 marioStartingPosition;
+    public UnityEvent onGameOver;
 
     float deathImpulse;
     float upSpeed;
@@ -62,23 +60,6 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
         // subscribe to scene manager scene change
         // SceneManager.activeSceneChanged += SetStartingPosition;
-
-        PowerupManager.instance.powerupAffectsPlayer.AddListener(RequestPowerupEffect);
-    }
-
-    void Awake()
-    {
-        // subscribe to Game Restart event
-        GameManager.instance.gameRestart.AddListener(GameRestart);
-    }
-
-    void OnDestroy()
-    {
-        if (GameManager.instance != null)
-            GameManager.instance.gameRestart.RemoveListener(GameRestart);
-
-        if (PowerupManager.instance != null)
-            PowerupManager.instance.powerupAffectsPlayer.RemoveListener(RequestPowerupEffect);
     }
 
     // public void SetStartingPosition(Scene current, Scene next)
@@ -185,7 +166,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     public void MoveCheck(int value)
     {
-        if (!alive) return;
+       if (!alive) return;
 
         if (value == 0)
         {
@@ -315,7 +296,6 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     public void GameOverScene()
     {
-        // gameManager.GameOver();
-        GameManager.instance.GameOver();
+        onGameOver.Invoke();
     }
 }

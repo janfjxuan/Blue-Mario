@@ -1,39 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameManager : Singleton<GameManager>
 {
     // events
-    public UnityEvent gameStart;
-    public UnityEvent gameRestart;
-    public UnityEvent<int> scoreChange;
-    public UnityEvent<float> timerChange;
-    public UnityEvent gameOver;
-    public UnityEvent levelComplete;
-    public UnityEvent<bool> pauseChange;
+    public SimpleGameEvent gameStart;
+    public SimpleGameEvent onUpdateScore;
+    public FloatGameEvent timerChange;
+    public SimpleGameEvent levelComplete;
 
     private bool levelCompleted = false;
     private bool timerRunning = true;
-    private bool isPaused = false;
     public IntVariable gameScore;
     public float timer = 0f;
 
     public GameObject obstacles;
     public AudioSource musicSource;
     public CameraController gameCameraController;
-    
+
     public AudioMixerSnapshot defaultSnapshot;
     public AudioMixerSnapshot gameOverSnapshot;
 
     void Start()
     {
         gameScore.Value = 0;
-        gameStart.Invoke();
+        gameStart.Raise();
         Time.timeScale = 1.0f;
         // subscribe to scene manager scene change
         SceneManager.activeSceneChanged += SceneSetup;
@@ -42,7 +34,7 @@ public class GameManager : Singleton<GameManager>
     public void SceneSetup(Scene current, Scene next)
     {
         // Setup code for the new scene
-        gameStart.Invoke();
+        gameStart.Raise();
         SetScore(gameScore.Value);
     }
 
@@ -52,7 +44,7 @@ public class GameManager : Singleton<GameManager>
         if (timerRunning)
         {
             timer += Time.deltaTime;
-            timerChange.Invoke(timer);
+            timerChange.Raise(timer);
         }
     }
 
@@ -64,13 +56,11 @@ public class GameManager : Singleton<GameManager>
 
         timerRunning = true;
         timer = 0f;
-        timerChange.Invoke(timer);
+        timerChange.Raise(timer);
 
         Time.timeScale = 1.0f;
 
-        isPaused = false;
         AudioListener.pause = false;
-        pauseChange.Invoke(false);
 
         levelCompleted = false;
 
@@ -99,10 +89,6 @@ public class GameManager : Singleton<GameManager>
                     brick.ResetBrick();
             }
         }
-
-        // reset camera 
-        gameCameraController.ResetCamera();
-        gameRestart.Invoke();
     }
 
     public void IncreaseScore(int increment)
@@ -113,14 +99,13 @@ public class GameManager : Singleton<GameManager>
 
     public void SetScore(int score)
     {
-        scoreChange.Invoke(score);
+        onUpdateScore.Raise();
     }
 
     public void GameOver()
     {
         timerRunning = false;
         gameOverSnapshot.TransitionTo(0f);
-        gameOver.Invoke();
         Time.timeScale = 0.0f;
     }
 
@@ -129,15 +114,19 @@ public class GameManager : Singleton<GameManager>
         if (levelCompleted) return;
         levelCompleted = true;
         timerRunning = false;
-        levelComplete.Invoke();
+        levelComplete.Raise();
         Time.timeScale = 0.0f;
     }
 
-    public void TogglePause()
+    public void PauseGame()
     {
-        isPaused = !isPaused;
-        Time.timeScale = isPaused ? 0.0f : 1.0f;
-        AudioListener.pause = isPaused;
-        pauseChange.Invoke(isPaused);
+        Time.timeScale = 0.0f;
+        AudioListener.pause = true;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1.0f;
+        AudioListener.pause = false;
     }
 }

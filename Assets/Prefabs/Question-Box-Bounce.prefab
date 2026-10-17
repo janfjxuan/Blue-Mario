@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 2966482368750859013}
   - component: {fileID: 7573877321863129415}
   - component: {fileID: 7614224550375116372}
+  - component: {fileID: 3331718499903630884}
   m_Layer: 7
   m_Name: Question-Box
   m_TagString: QuestionBox
@@ -288,8 +289,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
   powerupAnimator: {fileID: 6712391400286620594}
-  powerup: {fileID: 7942371036080464269}
+  powerup: {fileID: 0}
   ceiling: {fileID: 6426806209581938314}
+--- !u!114 &3331718499903630884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7078671223151696755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 85a6f71544561f24fba55c976f48f5d8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7614224550375116372}
+        m_TargetAssemblyTypeName: QuestionBoxPowerupController, Assembly-CSharp
+        m_MethodName: ResetQuestionBox
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2510544385437552582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -478,23 +507,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 954609300398124481, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6672706842202431824}
+    - targetCorrespondingSourceObject: {fileID: 954609300398124481, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1404671135060533906}
   m_SourcePrefab: {fileID: 100100000, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
 --- !u!95 &6712391400286620594 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4507497239615739798, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
   m_PrefabInstance: {fileID: 7181812803938884644}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7942371036080464269 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 977866960359161257, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
-  m_PrefabInstance: {fileID: 7181812803938884644}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7968442964762604005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d13289bd1e93b947aa0f6c5abc8b98e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinPowerup
 --- !u!1 &7968442964762604005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 954609300398124481, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}
@@ -516,18 +537,32 @@ MonoBehaviour:
   useInt:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: IncreaseScore
-        m_Mode: 3
+      - m_Target: {fileID: 11400000, guid: 950b546c06865774b936fa16e205adc3, type: 2}
+        m_TargetAssemblyTypeName: IntGameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1404671135060533906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968442964762604005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d13289bd1e93b947aa0f6c5abc8b98e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinPowerup
+  type: 0
+  spawned: 0
 --- !u!4 &8842395246239526892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1809482852083217352, guid: b0a3e5981b5e84895a8bb2288bda45f5, type: 3}

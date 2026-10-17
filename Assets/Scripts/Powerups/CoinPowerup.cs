@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CoinPowerup : BasePowerup
 {
@@ -13,15 +10,13 @@ public class CoinPowerup : BasePowerup
     // start is called before the first frame update
     protected override void Start()
     {
-        base.Start(); // call base class Start()
+        base.Start();
         type = PowerupType.Coin;
     }
 
     public override void SpawnPowerup()
     {
         spawned = true;
-        // invoke PowerupCollectedEvent
-        // PowerUpManager.instance.powerupCollected.Invoke(this);
     }
 
     public new void DestroyPowerup()

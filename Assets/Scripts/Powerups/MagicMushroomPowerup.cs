@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MagicMushroomPowerup : BasePowerup
 {
+    public PowerupGameEvent powerupCollected;
     // setup this object's type
     // instantiate variables
     private Collider2D magicMushroomCollider;
@@ -26,13 +25,8 @@ public class MagicMushroomPowerup : BasePowerup
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            // TODO: do something when colliding with Player
-            // PowerupManager.instance.powerupCollected.Invoke(this);
-            // then destroy powerup (optional)
-            // DestroyPowerup();
-            Debug.Log("Mushroom collected");
             if (spawned)
-                PowerupManager.instance.powerupCollected.Invoke(this);
+                powerupCollected.Raise(this);
             gameObject.SetActive(false);
         }
         else if (col.gameObject.layer == 10) // else if hitting Pipe, flip travel direction
@@ -59,13 +53,6 @@ public class MagicMushroomPowerup : BasePowerup
     // interface implementation
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        // TODO: do something with the object
-        // PlayerMovement mario;
-        // bool result = i.TryGetComponent<PlayerMovement>(out mario);
-        // if (result)
-        // {
-        //     mario.MakeSuperMario();
-        // }
         if (i.TryGetComponent<PlayerMovement>(out var mario))
             mario.MakeSuperMario();
     }

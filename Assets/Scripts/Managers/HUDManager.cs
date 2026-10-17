@@ -6,6 +6,7 @@ public class HUDManager : MonoBehaviour
     public GameObject scoreText;
     public GameObject timerText;
     public Transform restartButton;
+    public IntVariable gameScore;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI gameOverScoreText;
     [SerializeField] private TextMeshProUGUI gameOverTimeText;
@@ -18,30 +19,7 @@ public class HUDManager : MonoBehaviour
 
     void Start()
     {
-        SetScore(GameManager.instance.gameScore.Value);
-    }
-    void Awake()
-    {
-        // subscribe to events
-        GameManager.instance.gameStart.AddListener(GameStart);
-        GameManager.instance.gameOver.AddListener(GameOver);
-        GameManager.instance.gameRestart.AddListener(GameStart);
-        GameManager.instance.scoreChange.AddListener(SetScore);
-        GameManager.instance.timerChange.AddListener(SetTimer);
-        GameManager.instance.levelComplete.AddListener(LevelComplete);
-    }
-
-    void OnDestroy()
-    {
-        if (GameManager.instance != null)
-        {
-            GameManager.instance.gameStart.RemoveListener(GameStart);
-            GameManager.instance.gameOver.RemoveListener(GameOver);
-            GameManager.instance.gameRestart.RemoveListener(GameStart);
-            GameManager.instance.scoreChange.RemoveListener(SetScore);
-            GameManager.instance.timerChange.RemoveListener(SetTimer);
-            GameManager.instance.levelComplete.RemoveListener(LevelComplete);
-        }
+        SetScore();
     }
 
     public void GameStart()
@@ -51,10 +29,11 @@ public class HUDManager : MonoBehaviour
         levelCompletePanel.SetActive(false);
     }
 
-    public void SetScore(int score)
+    public void SetScore()
     {
-        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
+        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + gameScore.Value.ToString();
     }
+
     public void SetTimer(float timer)
     {
         int minutes = Mathf.FloorToInt(timer / 60f);
@@ -86,7 +65,7 @@ public class HUDManager : MonoBehaviour
 
     public string TopScoreString()
     {
-        return "TOP- " + GameManager.instance.gameScore.previousHighestValue.ToString("D6");
+        return "TOP- " + gameScore.previousHighestValue.ToString("D6");
     }
 
     public void Hide()

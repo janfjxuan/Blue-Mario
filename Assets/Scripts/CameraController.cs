@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -26,8 +24,6 @@ public class CameraController : MonoBehaviour
 
         // Handling reference to the correct (Singleton) Mario #1: using tag (assuming Mario's tag is "Player")
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        // Handling reference to the correct (Singleton) Mario #2: referring to the Singleton directly
-        // player = PlayerMovement.instance.gameObject.transform;
     }
 
     void Update()

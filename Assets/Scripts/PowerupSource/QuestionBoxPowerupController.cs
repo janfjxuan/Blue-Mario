@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
@@ -18,13 +15,6 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
         ceiling.SetActive(false);
         questionBoxAnimator = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     private void OnCollisionEnter2D(Collision2D other)
     {

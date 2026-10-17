@@ -17,8 +17,6 @@ public class ShoePowerup : BasePowerup
     public override void SpawnPowerup()
     {
         spawned = true;
-        // invoke PowerupCollectedEvent
-        // PowerUpManager.instance.powerupCollected.Invoke(this);
     }
 
     public new void DestroyPowerup()
