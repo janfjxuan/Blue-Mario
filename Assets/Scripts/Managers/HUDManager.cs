@@ -16,7 +16,10 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOverHighScoreText;
     [SerializeField] private TextMeshProUGUI levelCompleteHighScoreText;
 
-
+    void OnEnable()
+    {
+        SetScore();
+    }
     void Start()
     {
         SetScore();
@@ -27,6 +30,7 @@ public class HUDManager : MonoBehaviour
         // hide gameover panel
         gameOverPanel.SetActive(false);
         levelCompletePanel.SetActive(false);
+        SetScore();
     }
 
     public void SetScore()

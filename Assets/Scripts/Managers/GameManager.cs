@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
     // events
     public SimpleGameEvent gameStart;
@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
 
     private bool levelCompleted = false;
     private bool timerRunning = true;
+    private int levelStartScore;
     public IntVariable gameScore;
     public float timer = 0f;
 
@@ -25,11 +26,13 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         FindSceneReferences();
-        gameScore.Value = 0;
+        if (SceneManager.GetActiveScene().name == "World-1-1")
+            gameScore.Value = 0;
+
+        levelStartScore = gameScore.Value;
         gameStart.Raise();
         Time.timeScale = 1.0f;
-        // subscribe to scene manager scene change
-        SceneManager.activeSceneChanged += SceneSetup;
+        SetScore(gameScore.Value);
     }
 
     public void SceneSetup(Scene current, Scene next)
@@ -39,7 +42,6 @@ public class GameManager : Singleton<GameManager>
         levelCompleted = false;
         timerRunning = true;
         timer = 0f;
-        isPaused = false;
         Time.timeScale = 1f;
         AudioListener.pause = false;
         if (next.name == "World-1-1")
@@ -77,7 +79,7 @@ public class GameManager : Singleton<GameManager>
     public void GameRestart()
     {
         // reset score
-        gameScore.Value = 0;
+        gameScore.Value = levelStartScore;
         SetScore(gameScore.Value);
 
         timerRunning = true;
@@ -165,7 +167,6 @@ public class GameManager : Singleton<GameManager>
     {
         Time.timeScale = 1.0f;
         AudioListener.pause = false;
-        isPaused = false;
         defaultSnapshot.TransitionTo(0f);
 
         SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);

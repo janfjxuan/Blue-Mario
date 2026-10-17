@@ -89,6 +89,8 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
     // FixedUpdate is called 50 times a second
     void OnCollisionEnter2D(Collision2D col)
     {
+        Debug.Log("Mario collision: " + col.gameObject.name + " tag=" + col.gameObject.tag, col.gameObject);
+
         if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) && !onGroundState)
         {
             onGroundState = true;
@@ -116,6 +118,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
     }
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Mario trigger: " + other.name + " tag=" + other.tag, other);
         if (other.gameObject.CompareTag("GapHole"))
         {
             KillMario(); // can change to different event 
@@ -359,9 +362,12 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         moving = true;
 
         float targetX = transform.position.x + 2f;
-        while (transform.position.x < targetX)
+        float timeout = 3f;
+        while (transform.position.x < targetX && timeout > 0f)
+        {
+            timeout -= Time.deltaTime;
             yield return null;
-
+        }
         moving = false;
         inputLocked = false;
     }
@@ -376,6 +382,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
     public void GameRestart()
     {
         StopAllCoroutines();
+        inputLocked = false;
         growing = false;
         Time.timeScale = 1f;
         marioAnimator.updateMode = AnimatorUpdateMode.Normal;
@@ -405,6 +412,8 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         isInvincible = false;
         SetSpriteAlpha(1f);
         alive = true;
+
+        if (startWithCastleWalk) StartCoroutine(WalkOutOfCastle());
     }
 
     public void GameOverScene()

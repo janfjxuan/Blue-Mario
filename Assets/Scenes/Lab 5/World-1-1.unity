@@ -255,59 +255,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1138025301}
     m_Modifications:
-    - target: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 216
       objectReference: {fileID: 0}
-    - target: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalPosition.y
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3467514819171208126, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 3467514819171208126, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_Size.y
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 8321079171905625818, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+    - target: {fileID: 8321079171905625818, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_Name
-      value: Castle
+      value: Castle-End
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
 --- !u!1001 &20971756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1343,7 +1343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &183438915 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1350960373523760037, guid: 2228036c87c1f2e4ab9abae279372f07, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
   m_PrefabInstance: {fileID: 19645690}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &191048930
@@ -14114,10 +14114,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   gameConstants: {fileID: 11400000, guid: df9717ebdefb89d48ac45dadd6e96c27, type: 2}
+  startWithCastleWalk: 0
   marioBody: {fileID: 1803813726}
   marioSprite: {fileID: 1803813724}
   marioAudio: {fileID: 1803813731}
   marioDeathAudio: {fileID: 1803813731}
+  marioSuperJumpClip: {fileID: 0}
+  marioGrowClip: {fileID: 0}
+  marioShrinkClip: {fileID: 0}
   marioAnimator: {fileID: 1803813730}
   superMarioController: {fileID: 22100000, guid: 2ed0b9e744b294b11a8f296abe7af25d, type: 2}
   marioCollider: {fileID: 1803813728}
@@ -14137,6 +14141,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  invincibleDuration: 2
+  blinkInterval: 0.1
   onGroundState: 1
   faceRightState: 1
 --- !u!114 &1803813736
@@ -15543,14 +15549,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gameStart: {fileID: 11400000, guid: 862f9fe6c22d2fb499df06960b7f6bda, type: 2}
-  gameRestart:
-    m_PersistentCalls:
-      m_Calls: []
   onUpdateScore: {fileID: 11400000, guid: 280e7255d3a0a1f489f8720829c40533, type: 2}
   timerChange: {fileID: 11400000, guid: 539263ed26db09843885a5a0469e4705, type: 2}
-  gameOver:
-    m_PersistentCalls:
-      m_Calls: []
   levelComplete: {fileID: 11400000, guid: 130468d4713efb247936d7f8f632f4a5, type: 2}
   gameScore: {fileID: 11400000, guid: a0d62164732424e0f8cfbf7a4095e693, type: 2}
   timer: 0
@@ -16450,55 +16450,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7078671223151696755, guid: 0670d899bc7642944869311a1dac442b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3459460713842189249}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0670d899bc7642944869311a1dac442b, type: 3}
---- !u!1 &3459460713842189247 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7078671223151696755, guid: 0670d899bc7642944869311a1dac442b, type: 3}
-  m_PrefabInstance: {fileID: 3459460713842189246}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3459460713842189248 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7614224550375116372, guid: 0670d899bc7642944869311a1dac442b, type: 3}
-  m_PrefabInstance: {fileID: 3459460713842189246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3459460713842189247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c740f78ba201f8409d5a79fa880cc4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
---- !u!114 &3459460713842189249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3459460713842189247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
-  Event: {fileID: 11400000, guid: 85a6f71544561f24fba55c976f48f5d8, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3459460713842189248}
-        m_TargetAssemblyTypeName: QuestionBoxPowerupController, Assembly-CSharp
-        m_MethodName: ResetQuestionBox
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &5273911902076580016
 PrefabInstance:
   m_ObjectHideFlags: 0

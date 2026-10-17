@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
   powerupAnimator: {fileID: 6712391400286620594}
-  powerup: {fileID: 0}
+  powerup: {fileID: 1404671135060533906}
   ceiling: {fileID: 6426806209581938314}
 --- !u!114 &3331718499903630884
 MonoBehaviour:
