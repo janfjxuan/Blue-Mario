@@ -178,6 +178,9 @@ MonoBehaviour:
   powerupAnimator: {fileID: 0}
   powerup: {fileID: 0}
   isBreakable: 1
+  brickBreak: {fileID: 8300000, guid: c738f1c61166b40e19d4d970e7b9c9df, type: 3}
+  debrisPrefab: {fileID: 8151309870453097012, guid: 38e8af01109154742ba60b12c66a7cf2, type: 3}
+  debrisForce: 3
 --- !u!82 &8225355405187865667
 AudioSource:
   m_ObjectHideFlags: 0

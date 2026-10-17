@@ -11,14 +11,15 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
     public bool isBreakable = false;
     private Animator brickAnimator;
     private AudioSource brickAudio;
+    public AudioClip brickBreak;
     void Start()
     {
-        if(powerup != null)
+        if (powerup != null)
         {
             powerupGameObject = powerup.gameObject;
             powerupGameObject.SetActive(false);
             powerupStartPosition = powerupGameObject.transform.position;
-        } 
+        }
         else
         {
             isBreakable = true; // no coin means breakable
@@ -34,6 +35,7 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
             ContactPoint2D contact = other.GetContact(0);
             if (contact.normal.y > 0.5f)
             {
+                PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
                 if (powerup != null && !powerup.hasSpawned)
                 {
                     // bounce
@@ -54,10 +56,10 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
                 if (!isBreakable) // empty block
                 {
                     brickAnimator.SetTrigger("empty");
-                } 
-                else if(isBreakable && false) // breakable and big mario not implemented yet
+                }
+                else if (player != null && player.IsSuper) // breakable and super mario 
                 {
-                    brickAnimator.SetTrigger("break");
+                    BreakBrick();
                 }
                 else // breakable and small mario
                 {
@@ -65,6 +67,34 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
                     brickAnimator.SetTrigger("bounce");
                 }
             }
+        }
+    }
+
+    private void BreakBrick()
+    {
+        brickAudio.PlayOneShot(brickBreak);
+        brickAnimator.SetTrigger("break");
+        GetComponent<Collider2D>().enabled = false;
+        SpawnDebris();
+    }
+
+    public GameObject debrisPrefab;
+    public float debrisForce = 3f;
+    private void SpawnDebris()
+    {
+        Vector2[] directions =
+        {
+            new Vector2(-1f, 2f),   // upper left
+            new Vector2(1f, 2f),    // upper right
+            new Vector2(-0.7f, 1f), // lower left
+            new Vector2(0.7f, 1f)   // lower right
+        };
+
+        foreach (Vector2 dir in directions)
+        {
+            GameObject piece = Instantiate(debrisPrefab, transform.position, Quaternion.identity);
+            piece.GetComponent<Rigidbody2D>().linearVelocity = dir * debrisForce;
+            Destroy(piece, 2f);
         }
     }
 
@@ -78,13 +108,15 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
 
     public void ResetBrick()
     {
+        GetComponent<Collider2D>().enabled = true;
+        GetComponent<SpriteRenderer>().enabled = true;
         brickAnimator.Play("brick-idle");
         brickAnimator.Rebind();
         brickAnimator.Update(0f);
-        if(powerup != null)
+        if (powerup != null)
         {
             powerupGameObject.transform.position = powerupStartPosition;
             powerup.ResetPowerup();
-        } 
+        }
     }
 }
