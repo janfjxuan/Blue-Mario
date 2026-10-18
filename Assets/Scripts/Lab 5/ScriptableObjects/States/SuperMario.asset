@@ -15,14 +15,19 @@ MonoBehaviour:
   setupActions:
   - {fileID: 11400000, guid: 3564bce80123744aa843ee9a57740f38, type: 2}
   - {fileID: 11400000, guid: a52a887f869f343c9bce051e2cb2f8e9, type: 2}
+  - {fileID: 11400000, guid: b884f5ec1e31b4f51b26c4f96d0fda19, type: 2}
+  - {fileID: 11400000, guid: f36fac500265b454eac16dbaa652fabd, type: 2}
   actions: []
   eventTriggeredActions: []
   exitActions: []
   transitions:
   - decision: {fileID: 11400000, guid: 329dae070d6ad4bd9bd6d9f3229f9a84, type: 2}
-    trueState: {fileID: 0}
+    trueState: {fileID: 11400000, guid: e38bb0411d0a043a1b683acf54549eb7, type: 2}
     falseState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
   - decision: {fileID: 11400000, guid: d1785bf38520f4b6bb3fbb55a4f8c274, type: 2}
     trueState: {fileID: 11400000, guid: 3d3f17314d57b4d17b5bb8524bb8c72c, type: 2}
+    falseState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
+  - decision: {fileID: 11400000, guid: 04173b201987042e299b003cb98ffc78, type: 2}
+    trueState: {fileID: 11400000, guid: bdf0af10b9e5741079a71d68e8827d14, type: 2}
     falseState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
   sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

@@ -7,5 +7,6 @@ public enum PowerupType
     FireFlower = 4,
     Shoe = 5,
     Damage = 99,
+    Kill = 100,
     Default = -1
 }

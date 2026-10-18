@@ -15,6 +15,7 @@ MonoBehaviour:
   setupActions:
   - {fileID: 11400000, guid: fec17b11fc20448c9a917b6f7632da56, type: 2}
   - {fileID: 11400000, guid: a52a887f869f343c9bce051e2cb2f8e9, type: 2}
+  - {fileID: 11400000, guid: e1f13be01fffd4c8c86311d334da2bcd, type: 2}
   actions: []
   eventTriggeredActions: []
   exitActions: []

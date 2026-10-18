@@ -15,3 +15,11 @@ MonoBehaviour:
   map:
   - fromState: 0
     powerupCollected: 99
+  - fromState: 0
+    powerupCollected: 100
+  - fromState: 1
+    powerupCollected: 100
+  - fromState: 2
+    powerupCollected: 100
+  - fromState: 3
+    powerupCollected: 100
