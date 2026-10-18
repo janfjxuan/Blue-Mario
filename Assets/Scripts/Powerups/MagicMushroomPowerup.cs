@@ -51,10 +51,22 @@ public class MagicMushroomPowerup : BasePowerup
 
 
     // interface implementation
+    // public override void ApplyPowerup(MonoBehaviour i)
+    // {
+    //     if (i.TryGetComponent<PlayerController>(out var mario))
+    //         mario.MakeSuperMario();
+    // }
+
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        if (i.TryGetComponent<PlayerMovement>(out var mario))
-            mario.MakeSuperMario();
+        // base.ApplyPowerup(i);
+        // try
+        MarioStateController mario;
+        bool result = i.TryGetComponent<MarioStateController>(out mario);
+        if (result)
+        {
+            mario.SetPowerup(this.powerupType);
+        }
     }
 
     public override void ResetPowerup()

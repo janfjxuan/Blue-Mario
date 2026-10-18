@@ -35,7 +35,7 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
             ContactPoint2D contact = other.GetContact(0);
             if (contact.normal.y > 0.5f)
             {
-                PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
+                PlayerController player = other.gameObject.GetComponent<PlayerController>();
                 if (powerup != null && !powerup.hasSpawned)
                 {
                     // bounce

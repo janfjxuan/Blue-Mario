@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerMovement : MonoBehaviour, IPowerupApplicable
+public class PlayerController : MonoBehaviour, IPowerupApplicable
 {
     public GameConstants gameConstants;
     private bool growing = false;
@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
 
     public bool onGroundState = true;
     public bool faceRightState = true;
+    public BoolVariable marioFaceRight;
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
     // state
@@ -70,15 +71,6 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
         // subscribe to scene manager scene change
         // SceneManager.activeSceneChanged += SetStartingPosition;
     }
-
-    // public void SetStartingPosition(Scene current, Scene next)
-    // {
-    //     if (next.name == "World-1-2")
-    //     {
-    //         // change the position accordingly in your World-1-2 case
-    //         this.transform.position = new Vector3(-10.2399998f, -4.3499999f, 0.0f);
-    //     }
-    // }
 
     void PlayDeathImpulse()
     {
@@ -135,18 +127,24 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
     {
         if (value == -1 && faceRightState)
         {
-            faceRightState = false;
+            updateMarioShouldFaceRight(false);
             marioSprite.flipX = true;
             if (marioBody.linearVelocity.x > 0.05f)
                 marioAnimator.SetTrigger("onSkid");
         }
         else if (value == 1 && !faceRightState)
         {
-            faceRightState = true;
+            updateMarioShouldFaceRight(true);
             marioSprite.flipX = false;
             if (marioBody.linearVelocity.x < -0.05f)
                 marioAnimator.SetTrigger("onSkid");
         }
+    }
+
+    private void updateMarioShouldFaceRight(bool value)
+    {
+        faceRightState = value;
+        marioFaceRight.SetValue(faceRightState);
     }
 
     // FixedUpdate may be called once per frame. See documentation for details.
@@ -244,6 +242,16 @@ public class PlayerMovement : MonoBehaviour, IPowerupApplicable
     void PlayShrinkSound()
     {
         marioAudio.PlayOneShot(marioShrinkClip);
+    }
+
+        public void DamageMario()
+    {
+        // GameOverAnimationStart(); // last time Mario dies right away
+
+        // pass this to StateController to see if Mario should start game over
+        // since both state StateController and MarioStateController are on the same gameobject, it's ok to cross-refer between scripts
+        GetComponent<MarioStateController>().SetPowerup(PowerupType.Damage);
+
     }
 
     public void KillMario()

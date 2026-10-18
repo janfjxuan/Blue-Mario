@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d234796043b8643dc9d5924160c5ce23, type: 3}
+  m_Name: InvincibleSmallMario
+  m_EditorClassIdentifier: Assembly-CSharp::State
+  setupActions:
+  - {fileID: 11400000, guid: 720e6c16c4250414d8b97cb7f6cb5ada, type: 2}
+  - {fileID: 11400000, guid: a52a887f869f343c9bce051e2cb2f8e9, type: 2}
+  actions: []
+  eventTriggeredActions: []
+  exitActions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: aed657dc6ae564916887f6796c88af3f, type: 2}
+    trueState: {fileID: 11400000, guid: da3b7bd71c5fa4b6c83c00a86655a4c7, type: 2}
+    falseState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
+  sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
