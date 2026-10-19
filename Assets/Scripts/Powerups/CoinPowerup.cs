@@ -14,12 +14,22 @@ public class CoinPowerup : BasePowerup
         type = PowerupType.Coin;
     }
 
-    public override void SpawnPowerup()
+    public void HideCoin()
     {
-        spawned = true;
+        gameObject.SetActive(false);
     }
 
-    public new void DestroyPowerup()
+    public override void SpawnPowerup()
+    {
+        if(!spawned)
+        {
+            spawned = true;
+            SetActive();
+        }
+        coinAnimator.SetTrigger("spawn");
+    }
+
+    public override void DestroyPowerup()
     {
 
     }
@@ -38,8 +48,10 @@ public class CoinPowerup : BasePowerup
     public override void ResetPowerup()
     {
         spawned = false;
+        gameObject.SetActive(true);
         coinAnimator.ResetTrigger("spawn");
         coinAnimator.Rebind();
         coinAnimator.Update(0f);
+        SetActive();
     }
 }

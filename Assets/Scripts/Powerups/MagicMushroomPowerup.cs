@@ -41,6 +41,10 @@ public class MagicMushroomPowerup : BasePowerup
     }
 
     // interface implementation
+    public override void DestroyPowerup()
+    {
+        
+    }
     public override void SpawnPowerup()
     {
         spawned = true;

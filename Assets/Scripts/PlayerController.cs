@@ -90,8 +90,6 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     // FixedUpdate is called 50 times a second
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Mario collision: " + col.gameObject.name + " tag=" + col.gameObject.tag, col.gameObject);
-
         if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) && !onGroundState)
         {
             onGroundState = true;

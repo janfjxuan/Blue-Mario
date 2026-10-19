@@ -31,12 +31,13 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
         }
     }
 
-    public void DestroyPowerup()
+    public void SetActive()
     {
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(spawned);
     }
 
     // 2. abstract methods, must be implemented by derived classes
+    public abstract void DestroyPowerup();
     public abstract void SpawnPowerup();
     public abstract void ApplyPowerup(MonoBehaviour i);
     public abstract void ResetPowerup();

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class BrickPowerupController : MonoBehaviour, IPowerupController
 {
-    public Animator powerupAnimator;
     public BasePowerup powerup; // reference to this brick's powerup
-    private GameObject powerupGameObject;
     private Vector2 powerupStartPosition;
     public bool isBreakable = false;
     private Animator brickAnimator;
@@ -16,9 +14,8 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
     {
         if (powerup != null)
         {
-            powerupGameObject = powerup.gameObject;
-            powerupGameObject.SetActive(false);
-            powerupStartPosition = powerupGameObject.transform.position;
+            powerup.SetActive();
+            powerupStartPosition = powerup.gameObject.transform.position;
         }
         else
         {
@@ -30,44 +27,36 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (!other.gameObject.CompareTag("Player")) return;
+        if (other.GetContact(0).normal.y <= 0.5f) return; // not hit from below
+
+        PlayerController player = other.gameObject.GetComponent<PlayerController>();
+        bool isSuper = player != null && player.IsSuper;
+        bool hasCoin = powerup != null && !powerup.hasSpawned;
+
+        if (isBreakable && isSuper)
         {
-            ContactPoint2D contact = other.GetContact(0);
-            if (contact.normal.y > 0.5f)
-            {
-                PlayerController player = other.gameObject.GetComponent<PlayerController>();
-                if (powerup != null && !powerup.hasSpawned)
-                {
-                    // bounce
-                    brickAudio.Play();
-                    brickAnimator.SetTrigger("bounce");
-                    // spawn powerup (FOR LOOP this)
-                    if (powerupGameObject.activeSelf == false)
-                    {
-                        powerupGameObject.SetActive(true);
-                    }
-                    powerupAnimator.SetTrigger("spawn");
-                    AudioSource coinAudio = powerupGameObject.GetComponent<AudioSource>();
-                    if (coinAudio != null)
-                    {
-                        coinAudio.Play();
-                    }
-                }
-                if (!isBreakable) // empty block
-                {
-                    brickAnimator.SetTrigger("empty");
-                }
-                else if (player != null && player.IsSuper) // breakable and super mario 
-                {
-                    BreakBrick();
-                }
-                else // breakable and small mario
-                {
-                    brickAudio.Play();
-                    brickAnimator.SetTrigger("bounce");
-                }
-            }
+            BreakBrick();
+            return;
         }
+
+        if (!isBreakable && !hasCoin) return;
+
+        BounceBrick();
+
+        if (hasCoin)
+        {
+            powerup.SpawnPowerup();
+            AudioSource coinAudio = powerup.GetComponent<AudioSource>();
+            if (coinAudio != null) coinAudio.Play();
+
+            if (!isBreakable) brickAnimator.SetTrigger("empty");
+        }
+    }
+    private void BounceBrick()
+    {
+        brickAudio.Play();
+        brickAnimator.SetTrigger("bounce");
     }
 
     private void BreakBrick()
@@ -115,7 +104,7 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
         brickAnimator.Update(0f);
         if (powerup != null)
         {
-            powerupGameObject.transform.position = powerupStartPosition;
+            powerup.gameObject.transform.position = powerupStartPosition;
             powerup.ResetPowerup();
         }
     }

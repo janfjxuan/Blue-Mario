@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3686f10c8dad2e4b81acf86959b87e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrickPowerupController
-  powerupAnimator: {fileID: 0}
+  powerupAnimator: {fileID: 5662293851769692614}
   powerup: {fileID: 0}
   isBreakable: 1
   brickBreak: {fileID: 8300000, guid: c738f1c61166b40e19d4d970e7b9c9df, type: 3}

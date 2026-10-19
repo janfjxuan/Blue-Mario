@@ -19,7 +19,7 @@ public class ShoePowerup : BasePowerup
         spawned = true;
     }
 
-    public new void DestroyPowerup()
+    public override void DestroyPowerup()
     {
 
     }
