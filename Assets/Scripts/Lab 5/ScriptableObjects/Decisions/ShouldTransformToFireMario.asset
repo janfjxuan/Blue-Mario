@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: ShouldTransformToFireMario
   m_EditorClassIdentifier: Assembly-CSharp::TransformDecision
   map:
-  - fromState: 0
-    powerupCollected: 4
   - fromState: 1
     powerupCollected: 4

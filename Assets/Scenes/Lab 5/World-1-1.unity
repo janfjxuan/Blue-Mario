@@ -4551,6 +4551,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1247694263}
   - {fileID: 12572085}
   - {fileID: 1582686151}
   - {fileID: 915483454}
@@ -8205,6 +8206,63 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1001 &861924100
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 529622285}
+    m_Modifications:
+    - target: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819660264575365765, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+      propertyPath: m_Name
+      value: Question-Box-Fire-Flower
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
 --- !u!1 &862823327
 GameObject:
   m_ObjectHideFlags: 0
@@ -10351,6 +10409,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6684360586347945608, guid: 448d7ae6a26addc488762436bbf63f41, type: 3}
   m_PrefabInstance: {fileID: 6913772851394698194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1247694263 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4322421340405887452, guid: 2dca7947d009245a3bfa7f7c7394c76a, type: 3}
+  m_PrefabInstance: {fileID: 861924100}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1252674488 stripped
 GameObject:
@@ -14156,7 +14219,7 @@ MonoBehaviour:
   marioSprite: {fileID: 1803813724}
   marioAudio: {fileID: 1803813731}
   marioDeathAudio: {fileID: 1803813731}
-  marioSuperJumpClip: {fileID: 0}
+  marioSuperJumpClip: {fileID: 8300000, guid: 7988561719a0c40049ae5a3c2870d1e7, type: 3}
   marioAnimator: {fileID: 1803813730}
   supermarioStateController: {fileID: 0}
   marioCollider: {fileID: 1803813728}

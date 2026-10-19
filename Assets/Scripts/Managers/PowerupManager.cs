@@ -12,6 +12,9 @@ public class PowerupManager : MonoBehaviour
             case PowerupType.MagicMushroom:
                 powerupAffectsPlayer.Raise(i);
                 break;
+            case PowerupType.FireFlower:
+                powerupAffectsPlayer.Raise(i);
+                break;
             default:
                 break;
         }
