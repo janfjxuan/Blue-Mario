@@ -270,7 +270,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         // pass this to StateController to see if Mario should start game over
         // since both state StateController and MarioStateController are on the same gameobject, it's ok to cross-refer between scripts
         // GetComponent<MarioStateController>().SetPowerup(PowerupType.Damage);
-        if (marioStateController.currentState.name == "InvincibleSmallMario") return; // ignore hits while invincible
+        if (marioStateController.currentState.name == "InvincibleSmallMario" || marioStateController.currentState.name == "StarMario") return; // ignore hits while invincible
         marioStateController.SetPowerup(PowerupType.Damage);
     }
 

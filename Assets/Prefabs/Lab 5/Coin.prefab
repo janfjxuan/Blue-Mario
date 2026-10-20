@@ -227,3 +227,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoinPowerup
   type: 0
   spawned: 0
+  gameCoins: {fileID: 11400000, guid: 1b6cae7e608b45a4aaa522066ce1236c, type: 2}
+  onCoinCollected: {fileID: 11400000, guid: 0fd97abe657ce2c4293b2b9a787d9000, type: 2}

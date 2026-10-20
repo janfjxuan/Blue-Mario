@@ -3,6 +3,9 @@ using UnityEngine;
 public class CoinPowerup : BasePowerup
 {
     private Animator coinAnimator;
+    public IntVariable gameCoins;
+    public SimpleGameEvent onCoinCollected;
+
     private void Awake()
     {
         coinAnimator = GetComponent<Animator>();
@@ -21,10 +24,12 @@ public class CoinPowerup : BasePowerup
 
     public override void SpawnPowerup()
     {
-        if(!spawned)
+        if (!spawned)
         {
             spawned = true;
             SetActive();
+            gameCoins.SetValue(gameCoins.Value + 1);
+            onCoinCollected.Raise();
         }
         coinAnimator.SetTrigger("spawn");
     }

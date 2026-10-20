@@ -15,6 +15,9 @@ public class PowerupManager : MonoBehaviour
             case PowerupType.FireFlower:
                 powerupAffectsPlayer.Raise(i);
                 break;
+            case PowerupType.StarMan:
+                powerupAffectsPlayer.Raise(i);
+                break;
             default:
                 break;
         }

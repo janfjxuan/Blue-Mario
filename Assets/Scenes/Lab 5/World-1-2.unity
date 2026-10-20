@@ -7444,6 +7444,7 @@ GameObject:
   - component: {fileID: 836598165}
   - component: {fileID: 836598164}
   - component: {fileID: 836598163}
+  - component: {fileID: 836598176}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Player
@@ -7554,10 +7555,8 @@ MonoBehaviour:
   marioAudio: {fileID: 836598170}
   marioDeathAudio: {fileID: 836598170}
   marioSuperJumpClip: {fileID: 8300000, guid: 7988561719a0c40049ae5a3c2870d1e7, type: 3}
-  marioGrowClip: {fileID: 8300000, guid: de02ec0c771a0476cb3609ebf94653a8, type: 3}
-  marioShrinkClip: {fileID: 8300000, guid: 04c05e6a635a94c57ba4f3a3f3aaa89f, type: 3}
   marioAnimator: {fileID: 836598171}
-  superMarioController: {fileID: 22100000, guid: 2ed0b9e744b294b11a8f296abe7af25d, type: 2}
+  supermarioStateController: {fileID: 0}
   marioCollider: {fileID: 836598172}
   marioStartingPosition: {x: 0, y: 0, z: 0}
   onGameOver:
@@ -7575,10 +7574,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  invincibleDuration: 2
   blinkInterval: 0.1
   onGroundState: 1
   faceRightState: 1
+  marioFaceRight: {fileID: 11400000, guid: 3cefe1d40582140f4af04a8bda244224, type: 2}
 --- !u!82 &836598167
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8109,6 +8108,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &836598176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836598162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181e090be84804d7c8ce52988d943233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MarioStateController
+  startState: {fileID: 11400000, guid: da3b7bd71c5fa4b6c83c00a86655a4c7, type: 2}
+  previousState: {fileID: 0}
+  currentState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
+  transitionStateChanged: 0
+  stateTimeElapsed: 0
+  isActive: 1
+  currentPowerupType: -1
+  shouldBeNextState: -1
+  starIgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  starAlpha: 1
 --- !u!1 &902932658
 GameObject:
   m_ObjectHideFlags: 0
@@ -21108,6 +21132,10 @@ PrefabInstance:
     - target: {fileID: 1350960373523760037, guid: b73965f44c5b8e0488f7c457ebfa47f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923606525571571528, guid: b73965f44c5b8e0488f7c457ebfa47f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8321079171905625818, guid: b73965f44c5b8e0488f7c457ebfa47f0, type: 3}
       propertyPath: m_Name

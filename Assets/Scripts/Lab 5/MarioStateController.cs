@@ -10,10 +10,16 @@ public class MarioStateController : StateController
     public MarioState shouldBeNextState = MarioState.Default;
     private SpriteRenderer spriteRenderer;
 
+    // for starman
+    [Header("Starman")]
+    public LayerMask starIgnoreLayers;
+    private Collider2D marioCollider;
+
     void Awake()
     {
         marioController = GetComponent<PlayerController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        marioCollider = GetComponent<Collider2D>();
     }
 
     public override void Start()
@@ -31,6 +37,7 @@ public class MarioStateController : StateController
     // this should be added to the GameRestart EventListener as callback
     public void GameRestart()
     {
+        EndStar();
         // clear powerup
         currentPowerupType = PowerupType.Default;
         // set the start state
@@ -49,6 +56,7 @@ public class MarioStateController : StateController
     }
     private IEnumerator BlinkSpriteRenderer()
     {
+        State blinkState = currentState;
         spriteRenderer.enabled = true;
 
         // let the other setup actions run first (e.g. the shrink animation sets IsTransforming)
@@ -65,6 +73,17 @@ public class MarioStateController : StateController
 
         spriteRenderer.enabled = true;
     }
+
+    public void StartStar()
+    {
+        marioCollider.excludeLayers = starIgnoreLayers;
+    }
+
+    public void EndStar()
+    {
+        marioCollider.excludeLayers = 0;
+    }
+
     public void Fire()
     {
         this.currentState.DoEventTriggeredActions(this, ActionType.Attack);
