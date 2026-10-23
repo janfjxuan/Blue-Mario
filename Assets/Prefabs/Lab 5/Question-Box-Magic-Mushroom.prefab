@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1423757215911280789}
   - component: {fileID: 8892559748834353103}
   - component: {fileID: 372644731045789884}
+  - component: {fileID: 2844815929942194057}
   m_Layer: 0
   m_Name: Magic-Mushroom
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2834032352239899350}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -287,6 +288,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2844815929942194057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834032352239899350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0648dc9c7610e0143a631d5d455de8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicMushroomPowerup
+  type: 1
+  spawned: 0
+  powerupCollected: {fileID: 11400000, guid: e7ca590319de45c47a5ccc168806121e, type: 2}
 --- !u!1 &4819660264575365765
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,8 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c740f78ba201f8409d5a79fa880cc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
-  powerupAnimator: {fileID: 3390493613363127668}
-  powerup: {fileID: 0}
+  powerup: {fileID: 2844815929942194057}
   ceiling: {fileID: 6426806209581938314}
 --- !u!1001 &2510544385437552582
 PrefabInstance:

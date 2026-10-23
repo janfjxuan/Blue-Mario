@@ -4,7 +4,8 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour, IPowerupApplicable
 {
-    MarioStateController marioStateController;
+    private MarioStateController marioStateController;
+    private BuffStateController buffStateController;
     public GameConstants gameConstants;
     private bool transforming = false;
     public bool IsTransforming => transforming;
@@ -24,8 +25,6 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     // public AudioClip marioGrowClip;
     // public AudioClip marioShrinkClip;
     public Animator marioAnimator;
-    public RuntimeAnimatorController supermarioStateController;
-    private RuntimeAnimatorController smallmarioStateController;
     public Collider2D marioCollider;
     public Vector3 marioStartingPosition;
     public UnityEvent onGameOver;
@@ -49,11 +48,16 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     private bool moving = false;
     private bool jumpedState = false;
 
+    // hash
+    private static readonly int IsStarHash = Animator.StringToHash("isStar");
+
     void Awake()
     {
         box = marioCollider as BoxCollider2D;
         smallSize = box.size;
         smallOffset = box.offset;
+        marioStateController = GetComponent<MarioStateController>();
+        buffStateController = GetComponent<BuffStateController>();
     }
     // Start is called before the first frame update
     void Start()
@@ -100,18 +104,20 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         if (col.gameObject.CompareTag("Enemy"))
         {
             ContactPoint2D contact = col.GetContact(0);
+            EnemyMovement enemy = col.gameObject.GetComponent<EnemyMovement>();
+
             if (contact.normal.y > 0.5f)
             {
-                col.gameObject.GetComponent<EnemyMovement>().Stomp();
+                enemy.Stomp();
                 marioBody.linearVelocity = new Vector2(marioBody.linearVelocityX, 0f);
                 marioBody.AddForce(Vector2.up * upSpeed * 0.6f, ForceMode2D.Impulse);
             }
+            else if (buffStateController.IsStarred)
+            {
+                enemy.Yeet(col.transform.position.x > transform.position.x);
+            }
             else
             {
-                // if (isSuper)
-                //     UnmakeSuperMario();
-                // else
-                //     KillMario();
                 DamageMario();
             }
         }
@@ -224,11 +230,6 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         }
     }
 
-    public void Stomp()
-    {
-
-    }
-
     // for audio
     void PlayJumpSound()
     {
@@ -240,16 +241,6 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     {
         marioAudio.PlayOneShot(marioSuperJumpClip);
     }
-
-    // void PlayGrowSound()
-    // {
-    //     marioAudio.PlayOneShot(marioGrowClip);
-    // }
-
-    // void PlayShrinkSound()
-    // {
-    //     marioAudio.PlayOneShot(marioShrinkClip);
-    // }
 
     public void SetColliderSmall()
     {
@@ -265,12 +256,9 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
 
     public void DamageMario()
     {
-        // GameOverAnimationStart(); // last time Mario dies right away
+        if (buffStateController.IsStarred) return;
 
-        // pass this to StateController to see if Mario should start game over
-        // since both state StateController and MarioStateController are on the same gameobject, it's ok to cross-refer between scripts
-        // GetComponent<MarioStateController>().SetPowerup(PowerupType.Damage);
-        if (marioStateController.currentState.name == "InvincibleSmallMario" || marioStateController.currentState.name == "StarMario") return; // ignore hits while invincible
+        if (marioStateController.currentState.name == "InvincibleSmallMario") return; 
         marioStateController.SetPowerup(PowerupType.Damage);
     }
 
@@ -303,6 +291,18 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         StartCoroutine(TransformRoutine(stateName, duration));
     }
 
+    public void SetStarAnimator(bool value)
+    {
+        foreach (var p in marioAnimator.parameters)
+        {
+            if (p.nameHash == IsStarHash)
+            {
+                marioAnimator.SetBool(IsStarHash, value);
+                return;
+            }
+        }
+    }
+
     private IEnumerator TransformRoutine(string stateName, float duration)
     {
         transforming = true;
@@ -318,92 +318,6 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         Time.timeScale = 1f;
         transforming = false;
     }
-
-    // public void MakeSuperMario()
-    // {
-    //     if (isSuper || growing) return;
-    //     PlayGrowSound();
-    //     StartCoroutine(GrowRoutine());
-    // }
-
-    // private IEnumerator GrowRoutine()
-    // {
-    //     growing = true;
-    //     Time.timeScale = 0f;
-
-    //     marioAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-    //     marioAnimator.Play("mario-grow");
-
-    //     yield return new WaitForSecondsRealtime(1f);
-
-    //     // swap to the super Mario setup
-    //     isSuper = true;
-    //     box.size = new Vector2(smallSize.x, smallSize.y * 2f);
-    //     box.offset = new Vector2(smallOffset.x, smallOffset.y + smallSize.y / 2f);
-    //     marioAnimator.runtimeAnimatorController = supermarioStateController;
-    //     marioAnimator.updateMode = AnimatorUpdateMode.Normal;
-    //     marioAnimator.Rebind();
-    //     marioAnimator.Update(0f);
-    //     marioAnimator.SetBool("onGround", onGroundState);
-
-    //     Time.timeScale = 1f;
-    //     growing = false;
-    // }
-
-    // public void UnmakeSuperMario()
-    // {
-    //     if (!isSuper || growing) return;
-    //     PlayShrinkSound();
-    //     StartCoroutine(ShrinkRoutine());
-    // }
-
-    // private IEnumerator ShrinkRoutine()
-    // {
-    //     growing = true;
-    //     Time.timeScale = 0f;
-
-    //     marioAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-    //     marioAnimator.Play("mario-shrink");
-
-    //     yield return new WaitForSecondsRealtime(1f);
-
-    //     // swap to the small Mario setup
-    //     isSuper = false;
-    //     box.size = smallSize;
-    //     box.offset = smallOffset;
-    //     marioAnimator.runtimeAnimatorController = smallmarioStateController;
-    //     marioAnimator.updateMode = AnimatorUpdateMode.Normal;
-    //     marioAnimator.Rebind();
-    //     marioAnimator.Update(0f);
-    //     marioAnimator.SetBool("onGround", onGroundState);
-
-    //     Time.timeScale = 1f;
-    //     growing = false;
-    // }
-
-    // private IEnumerator InvincibilityRoutine()
-    // {
-    //     isInvincible = true;
-    //     float elapsed = 0f;
-
-    //     while (elapsed < invincibleDuration)
-    //     {
-    //         SetSpriteAlpha(marioSprite.color.a < 1f ? 1f : 0.3f);
-    //         yield return new WaitForSeconds(blinkInterval);
-    //         elapsed += blinkInterval;
-    //     }
-
-    //     SetSpriteAlpha(1f);
-    //     isInvincible = false;
-    //     StartCoroutine(InvincibilityRoutine());
-    // }
-
-    // private void SetSpriteAlpha(float a)
-    // {
-    //     Color c = marioSprite.color;
-    //     c.a = a;
-    //     marioSprite.color = c;
-    // }
 
     private IEnumerator WalkOutOfCastle()
     {
@@ -469,8 +383,9 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     public void RefreshAnimatorState()
     {
         marioAnimator.Rebind();
-        marioAnimator.Update(0f);
+        SetStarAnimator(buffStateController != null && buffStateController.IsStarred);
         marioAnimator.SetBool("onGround", onGroundState);
+        marioAnimator.Update(0f);
     }
 
     public void GameOverScene()

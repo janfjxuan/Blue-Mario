@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +17,8 @@ public class EnemyMovement : MonoBehaviour
     private Collider2D enemyCollider;
     private AudioSource enemyAudio;
     private Vector3 startPosition;
+    public float yeetForce = 3f;
+
 
     void Awake()
     {
@@ -25,37 +28,11 @@ public class EnemyMovement : MonoBehaviour
         enemyAudio = GetComponent<AudioSource>();
         // get the starting position
         startPosition = transform.position;
-        // ComputeVelocity();
     }
-    // void ComputeVelocity()
-    // {
-    //     velocity = new Vector2(moveRight * maxOffset / enemyPatroltime, 0);
-    // }
-    // void Movegoomba()
-    // {
-    //     enemyBody.MovePosition(enemyBody.position + velocity * Time.fixedDeltaTime);
-    // }
-
     void FixedUpdate()
     {
-        if (!alive)
-        {
-            enemyBody.linearVelocity = Vector2.zero;
-            return;
-        }
-        ;
+        if (!alive) return;
         enemyBody.linearVelocity = new Vector2(moveRight * speed, enemyBody.linearVelocity.y);
-        // if (Mathf.Abs(enemyBody.position.x - startPosition.x) < maxOffset)
-        // {// move goomba
-        //     Movegoomba();
-        // }
-        // else
-        // {
-        //     // change direction
-        //     moveRight *= -1;
-        //     ComputeVelocity();
-        //     Movegoomba();
-        // }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -77,9 +54,22 @@ public class EnemyMovement : MonoBehaviour
         if (!alive) return;
         alive = false;
         enemyCollider.enabled = false;
+        enemyBody.linearVelocity = Vector2.zero;
         enemyBody.bodyType = RigidbodyType2D.Kinematic;
         enemyAudio.Play();
-        enemyAnimator.SetTrigger("killGoomba");
+        enemyAnimator.SetTrigger("stompGoomba");
+        stomped.Invoke();
+    }
+
+    public void Yeet(bool launchRight)
+    {
+        if (!alive) return;
+        alive = false;
+        enemyCollider.enabled = false;
+        enemyAudio.Play();
+        enemyAnimator.SetTrigger("yeetGoomba");
+        Vector2 direction = new Vector2(launchRight ? 1f : -1f, 2f);
+        enemyBody.linearVelocity = direction * yeetForce;
         stomped.Invoke();
     }
 
@@ -90,6 +80,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void GameRestart()
     {
+        CancelInvoke();
         goomba.SetActive(true);
         alive = true;
         enemyBody.bodyType = RigidbodyType2D.Dynamic;
@@ -98,6 +89,8 @@ public class EnemyMovement : MonoBehaviour
         enemyAnimator.Update(0f);
         transform.localPosition = startPosition;
         moveRight = -1;
-        // ComputeVelocity();
+        enemyBody.linearVelocity = Vector2.zero;
+        enemyBody.angularVelocity = 0f;
+        transform.rotation = Quaternion.identity;
     }
 }

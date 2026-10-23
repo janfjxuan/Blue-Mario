@@ -29,5 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lab 5/World-1-2.unity
     guid: 4592756674c5cdb43a3714f2f6628e40
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c744077492aedf341acb3ef300c80a23, type: 3}
   m_UseUCBPForAssetBundles: 0

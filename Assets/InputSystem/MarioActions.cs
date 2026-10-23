@@ -141,6 +141,16 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": true,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ec0a6d0-802d-40e1-83c4-8e44ff0bd066"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -242,6 +252,17 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""action"": ""point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6582f414-0d8e-49bf-9135-146a939612d1"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard;SuperMarioBros"",
+                    ""action"": ""attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +304,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         m_gameplay_jumphold = m_gameplay.FindAction("jumphold", throwIfNotFound: true);
         m_gameplay_click = m_gameplay.FindAction("click", throwIfNotFound: true);
         m_gameplay_point = m_gameplay.FindAction("point", throwIfNotFound: true);
+        m_gameplay_attack = m_gameplay.FindAction("attack", throwIfNotFound: true);
     }
 
     ~@MarioActions()
@@ -368,6 +390,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_gameplay_jumphold;
     private readonly InputAction m_gameplay_click;
     private readonly InputAction m_gameplay_point;
+    private readonly InputAction m_gameplay_attack;
     /// <summary>
     /// Provides access to input actions defined in input action map "gameplay".
     /// </summary>
@@ -399,6 +422,10 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "gameplay/point".
         /// </summary>
         public InputAction @point => m_Wrapper.m_gameplay_point;
+        /// <summary>
+        /// Provides access to the underlying input action "gameplay/attack".
+        /// </summary>
+        public InputAction @attack => m_Wrapper.m_gameplay_attack;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -440,6 +467,9 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             @point.started += instance.OnPoint;
             @point.performed += instance.OnPoint;
             @point.canceled += instance.OnPoint;
+            @attack.started += instance.OnAttack;
+            @attack.performed += instance.OnAttack;
+            @attack.canceled += instance.OnAttack;
         }
 
         /// <summary>
@@ -466,6 +496,9 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             @point.started -= instance.OnPoint;
             @point.performed -= instance.OnPoint;
             @point.canceled -= instance.OnPoint;
+            @attack.started -= instance.OnAttack;
+            @attack.performed -= instance.OnAttack;
+            @attack.canceled -= instance.OnAttack;
         }
 
         /// <summary>
@@ -567,5 +600,12 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPoint(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

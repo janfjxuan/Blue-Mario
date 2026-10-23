@@ -1,16 +1,15 @@
+using System.Collections;
 using UnityEngine;
 public abstract class BasePowerup : MonoBehaviour, IPowerup
 {
     public PowerupType type;
     public bool spawned = false;
     protected bool consumed = false;
-    protected bool goRight = true;
-    protected Rigidbody2D rigidBody;
 
     // base methods
     protected virtual void Start()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
+        
     }
 
     // interface methods

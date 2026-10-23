@@ -10,6 +10,7 @@ TagManager:
   - Manager
   - GapHole
   - Goal
+  - Fireball
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Enemies
   - Obstacles
   - Interactive
-  - 
-  - 
+  - Fire Ball
+  - Starman
   - 
   - 
   - 

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
 {
-    public Animator powerupAnimator;
     public BasePowerup powerup; // reference to this question box's powerup
     private GameObject powerupGameObject;
     private AudioSource powerupAudio;
@@ -24,7 +23,7 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
             if (contact.normal.y > 0.5f && !powerup.hasSpawned)
             {
                 // show disabled sprite
-                questionBoxAnimator.SetTrigger("spawnPowerup"); // this is the question box's animator
+                questionBoxAnimator.SetTrigger("spawnPowerup"); 
                 ceiling.SetActive(true);
 
                 // spawn the powerup
@@ -32,7 +31,7 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
                 {
                     powerupGameObject.SetActive(true);
                 }
-                powerupAnimator.SetTrigger("spawn"); // this is the animator belonging to the powerup in that question box
+                powerup.SpawnPowerup();
                 if (powerupAudio != null)
                 {
                     powerupAudio.Play();

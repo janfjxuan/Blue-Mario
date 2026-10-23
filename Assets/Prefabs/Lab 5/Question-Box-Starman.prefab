@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2620402745769974517}
   - component: {fileID: 4112304618530953372}
   - component: {fileID: 8321125166818933672}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Starman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1006729118415400683}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -303,6 +303,8 @@ MonoBehaviour:
   type: 3
   spawned: 0
   powerupCollected: {fileID: 11400000, guid: e7ca590319de45c47a5ccc168806121e, type: 2}
+  horizontalSpeed: 4
+  bounceHeight: 3
 --- !u!1 &3806191899915815395
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c740f78ba201f8409d5a79fa880cc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
-  powerupAnimator: {fileID: 7181352001723361479}
   powerup: {fileID: 8321125166818933672}
   ceiling: {fileID: 9081482725393325882}
 --- !u!1 &5237686110545189534

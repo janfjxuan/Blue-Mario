@@ -10,6 +10,8 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
     private Animator brickAnimator;
     private AudioSource brickAudio;
     public AudioClip brickBreak;
+    public GameObject debrisPrefab;
+    public float debrisForce = 3f;
     void Start()
     {
         if (powerup != null)
@@ -66,9 +68,6 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
         GetComponent<Collider2D>().enabled = false;
         SpawnDebris();
     }
-
-    public GameObject debrisPrefab;
-    public float debrisForce = 3f;
     private void SpawnDebris()
     {
         Vector2[] directions =

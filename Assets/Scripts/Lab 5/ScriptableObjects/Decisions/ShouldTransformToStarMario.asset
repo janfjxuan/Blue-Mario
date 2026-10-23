@@ -15,7 +15,3 @@ MonoBehaviour:
   map:
   - fromState: 0
     powerupCollected: 3
-  - fromState: 1
-    powerupCollected: 3
-  - fromState: 2
-    powerupCollected: 3

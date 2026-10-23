@@ -119,6 +119,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &2962037
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 529622285}
+    m_Modifications:
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819660264575365765, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_Name
+      value: Question-Box-Magic-Mushroom (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 341c4693a34c5604db198120d30ede32, type: 3}
 --- !u!1001 &8426489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,10 +351,6 @@ PrefabInstance:
     - target: {fileID: 1350960373523760037, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3467514819171208126, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
-      propertyPath: m_Size.y
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8321079171905625818, guid: 3f15fc45ce2874642b57f6422d1274dd, type: 3}
       propertyPath: m_Name
@@ -589,7 +642,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -650,7 +703,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -707,17 +760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question-Box-Magic-Mushroom (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7174830212729164668, guid: 341c4693a34c5604db198120d30ede32, type: 3}
-      propertyPath: powerup
-      value: 
-      objectReference: {fileID: 1690833635}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2834032352239899350, guid: 341c4693a34c5604db198120d30ede32, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1690833635}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 341c4693a34c5604db198120d30ede32, type: 3}
 --- !u!1 &66859812
 GameObject:
@@ -943,7 +989,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -1004,7 +1050,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1172,7 +1218,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -1233,7 +1279,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2180,7 +2226,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -2241,7 +2287,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2318,7 +2364,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -2379,7 +2425,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3226,17 +3272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question-Box-Magic-Mushroom (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 7174830212729164668, guid: 341c4693a34c5604db198120d30ede32, type: 3}
-      propertyPath: powerup
-      value: 
-      objectReference: {fileID: 1605955152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2834032352239899350, guid: 341c4693a34c5604db198120d30ede32, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1605955152}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 341c4693a34c5604db198120d30ede32, type: 3}
 --- !u!4 &400974221 stripped
 Transform:
@@ -3253,7 +3292,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.5
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3295,17 +3334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question-Box-Magic-Mushroom
       objectReference: {fileID: 0}
-    - target: {fileID: 7174830212729164668, guid: 341c4693a34c5604db198120d30ede32, type: 3}
-      propertyPath: powerup
-      value: 
-      objectReference: {fileID: 1604258850}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2834032352239899350, guid: 341c4693a34c5604db198120d30ede32, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1604258850}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 341c4693a34c5604db198120d30ede32, type: 3}
 --- !u!4 &411787640 stripped
 Transform:
@@ -4046,7 +4078,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -4107,7 +4139,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4627,6 +4659,7 @@ Transform:
   - {fileID: 2106337157}
   - {fileID: 1419937265}
   - {fileID: 411787640}
+  - {fileID: 2070195348}
   - {fileID: 4322421339236342758}
   - {fileID: 442177223}
   - {fileID: 1650221979}
@@ -4638,6 +4671,7 @@ Transform:
   - {fileID: 1587199582}
   - {fileID: 825699299}
   - {fileID: 1450916076}
+  - {fileID: 1276230502}
   - {fileID: 400974221}
   - {fileID: 833237496}
   - {fileID: 1693509467}
@@ -5574,7 +5608,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -5635,7 +5669,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6048,7 +6082,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -6109,7 +6143,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6914,7 +6948,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -6975,7 +7009,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -7221,7 +7255,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -7282,7 +7316,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -8346,7 +8380,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -8407,7 +8441,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -8541,7 +8575,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 7}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -8602,7 +8636,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9188,7 +9222,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -9249,7 +9283,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9617,7 +9651,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -9678,7 +9712,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9815,6 +9849,63 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1001 &1018111941
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 529622285}
+    m_Modifications:
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 109.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819660264575365765, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+      propertyPath: m_Name
+      value: Question-Box-Magic-Mushroom (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 341c4693a34c5604db198120d30ede32, type: 3}
 --- !u!4 &1022547767 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4322421340405887452, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
@@ -10315,7 +10406,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -10376,7 +10467,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10808,6 +10899,11 @@ GameObject:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1200968579008571744, guid: d675afb0efb210549bce9bbcf067f688, type: 3}
   m_PrefabInstance: {fileID: 729744391684960061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1276230502 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+  m_PrefabInstance: {fileID: 1018111941}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1279567330
 PrefabInstance:
@@ -11645,7 +11741,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 6}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -11706,7 +11802,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -11783,7 +11879,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -11844,7 +11940,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -12429,7 +12525,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -12490,7 +12586,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -12970,46 +13066,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4322421340405887452, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
   m_PrefabInstance: {fileID: 823182633}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1604258843 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2834032352239899350, guid: 341c4693a34c5604db198120d30ede32, type: 3}
-  m_PrefabInstance: {fileID: 411787639}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1604258850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604258843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0648dc9c7610e0143a631d5d455de8ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicMushroomPowerup
-  type: 1
-  spawned: 0
-  powerupCollected: {fileID: 11400000, guid: e7ca590319de45c47a5ccc168806121e, type: 2}
---- !u!1 &1605955151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2834032352239899350, guid: 341c4693a34c5604db198120d30ede32, type: 3}
-  m_PrefabInstance: {fileID: 392313881}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1605955152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605955151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0648dc9c7610e0143a631d5d455de8ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicMushroomPowerup
-  type: 1
-  spawned: 0
-  powerupCollected: {fileID: 11400000, guid: e7ca590319de45c47a5ccc168806121e, type: 2}
 --- !u!1001 &1613384712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13327,7 +13383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1663334676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13607,26 +13663,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675319281}
   m_CullTransparentMesh: 1
---- !u!1 &1690833634 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2834032352239899350, guid: 341c4693a34c5604db198120d30ede32, type: 3}
-  m_PrefabInstance: {fileID: 57918280}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1690833635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690833634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0648dc9c7610e0143a631d5d455de8ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicMushroomPowerup
-  type: 1
-  spawned: 0
-  powerupCollected: {fileID: 11400000, guid: e7ca590319de45c47a5ccc168806121e, type: 2}
 --- !u!1 &1693509466
 GameObject:
   m_ObjectHideFlags: 0
@@ -14369,6 +14405,7 @@ GameObject:
   - component: {fileID: 1803813738}
   - component: {fileID: 1803813737}
   - component: {fileID: 1803813739}
+  - component: {fileID: 1803813740}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Player
@@ -14747,6 +14784,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e67c5852-754b-4e3b-b480-2b846d490464
     m_ActionName: 'gameplay/point[/Mouse/leftButton,/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1803813733}
+        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7ec0a6d0-802d-40e1-83c4-8e44ff0bd066
+    m_ActionName: gameplay/attack
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: SuperMarioBros
   m_DefaultActionMap: gameplay
@@ -14801,6 +14854,21 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: MoveCheck
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  attack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1803813739}
+        m_TargetAssemblyTypeName: MarioStateController, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14926,7 +14994,6 @@ MonoBehaviour:
   marioDeathAudio: {fileID: 1803813731}
   marioSuperJumpClip: {fileID: 8300000, guid: 7988561719a0c40049ae5a3c2870d1e7, type: 3}
   marioAnimator: {fileID: 1803813730}
-  supermarioStateController: {fileID: 0}
   marioCollider: {fileID: 1803813728}
   marioStartingPosition: {x: 0, y: 0, z: 0}
   onGameOver:
@@ -14978,6 +15045,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1803813739}
         m_TargetAssemblyTypeName: MarioStateController, Assembly-CSharp
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1803813740}
+        m_TargetAssemblyTypeName: BuffStateController, Assembly-CSharp
         m_MethodName: GameRestart
         m_Mode: 1
         m_Arguments:
@@ -15063,12 +15142,28 @@ MonoBehaviour:
   transitionStateChanged: 0
   stateTimeElapsed: 0
   isActive: 1
-  currentPowerupType: -1
+  currentPowerupType: 4
   shouldBeNextState: -1
-  starIgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  starAlpha: 1
+--- !u!114 &1803813740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803813723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34191bb0bcf454eb6b023d80c7087746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffStateController
+  startState: {fileID: 11400000, guid: fdb13546869a7417c9d21d1863fc03f7, type: 2}
+  previousState: {fileID: 0}
+  currentState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
+  transitionStateChanged: 0
+  stateTimeElapsed: 0
+  isActive: 1
+  currentPowerupType: -1
 --- !u!4 &1811506947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6684360586347945608, guid: 448d7ae6a26addc488762436bbf63f41, type: 3}
@@ -15175,7 +15270,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -15236,7 +15331,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -15527,7 +15622,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 5}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -15588,7 +15683,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -15822,7 +15917,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -15883,7 +15978,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -16026,6 +16121,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5065752765255003194, guid: 43658c7cd3e715f4f8e86965b83506f2, type: 3}
   m_PrefabInstance: {fileID: 1989001135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2070195348 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4322421340405887452, guid: 341c4693a34c5604db198120d30ede32, type: 3}
+  m_PrefabInstance: {fileID: 2962037}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2080043184
 GameObject:
@@ -17093,7 +17193,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5065752765255003194, guid: 43658c7cd3e715f4f8e86965b83506f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.5
+      value: 20.5
       objectReference: {fileID: 0}
     - target: {fileID: 5065752765255003194, guid: 43658c7cd3e715f4f8e86965b83506f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17482,22 +17582,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 529622285}
     m_Modifications:
-    - target: {fileID: 2620402745769974517, guid: a52bbcf199745c041ab232643c17156e, type: 3}
-      propertyPath: m_Size.x
-      value: 0.89196396
-      objectReference: {fileID: 0}
-    - target: {fileID: 2620402745769974517, guid: a52bbcf199745c041ab232643c17156e, type: 3}
-      propertyPath: m_Size.y
-      value: 1.0027647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2620402745769974517, guid: a52bbcf199745c041ab232643c17156e, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.001077652
-      objectReference: {fileID: 0}
-    - target: {fileID: 2620402745769974517, guid: a52bbcf199745c041ab232643c17156e, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.0030813217
-      objectReference: {fileID: 0}
     - target: {fileID: 5237686110545189534, guid: a52bbcf199745c041ab232643c17156e, type: 3}
       propertyPath: m_Name
       value: Question-Box-Starman

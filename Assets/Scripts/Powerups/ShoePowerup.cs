@@ -17,6 +17,7 @@ public class ShoePowerup : BasePowerup
     public override void SpawnPowerup()
     {
         spawned = true;
+        shoeAnimator.SetTrigger("spawn");
     }
 
     public override void DestroyPowerup()

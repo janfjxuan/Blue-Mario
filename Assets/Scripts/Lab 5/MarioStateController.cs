@@ -6,20 +6,16 @@ using UnityEngine;
 public class MarioStateController : StateController
 {
     private PlayerController marioController;
+    private BuffStateController buffStateController;
     public PowerupType currentPowerupType = PowerupType.Default;
     public MarioState shouldBeNextState = MarioState.Default;
     private SpriteRenderer spriteRenderer;
 
-    // for starman
-    [Header("Starman")]
-    public LayerMask starIgnoreLayers;
-    private Collider2D marioCollider;
-
     void Awake()
     {
         marioController = GetComponent<PlayerController>();
+        buffStateController = GetComponent<BuffStateController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        marioCollider = GetComponent<Collider2D>();
     }
 
     public override void Start()
@@ -37,7 +33,6 @@ public class MarioStateController : StateController
     // this should be added to the GameRestart EventListener as callback
     public void GameRestart()
     {
-        EndStar();
         // clear powerup
         currentPowerupType = PowerupType.Default;
         // set the start state
@@ -74,19 +69,10 @@ public class MarioStateController : StateController
         spriteRenderer.enabled = true;
     }
 
-    public void StartStar()
-    {
-        marioCollider.excludeLayers = starIgnoreLayers;
-    }
-
-    public void EndStar()
-    {
-        marioCollider.excludeLayers = 0;
-    }
-
     public void Fire()
     {
-        this.currentState.DoEventTriggeredActions(this, ActionType.Attack);
+        if (buffStateController != null && buffStateController.IsStarred) return;
+        currentState.DoEventTriggeredActions(this, ActionType.Attack);
     }
 
 }

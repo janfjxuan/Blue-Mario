@@ -5,7 +5,7 @@ public class FireAttackAction : Action
 {
     public int maxPrefabInScene = 3;
     public float impulseForce = 1;
-    public float degree = 45;
+    public float degree = -45;
     public GameObject attackPrefab;
     // a scriptable object updated by  / PlayerController to store current Mario's facing
     public BoolVariable marioFaceRight;
@@ -15,8 +15,15 @@ public class FireAttackAction : Action
         GameObject[] instantiatedPrefabsInScene = GameObject.FindGameObjectsWithTag(attackPrefab.tag);
         if (instantiatedPrefabsInScene.Length < maxPrefabInScene)
         {
+            Bounds b = controller.GetComponent<PlayerController>().marioCollider.bounds;
+            float dir = marioFaceRight.Value ? 1f : -1f;
+
+            Vector3 spawnPosition = new Vector3(
+                b.center.x + dir * (b.extents.x + 0.2f),
+                b.min.y + b.size.y * 0.6f,
+                controller.transform.position.z);
             // instantiate it where controller (mario) is
-            GameObject x = Instantiate(attackPrefab, controller.transform.position, Quaternion.identity);
+            GameObject x = Instantiate(attackPrefab, spawnPosition, Quaternion.identity);
 
             // Get the Rigidbody component of the instantiated object
             Rigidbody2D rb = x.GetComponent<Rigidbody2D>();

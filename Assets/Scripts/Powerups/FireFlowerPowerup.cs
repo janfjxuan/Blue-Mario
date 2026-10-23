@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FireFlowerPowerup : BasePowerup
@@ -5,11 +6,15 @@ public class FireFlowerPowerup : BasePowerup
     public PowerupGameEvent powerupCollected;
     // setup this object's type
     // instantiate variables
+    private Rigidbody2D fireFlowerBody;
     private Collider2D fireFlowerCollider;
-    private Animator fireFlowerAnimator;
+    private Vector2 startPosition;
+    private float defaultGravity;
     private void Awake()
     {
-        fireFlowerAnimator = GetComponent<Animator>();
+        fireFlowerBody = GetComponent<Rigidbody2D>();
+        startPosition = fireFlowerBody.transform.position;
+        defaultGravity = fireFlowerBody.gravityScale;
         fireFlowerCollider = GetComponent<Collider2D>();
         gameObject.SetActive(false);
     }
@@ -17,7 +22,6 @@ public class FireFlowerPowerup : BasePowerup
     {
         base.Start(); // call base class Start()
         type = PowerupType.FireFlower;
-        fireFlowerAnimator.enabled = true;
         fireFlowerCollider.enabled = false;
     }
 
@@ -39,17 +43,28 @@ public class FireFlowerPowerup : BasePowerup
     public override void SpawnPowerup()
     {
         spawned = true;
-        fireFlowerAnimator.enabled = false;
-        fireFlowerCollider.enabled = true;
+        StartCoroutine(RiseRoutine());
     }
 
+    private IEnumerator RiseRoutine()
+    {
+        fireFlowerCollider.enabled = false;
+        fireFlowerBody.gravityScale = 0f;
 
-    // interface implementation
-    // public override void ApplyPowerup(MonoBehaviour i)
-    // {
-    //     if (i.TryGetComponent<PlayerController>(out var mario))
-    //         mario.MakeSuperMario();
-    // }
+        Vector2 start = fireFlowerBody.position;
+        Vector2 end = start + Vector2.up * 1f;
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.fixedDeltaTime;
+            fireFlowerBody.MovePosition(Vector2.Lerp(start, end, t));
+            yield return new WaitForFixedUpdate();
+        }
+
+        // hand over to physics
+        fireFlowerBody.gravityScale = defaultGravity;
+        fireFlowerCollider.enabled = true;
+    }
 
     public override void ApplyPowerup(MonoBehaviour i)
     {
@@ -65,9 +80,11 @@ public class FireFlowerPowerup : BasePowerup
 
     public override void ResetPowerup()
     {
+        StopAllCoroutines();
         spawned = false;
-        fireFlowerAnimator.enabled = true;
         fireFlowerCollider.enabled = false;
+        fireFlowerBody.transform.position = startPosition;
+        fireFlowerBody.gravityScale = defaultGravity;
         gameObject.SetActive(false);
     }
 }

@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 5594274240998738711}
   - component: {fileID: 3076496870053079808}
   - component: {fileID: 3400934401221442707}
-  m_Layer: 0
+  - component: {fileID: 2119498515823688336}
+  - component: {fileID: 4857406059830308777}
+  m_Layer: 9
   m_Name: FireBall
-  m_TagString: Untagged
+  m_TagString: Fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +106,7 @@ CircleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 77cd77b15dad04995b5d397aefcba286, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -144,7 +146,7 @@ Rigidbody2D:
   m_UseAutoMass: 1
   m_Mass: 0.19634955
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -254,3 +256,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2119498515823688336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141183315308885259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2033fc7618fe4b318d56f853912f4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FireballController
+  scaleSpeed: 3
+--- !u!95 &4857406059830308777
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141183315308885259}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 07d8833d22d444da0845bbf9cae25288, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
