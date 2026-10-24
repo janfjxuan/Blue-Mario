@@ -20,10 +20,6 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     public Rigidbody2D marioBody;
     public SpriteRenderer marioSprite;
     public AudioSource marioAudio;
-    public AudioSource marioDeathAudio;
-    public AudioClip marioSuperJumpClip;
-    // public AudioClip marioGrowClip;
-    // public AudioClip marioShrinkClip;
     public Animator marioAnimator;
     public Collider2D marioCollider;
     public Vector3 marioStartingPosition;
@@ -40,13 +36,17 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     public bool onGroundState = true;
     public bool faceRightState = true;
     public BoolVariable marioFaceRight;
-    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
 
     // state
     [System.NonSerialized]
     public bool alive = true;
     private bool moving = false;
     private bool jumpedState = false;
+
+    // audio
+    public AudioClip marioDeathClip;
+    public AudioClip marioJumpClip;
+    public AudioClip marioSuperJumpClip;
 
     // hash
     private static readonly int IsStarHash = Animator.StringToHash("isStar");
@@ -91,16 +91,27 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
     }
 
+    void CheckGrounded(Collision2D col)
+    {
+        if (onGroundState) return;
+        if ((((1 << 3) | (1 << 7)) & (1 << col.gameObject.layer)) == 0) return;
+        if (marioBody.linearVelocity.y > 0.1f) return;
+
+        foreach (ContactPoint2D contact in col.contacts)
+        {
+            if (contact.normal.y > 0.5f)
+            {
+                onGroundState = true;
+                marioAnimator.SetBool("onGround", onGroundState);
+                return;
+            }
+        }
+    }
+
     // FixedUpdate is called 50 times a second
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) && !onGroundState)
-        {
-            onGroundState = true;
-            // update animator state
-            marioAnimator.SetBool("onGround", onGroundState);
-        }
-
+        CheckGrounded(col);
         if (col.gameObject.CompareTag("Enemy"))
         {
             ContactPoint2D contact = col.GetContact(0);
@@ -122,6 +133,12 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
             }
         }
     }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        CheckGrounded(col);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("GapHole"))
@@ -177,11 +194,6 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
 
     void Move(int value)
     {
-        // Vector2 movement = new Vector2(value, 0);
-        // // check if it doesn't go beyond maxSpeed
-        // if (marioBody.linearVelocity.magnitude < maxSpeed)
-        //     marioBody.AddForce(movement * speed);
-
         float speedX = marioBody.linearVelocity.x;
         // allow force if under max speed, OR if pushing against current motion
         if (Mathf.Abs(speedX) < maxSpeed || Mathf.Sign(speedX) != value)
@@ -216,8 +228,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
             jumpedState = true;
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
-            if (!IsSuper) PlayJumpSound();
-            else PlaySuperJumpSound();
+            PlaySfx(IsSuper ? marioSuperJumpClip : marioJumpClip);
         }
     }
 
@@ -228,18 +239,6 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
             marioBody.AddForce(Vector2.up * upSpeed * 30, ForceMode2D.Force);
             jumpedState = false;
         }
-    }
-
-    // for audio
-    void PlayJumpSound()
-    {
-        // play jump sound
-        marioAudio.PlayOneShot(marioAudio.clip);
-    }
-
-    void PlaySuperJumpSound()
-    {
-        marioAudio.PlayOneShot(marioSuperJumpClip);
     }
 
     public void SetColliderSmall()
@@ -258,7 +257,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     {
         if (buffStateController.IsStarred) return;
 
-        if (marioStateController.currentState.name == "InvincibleSmallMario") return; 
+        if (marioStateController.currentState.name == "InvincibleSmallMario") return;
         marioStateController.SetPowerup(PowerupType.Damage);
     }
 
@@ -267,17 +266,9 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         if (alive)
         {
             marioCollider.enabled = false;
-            // play death animation
-            // marioAnimator.Play("mario-die");
-            marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
+            PlaySfx(marioDeathClip);
             alive = false;
         }
-    }
-
-    private IEnumerator DelayedKillMario()
-    {
-        yield return new WaitForSeconds(2f);
-        KillMario();
     }
 
     public void RequestPowerupEffect(IPowerup i)
@@ -391,5 +382,10 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     public void GameOverScene()
     {
         onGameOver.Invoke();
+    }
+
+    public void PlaySfx(AudioClip clip)
+    {
+        if (clip != null) marioAudio.PlayOneShot(clip);
     }
 }

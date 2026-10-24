@@ -109,7 +109,8 @@ public class GameManager : MonoBehaviour
                 if (questionBox != null)
                     questionBox.ResetQuestionBox();
             }
-            Transform brickTransform = transform.Find("Brick");
+            Transform brickCoinTransform = transform.Find("Brick-Empty");
+            Transform brickTransform = brickCoinTransform? brickCoinTransform.Find("Brick") : transform.Find("Brick");
             if (brickTransform != null)
             {
                 BrickPowerupController brick = brickTransform.GetComponent<BrickPowerupController>();

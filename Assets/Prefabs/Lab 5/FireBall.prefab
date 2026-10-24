@@ -171,7 +171,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -7413114239186146876, guid: 320fac371a4a4e341a63f4aed405054a, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 7016dd03d29e64aa18bc6f1ae5bd8bec, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -269,6 +269,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireballController
   scaleSpeed: 3
+  horizontalSpeed: 8
+  bounceHeight: 1
 --- !u!95 &4857406059830308777
 Animator:
   serializedVersion: 7

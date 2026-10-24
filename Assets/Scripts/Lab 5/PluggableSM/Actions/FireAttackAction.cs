@@ -15,7 +15,10 @@ public class FireAttackAction : Action
         GameObject[] instantiatedPrefabsInScene = GameObject.FindGameObjectsWithTag(attackPrefab.tag);
         if (instantiatedPrefabsInScene.Length < maxPrefabInScene)
         {
-            Bounds b = controller.GetComponent<PlayerController>().marioCollider.bounds;
+            PlayerController mario = controller.GetComponent<PlayerController>();
+            mario.marioAnimator.Play("fire-mario-attack");
+
+            Bounds b = mario.marioCollider.bounds;
             float dir = marioFaceRight.Value ? 1f : -1f;
 
             Vector3 spawnPosition = new Vector3(

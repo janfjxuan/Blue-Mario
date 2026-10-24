@@ -303,7 +303,7 @@ MonoBehaviour:
   type: 3
   spawned: 0
   powerupCollected: {fileID: 11400000, guid: e7ca590319de45c47a5ccc168806121e, type: 2}
-  horizontalSpeed: 4
+  horizontalSpeed: 3
   bounceHeight: 3
 --- !u!1 &3806191899915815395
 GameObject:
