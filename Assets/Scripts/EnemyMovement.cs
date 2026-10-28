@@ -9,9 +9,6 @@ public class EnemyMovement : MonoBehaviour
     public float speed;
     private int moveRight = -1;
     private bool alive = true;
-    // private float maxOffset = 5.0f;
-    // private float enemyPatroltime = 2.0f;
-    // private Vector2 velocity;
     private Rigidbody2D enemyBody;
     private Animator enemyAnimator;
     private Collider2D enemyCollider;

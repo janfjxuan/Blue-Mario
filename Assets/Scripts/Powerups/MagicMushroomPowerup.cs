@@ -19,7 +19,7 @@ public class MagicMushroomPowerup : MovingPowerup
         if (moving)
         {
             foreach (ContactPoint2D contact in col.contacts)
-            {
+            { 
                 if (contact.normal.x * direction < -0.5f)
                 {
                     direction *= -1;

@@ -30,12 +30,13 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     float maxSpeed;
     float speed;
     float deceleration;
-    // public float invincibleDuration = 2f;   // or put it in GameConstants
-    public float blinkInterval = 0.1f;
 
     public bool onGroundState = true;
     public bool faceRightState = true;
     public BoolVariable marioFaceRight;
+
+    // stomp
+    public float stompHeightFraction = 0.25f;
 
     // state
     [System.NonSerialized]
@@ -108,16 +109,30 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         }
     }
 
+    private bool IsStomp(Collision2D col)
+    {
+        Bounds mario = marioCollider.bounds;
+        Bounds enemy = col.collider.bounds;
+
+        // feet above this fraction of the enemy's height counts as landing on top
+        float threshold = enemy.min.y + enemy.size.y * stompHeightFraction;
+        if (mario.min.y > threshold) return true;
+
+        foreach (ContactPoint2D c in col.contacts)
+            if (c.normal.y > 0.5f) return true;
+
+        return false;
+    }
+
     // FixedUpdate is called 50 times a second
     void OnCollisionEnter2D(Collision2D col)
     {
         CheckGrounded(col);
         if (col.gameObject.CompareTag("Enemy"))
         {
-            ContactPoint2D contact = col.GetContact(0);
             EnemyMovement enemy = col.gameObject.GetComponent<EnemyMovement>();
 
-            if (contact.normal.y > 0.5f)
+            if (IsStomp(col))
             {
                 enemy.Stomp();
                 marioBody.linearVelocity = new Vector2(marioBody.linearVelocityX, 0f);
