@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2620402745769974517}
   - component: {fileID: 4112304618530953372}
   - component: {fileID: 8321125166818933672}
+  - component: {fileID: 1010375457218571302}
   m_Layer: 10
   m_Name: Starman
   m_TagString: Untagged
@@ -305,6 +306,34 @@ MonoBehaviour:
   powerupCollected: {fileID: 11400000, guid: e7ca590319de45c47a5ccc168806121e, type: 2}
   horizontalSpeed: 3
   bounceHeight: 3
+--- !u!114 &1010375457218571302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006729118415400683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 85a6f71544561f24fba55c976f48f5d8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8321125166818933672}
+        m_TargetAssemblyTypeName: StarmanPowerup, Assembly-CSharp
+        m_MethodName: ResetPowerup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3806191899915815395
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +349,7 @@ GameObject:
   - component: {fileID: 1574947839003760311}
   - component: {fileID: 2613071860080082932}
   - component: {fileID: 6270695929569995712}
+  - component: {fileID: 1614894584295777823}
   m_Layer: 7
   m_Name: Question-Box
   m_TagString: QuestionBox
@@ -531,6 +561,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
   powerup: {fileID: 8321125166818933672}
   ceiling: {fileID: 9081482725393325882}
+--- !u!114 &1614894584295777823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3806191899915815395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 85a6f71544561f24fba55c976f48f5d8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6270695929569995712}
+        m_TargetAssemblyTypeName: QuestionBoxPowerupController, Assembly-CSharp
+        m_MethodName: ResetQuestionBox
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5237686110545189534
 GameObject:
   m_ObjectHideFlags: 0

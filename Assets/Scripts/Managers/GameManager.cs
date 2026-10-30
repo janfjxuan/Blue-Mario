@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     // events
     public SimpleGameEvent gameStart;
     public SimpleGameEvent onUpdateScore;
+    public SimpleGameEvent onUpdateCoins;
     public FloatGameEvent timerChange;
     public SimpleGameEvent levelComplete;
 
@@ -14,9 +15,9 @@ public class GameManager : MonoBehaviour
     private bool timerRunning = true;
     private int levelStartScore;
     public IntVariable gameScore;
+    public IntVariable gameCoins;
     public float timer = 0f;
 
-    public GameObject obstacles;
     public AudioSource musicSource;
     public CameraController gameCameraController;
 
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
         // Setup code for the new scene
         gameStart.Raise();
         SetScore(gameScore.Value);
+        SetCoins(gameCoins.Value);
     }
 
     private void FindSceneReferences()
@@ -56,7 +58,6 @@ public class GameManager : MonoBehaviour
         SceneReferences refs = FindFirstObjectByType<SceneReferences>();
         if (refs == null) return;   // e.g. MainMenu or LoadingScene
 
-        obstacles = refs.obstacles;
         musicSource = refs.musicSource;
         gameCameraController = refs.gameCameraController;
     }
@@ -82,6 +83,9 @@ public class GameManager : MonoBehaviour
         gameScore.Value = levelStartScore;
         SetScore(gameScore.Value);
 
+        gameCoins.Value = 0;
+        SetCoins(gameCoins.Value);
+
         timerRunning = true;
         timer = 0f;
         timerChange.Raise(timer);
@@ -98,26 +102,6 @@ public class GameManager : MonoBehaviour
         musicSource.Stop();
         musicSource.time = 0f;
         musicSource.Play();
-
-        // reset question box
-        foreach (Transform transform in obstacles.transform)
-        {
-            Transform questionBoxTransform = transform.Find("Question-Box");
-            if (questionBoxTransform != null)
-            {
-                QuestionBoxPowerupController questionBox = questionBoxTransform.GetComponent<QuestionBoxPowerupController>();
-                if (questionBox != null)
-                    questionBox.ResetQuestionBox();
-            }
-            Transform brickCoinTransform = transform.Find("Brick-Empty");
-            Transform brickTransform = brickCoinTransform? brickCoinTransform.Find("Brick") : transform.Find("Brick");
-            if (brickTransform != null)
-            {
-                BrickPowerupController brick = brickTransform.GetComponent<BrickPowerupController>();
-                if (brick != null)
-                    brick.ResetBrick();
-            }
-        }
     }
 
     public void IncreaseScore(int increment)
@@ -125,10 +109,19 @@ public class GameManager : MonoBehaviour
         gameScore.ApplyChange(increment);
         SetScore(gameScore.Value);
     }
+    public void IncreaseCoins()
+    {
+        gameCoins.ApplyChange(1);
+        SetCoins(gameCoins.Value);
+    }
 
     public void SetScore(int score)
     {
         onUpdateScore.Raise();
+    }
+    public void SetCoins(int coins)
+    {
+        onUpdateCoins.Raise();
     }
 
     public void GameOver()

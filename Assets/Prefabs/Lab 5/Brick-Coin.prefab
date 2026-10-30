@@ -88,50 +88,14 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 954609300398124481, guid: 98bb1203acf152e449f4b970ff404d35, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4927263938649568521}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98bb1203acf152e449f4b970ff404d35, type: 3}
---- !u!1 &95166095588388657 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 954609300398124481, guid: 98bb1203acf152e449f4b970ff404d35, type: 3}
-  m_PrefabInstance: {fileID: 895491844651565808}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4927263938649568521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 95166095588388657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0514f49df011247799845ae978107641, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimationEventIntTool
-  parameter: 0
-  useInt:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &143967610222624601 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 977866960359161257, guid: 98bb1203acf152e449f4b970ff404d35, type: 3}
   m_PrefabInstance: {fileID: 895491844651565808}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 95166095588388657}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d13289bd1e93b947aa0f6c5abc8b98e, type: 3}

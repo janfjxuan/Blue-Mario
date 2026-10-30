@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 7367580559401413866}
   - component: {fileID: 829740853005165542}
   - component: {fileID: 5662293851769692614}
-  - component: {fileID: 1624060938536488964}
   - component: {fileID: 8225355405187865667}
+  - component: {fileID: 1624060938536488964}
+  - component: {fileID: 8962906805253702202}
   m_Layer: 7
   m_Name: Brick
   m_TagString: Untagged
@@ -163,24 +164,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1624060938536488964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 517753984782956521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3686f10c8dad2e4b81acf86959b87e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BrickPowerupController
-  powerupAnimator: {fileID: 0}
-  powerup: {fileID: 0}
-  isBreakable: 0
-  brickBreak: {fileID: 8300000, guid: c738f1c61166b40e19d4d970e7b9c9df, type: 3}
-  debrisPrefab: {fileID: 8151309870453097012, guid: be08eed0ddc5a5f4a8e3660e5dd8d4d4, type: 3}
-  debrisForce: 3
 --- !u!82 &8225355405187865667
 AudioSource:
   m_ObjectHideFlags: 0
@@ -278,6 +261,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1624060938536488964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517753984782956521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3686f10c8dad2e4b81acf86959b87e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrickPowerupController
+  powerup: {fileID: 0}
+  isBreakable: 0
+  brickBreak: {fileID: 8300000, guid: c738f1c61166b40e19d4d970e7b9c9df, type: 3}
+  debrisPrefab: {fileID: 8151309870453097012, guid: be08eed0ddc5a5f4a8e3660e5dd8d4d4, type: 3}
+  debrisForce: 3
+--- !u!114 &8962906805253702202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517753984782956521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 85a6f71544561f24fba55c976f48f5d8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1624060938536488964}
+        m_TargetAssemblyTypeName: BrickPowerupController, Assembly-CSharp
+        m_MethodName: ResetBrick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7922053595620881955
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,10 +22,6 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
             ContactPoint2D contact = other.GetContact(0);
             if (contact.normal.y > 0.5f && !powerup.hasSpawned)
             {
-                // show disabled sprite
-                questionBoxAnimator.SetTrigger("spawnPowerup"); 
-                ceiling.SetActive(true);
-
                 // spawn the powerup
                 if (powerupGameObject.activeSelf == false)
                 {
@@ -35,6 +31,12 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
                 if (powerupAudio != null)
                 {
                     powerupAudio.Play();
+                }
+                if (powerup.hasSpawned)
+                {
+                    // show disabled sprite
+                    questionBoxAnimator.SetTrigger("spawnPowerup");
+                    ceiling.SetActive(true);
                 }
             }
         }

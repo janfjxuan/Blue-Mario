@@ -1566,10 +1566,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question-Box-Bounce (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 6672706842202431824, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1785,10 +1781,6 @@ PrefabInstance:
     - target: {fileID: 4819660264575365765, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
       propertyPath: m_Name
       value: Question-Box-Bounce (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672706842202431824, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3334,10 +3326,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question-Box-Bounce (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 6672706842202431824, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3849,21 +3837,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3406349721708433335, guid: 82233dbfa89a7184380fe0ec1e97bd0b, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8159473720036385399, guid: 82233dbfa89a7184380fe0ec1e97bd0b, type: 3}
       propertyPath: m_Name
       value: Brick-Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750185745944612989, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
-      propertyPath: isBreakable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4526316686499086019, guid: eda776f55b5204679b9e96e9c2c71127, type: 3}
-      propertyPath: m_Distance
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3883,14 +3859,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 529622285}
     m_Modifications:
-    - target: {fileID: 3061634344833048147, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: gameCoins
-      value: 
-      objectReference: {fileID: 11400000, guid: 1b6cae7e608b45a4aaa522066ce1236c, type: 2}
-    - target: {fileID: 3061634344833048147, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: onCoinCollected
-      value: 
-      objectReference: {fileID: 11400000, guid: 0fd97abe657ce2c4293b2b9a787d9000, type: 2}
     - target: {fileID: 4322421340405887452, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 170.5
@@ -3934,10 +3902,6 @@ PrefabInstance:
     - target: {fileID: 4819660264575365765, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
       propertyPath: m_Name
       value: Question-Box-Bounce (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672706842202431824, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4104,9 +4068,9 @@ GameObject:
   - component: {fileID: 516947530}
   - component: {fileID: 516947529}
   - component: {fileID: 516947528}
+  - component: {fileID: 516947534}
   - component: {fileID: 516947533}
   - component: {fileID: 516947532}
-  - component: {fileID: 516947534}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4410,7 +4374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
-  Event: {fileID: 11400000, guid: 0fd97abe657ce2c4293b2b9a787d9000, type: 2}
+  Event: {fileID: 11400000, guid: 797ac37e09a5a4e29affdc88f78d0bfa, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -5508,10 +5472,6 @@ PrefabInstance:
     - target: {fileID: 4819660264575365765, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
       propertyPath: m_Name
       value: Question-Box-Bounce (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672706842202431824, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7650,10 +7610,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question-Box-Bounce (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 6672706842202431824, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7862,14 +7818,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 529622285}
     m_Modifications:
-    - target: {fileID: 3061634344833048147, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: gameCoins
-      value: 
-      objectReference: {fileID: 11400000, guid: 1b6cae7e608b45a4aaa522066ce1236c, type: 2}
-    - target: {fileID: 3061634344833048147, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: onCoinCollected
-      value: 
-      objectReference: {fileID: 11400000, guid: 0fd97abe657ce2c4293b2b9a787d9000, type: 2}
+    - target: {fileID: 130303733614129465, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
+      propertyPath: coinsInBlock
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4322421340405887452, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.5
@@ -7913,10 +7865,6 @@ PrefabInstance:
     - target: {fileID: 4819660264575365765, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
       propertyPath: m_Name
       value: Question-Box-Bounce (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672706842202431824, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8874,10 +8822,6 @@ PrefabInstance:
     - target: {fileID: 4819660264575365765, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
       propertyPath: m_Name
       value: Question-Box-Bounce (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672706842202431824, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9893,17 +9837,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4322421340405887452, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
   m_PrefabInstance: {fileID: 418426106}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1052099840 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1404671135060533906, guid: 0670d899bc7642944869311a1dac442b, type: 3}
-  m_PrefabInstance: {fileID: 3459460713842189246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d13289bd1e93b947aa0f6c5abc8b98e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinPowerup
 --- !u!4 &1067191913 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6684360586347945608, guid: 448d7ae6a26addc488762436bbf63f41, type: 3}
@@ -15147,7 +15080,6 @@ MonoBehaviour:
   onGroundState: 1
   faceRightState: 1
   marioFaceRight: {fileID: 11400000, guid: 3cefe1d40582140f4af04a8bda244224, type: 2}
-  stompHeightFraction: 0.25
   marioDeathClip: {fileID: 8300000, guid: be79cdf12fa7b4c9e8c01551934257f9, type: 3}
   marioJumpClip: {fileID: 8300000, guid: bc5ca5e0703c54692a186434e1149ccd, type: 3}
   marioSuperJumpClip: {fileID: 8300000, guid: 7988561719a0c40049ae5a3c2870d1e7, type: 3}
@@ -15318,25 +15250,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6684360586347945608, guid: 448d7ae6a26addc488762436bbf63f41, type: 3}
   m_PrefabInstance: {fileID: 33611852}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1835732457 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2464479026540679000, guid: 20eeb24f56837dc4ea7e019a1a236c7d, type: 3}
-  m_PrefabInstance: {fileID: 2106337156}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1835732462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835732457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdb62ea4f7bbe42f69e3460f4d02c8bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShoePowerup
-  type: 4
-  spawned: 0
 --- !u!1 &1837959418
 GameObject:
   m_ObjectHideFlags: 0
@@ -16102,10 +16015,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question-Box-Bounce (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 6672706842202431824, guid: d29bbe30baa5c094e8a638b899acf9aa, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16630,10 +16539,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4359246145459127853, guid: 20eeb24f56837dc4ea7e019a1a236c7d, type: 3}
-      propertyPath: powerup
-      value: 
-      objectReference: {fileID: 1835732462}
     - target: {fileID: 4819660264575365765, guid: 20eeb24f56837dc4ea7e019a1a236c7d, type: 3}
       propertyPath: m_Name
       value: Question-Box-Shoes
@@ -16641,10 +16546,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2464479026540679000, guid: 20eeb24f56837dc4ea7e019a1a236c7d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1835732462}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20eeb24f56837dc4ea7e019a1a236c7d, type: 3}
 --- !u!4 &2106337157 stripped
 Transform:
@@ -16723,6 +16625,7 @@ GameObject:
   - component: {fileID: 2109920114}
   - component: {fileID: 2109920117}
   - component: {fileID: 2109920116}
+  - component: {fileID: 2109920124}
   - component: {fileID: 2109920123}
   - component: {fileID: 2109920122}
   - component: {fileID: 2109920121}
@@ -16793,11 +16696,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gameStart: {fileID: 11400000, guid: 862f9fe6c22d2fb499df06960b7f6bda, type: 2}
   onUpdateScore: {fileID: 11400000, guid: 280e7255d3a0a1f489f8720829c40533, type: 2}
+  onUpdateCoins: {fileID: 11400000, guid: 797ac37e09a5a4e29affdc88f78d0bfa, type: 2}
   timerChange: {fileID: 11400000, guid: 539263ed26db09843885a5a0469e4705, type: 2}
   levelComplete: {fileID: 11400000, guid: 130468d4713efb247936d7f8f632f4a5, type: 2}
   gameScore: {fileID: 11400000, guid: a0d62164732424e0f8cfbf7a4095e693, type: 2}
+  gameCoins: {fileID: 11400000, guid: 1b6cae7e608b45a4aaa522066ce1236c, type: 2}
   timer: 0
-  obstacles: {fileID: 529622284}
   musicSource: {fileID: 1138025302}
   gameCameraController: {fileID: 330585548}
   defaultSnapshot: {fileID: 7908243882366253293, guid: 320fac371a4a4e341a63f4aed405054a, type: 2}
@@ -16947,6 +16851,34 @@ MonoBehaviour:
       - m_Target: {fileID: 2109920117}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2109920124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109920111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 0fd97abe657ce2c4293b2b9a787d9000, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2109920117}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: IncreaseCoins
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17638,14 +17570,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 529622285}
     m_Modifications:
-    - target: {fileID: 1404671135060533906, guid: 0670d899bc7642944869311a1dac442b, type: 3}
-      propertyPath: gameCoins
-      value: 
-      objectReference: {fileID: 11400000, guid: 1b6cae7e608b45a4aaa522066ce1236c, type: 2}
-    - target: {fileID: 1404671135060533906, guid: 0670d899bc7642944869311a1dac442b, type: 3}
-      propertyPath: onCoinCollected
-      value: 
-      objectReference: {fileID: 11400000, guid: 0fd97abe657ce2c4293b2b9a787d9000, type: 2}
+    - target: {fileID: 130303733614129465, guid: 0670d899bc7642944869311a1dac442b, type: 3}
+      propertyPath: coinsInBlock
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4322421340405887452, guid: 0670d899bc7642944869311a1dac442b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.5
@@ -17690,14 +17618,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question-Box-Bounce
       objectReference: {fileID: 0}
-    - target: {fileID: 6672706842202431824, guid: 0670d899bc7642944869311a1dac442b, type: 3}
-      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614224550375116372, guid: 0670d899bc7642944869311a1dac442b, type: 3}
-      propertyPath: powerup
-      value: 
-      objectReference: {fileID: 1052099840}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

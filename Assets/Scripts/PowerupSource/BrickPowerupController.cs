@@ -52,7 +52,7 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
             AudioSource coinAudio = powerup.GetComponent<AudioSource>();
             if (coinAudio != null) coinAudio.Play();
 
-            if (!isBreakable) brickAnimator.SetTrigger("empty");
+            if (!isBreakable && powerup.hasSpawned) brickAnimator.SetTrigger("empty");
         }
     }
     private void BounceBrick()

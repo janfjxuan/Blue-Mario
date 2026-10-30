@@ -32,7 +32,7 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
 
     public void SetActive()
     {
-        this.gameObject.SetActive(spawned);
+        gameObject.SetActive(spawned);
     }
 
     // 2. abstract methods, must be implemented by derived classes
