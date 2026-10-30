@@ -15,6 +15,11 @@ MonoBehaviour:
   maxLives: 10
   speed: 32
   maxSpeed: 5
-  upSpeed: 20
   deceleration: 30
+  jumpVelocity: 16
+  lowGravityScale: 3
+  highGravityScale: 9
+  maxFallSpeed: -20
+  stompBounceVelocity: 24
+  deathGravityScale: 4
   deathImpulse: 16

@@ -27,16 +27,6 @@
                     "priority": 0
                 },
                 {
-                    "name": "jumphold",
-                    "type": "Button",
-                    "id": "0477bc9f-2669-4e5f-8548-2a5ce9b1c9bb",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
                     "name": "click",
                     "type": "Button",
                     "id": "a83a391c-679b-4cce-9632-19fe781c3f3e",
@@ -72,21 +62,10 @@
                     "name": "",
                     "id": "f5341993-1dc8-4bde-bc0a-2cd0a137a072",
                     "path": "<Keyboard>/space",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": ";Keyboard;SuperMarioBros",
-                    "action": "jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f49ea214-5937-421c-906a-eb5f83b489dd",
-                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard;SuperMarioBros",
-                    "action": "jumphold",
+                    "action": "jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

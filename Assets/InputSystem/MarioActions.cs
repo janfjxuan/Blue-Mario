@@ -113,16 +113,6 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""priority"": 0
                 },
                 {
-                    ""name"": ""jumphold"",
-                    ""type"": ""Button"",
-                    ""id"": ""0477bc9f-2669-4e5f-8548-2a5ce9b1c9bb"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false,
-                    ""priority"": 0
-                },
-                {
                     ""name"": ""click"",
                     ""type"": ""Button"",
                     ""id"": ""a83a391c-679b-4cce-9632-19fe781c3f3e"",
@@ -158,21 +148,10 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""f5341993-1dc8-4bde-bc0a-2cd0a137a072"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard;SuperMarioBros"",
-                    ""action"": ""jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f49ea214-5937-421c-906a-eb5f83b489dd"",
-                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard;SuperMarioBros"",
-                    ""action"": ""jumphold"",
+                    ""action"": ""jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -301,7 +280,6 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         m_gameplay = asset.FindActionMap("gameplay", throwIfNotFound: true);
         m_gameplay_move = m_gameplay.FindAction("move", throwIfNotFound: true);
         m_gameplay_jump = m_gameplay.FindAction("jump", throwIfNotFound: true);
-        m_gameplay_jumphold = m_gameplay.FindAction("jumphold", throwIfNotFound: true);
         m_gameplay_click = m_gameplay.FindAction("click", throwIfNotFound: true);
         m_gameplay_point = m_gameplay.FindAction("point", throwIfNotFound: true);
         m_gameplay_attack = m_gameplay.FindAction("attack", throwIfNotFound: true);
@@ -387,7 +365,6 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_gameplay_move;
     private readonly InputAction m_gameplay_jump;
-    private readonly InputAction m_gameplay_jumphold;
     private readonly InputAction m_gameplay_click;
     private readonly InputAction m_gameplay_point;
     private readonly InputAction m_gameplay_attack;
@@ -410,10 +387,6 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "gameplay/jump".
         /// </summary>
         public InputAction @jump => m_Wrapper.m_gameplay_jump;
-        /// <summary>
-        /// Provides access to the underlying input action "gameplay/jumphold".
-        /// </summary>
-        public InputAction @jumphold => m_Wrapper.m_gameplay_jumphold;
         /// <summary>
         /// Provides access to the underlying input action "gameplay/click".
         /// </summary>
@@ -458,9 +431,6 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             @jump.started += instance.OnJump;
             @jump.performed += instance.OnJump;
             @jump.canceled += instance.OnJump;
-            @jumphold.started += instance.OnJumphold;
-            @jumphold.performed += instance.OnJumphold;
-            @jumphold.canceled += instance.OnJumphold;
             @click.started += instance.OnClick;
             @click.performed += instance.OnClick;
             @click.canceled += instance.OnClick;
@@ -487,9 +457,6 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             @jump.started -= instance.OnJump;
             @jump.performed -= instance.OnJump;
             @jump.canceled -= instance.OnJump;
-            @jumphold.started -= instance.OnJumphold;
-            @jumphold.performed -= instance.OnJumphold;
-            @jumphold.canceled -= instance.OnJumphold;
             @click.started -= instance.OnClick;
             @click.performed -= instance.OnClick;
             @click.canceled -= instance.OnClick;
@@ -579,13 +546,6 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "jumphold" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnJumphold(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

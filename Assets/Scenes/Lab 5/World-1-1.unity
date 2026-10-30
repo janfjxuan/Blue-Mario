@@ -14893,22 +14893,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1803813733}
         m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
-        m_MethodName: OnJumpHoldAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0477bc9f-2669-4e5f-8548-2a5ce9b1c9bb
-    m_ActionName: 'gameplay/jumphold[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1803813733}
-        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
         m_MethodName: OnClickAction
         m_Mode: 0
         m_Arguments:
@@ -14985,12 +14969,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  jumpHold:
+  jumpRelease:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1803813735}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: JumpHold
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: JumpRelease
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15141,8 +15125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   gameConstants: {fileID: 11400000, guid: df9717ebdefb89d48ac45dadd6e96c27, type: 2}
   startWithCastleWalk: 0
-  marioBody: {fileID: 1803813726}
-  marioSprite: {fileID: 1803813724}
   marioAudio: {fileID: 1803813731}
   marioAnimator: {fileID: 1803813730}
   marioCollider: {fileID: 1803813728}
@@ -15169,6 +15151,9 @@ MonoBehaviour:
   marioDeathClip: {fileID: 8300000, guid: be79cdf12fa7b4c9e8c01551934257f9, type: 3}
   marioJumpClip: {fileID: 8300000, guid: bc5ca5e0703c54692a186434e1149ccd, type: 3}
   marioSuperJumpClip: {fileID: 8300000, guid: 7988561719a0c40049ae5a3c2870d1e7, type: 3}
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 136
 --- !u!114 &1803813736
 MonoBehaviour:
   m_ObjectHideFlags: 0

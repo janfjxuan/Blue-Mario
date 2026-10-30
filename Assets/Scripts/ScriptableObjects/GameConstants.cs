@@ -9,7 +9,13 @@ public class GameConstants : ScriptableObject
     // Mario's movement
     public int speed;
     public int maxSpeed;
-    public int upSpeed;
     public int deceleration;
+    public float jumpVelocity;
+    public float lowGravityScale;
+    public float highGravityScale;
+    public float maxFallSpeed;
+    public float stompHeightFraction;
+    public float stompBounceVelocity;
+    public float deathGravityScale;
     public int deathImpulse;
 }
