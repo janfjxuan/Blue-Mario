@@ -304,7 +304,7 @@ MonoBehaviour:
   type: 3
   spawned: 0
   powerupCollected: {fileID: 11400000, guid: e7ca590319de45c47a5ccc168806121e, type: 2}
-  horizontalSpeed: 3
+  horizontalSpeed: 2
   bounceHeight: 3
 --- !u!114 &1010375457218571302
 MonoBehaviour:

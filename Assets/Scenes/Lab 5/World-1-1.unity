@@ -13371,6 +13371,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151c4e1f710244e3382a355a8a3a5300, type: 3}
+--- !u!114 &656863996779318808 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2953240967854798452, guid: 151c4e1f710244e3382a355a8a3a5300, type: 3}
+  m_PrefabInstance: {fileID: 656863996779318807}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2479afef19964c4081234d380f09fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1001 &1924116702083120291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13528,6 +13539,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8279353539395627247, guid: 310069b27c29a4ca2a214338b4c3344e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2109920117}
+    - target: {fileID: 8279353539395627247, guid: 310069b27c29a4ca2a214338b4c3344e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 656863996779318808}
+    - target: {fileID: 8279353539395627247, guid: 310069b27c29a4ca2a214338b4c3344e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: AfterLevelComplete
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279353539395627247, guid: 310069b27c29a4ca2a214338b4c3344e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: StartCastleWalk
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13612,7 +13639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491769508675566336, guid: f0bc781b445684ee6aa29c068f3f5808, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.3
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8491769508675566336, guid: f0bc781b445684ee6aa29c068f3f5808, type: 3}
       propertyPath: m_LocalPosition.z

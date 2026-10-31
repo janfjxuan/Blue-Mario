@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
+public enum PipeExit { None, Up, Right, Left }
+
 // 100% from claude
 public class PipeController : MonoBehaviour
 {
@@ -9,11 +11,10 @@ public class PipeController : MonoBehaviour
     public bool enterMovingRight = true;     // direction Mario walks to go in
     public float slideDistance = 1f;         // how far he slides into the pipe
     public float slideDuration = 0.8f;
-    public AudioSource pipeAudio;
 
     [Header("Destination")]
     public Transform destination;            // marker where Mario's FEET end up
-    public bool exitUpward = false;          // true: destination is the top of a vertical pipe, he rises out
+    public PipeExit exit = PipeExit.None;
     public float exitDuration = 0.8f;
 
     [Header("Events")]
@@ -26,6 +27,9 @@ public class PipeController : MonoBehaviour
     [Header("Camera")]
     public CameraArea destinationArea;           // the underground room; leave EMPTY when the destination is the main level
     public CameraController cameraController;    // optional, found automatically if empty
+
+    [Header("Sound")]
+    public AudioClip pipeClip;
 
     void OnTriggerStay2D(Collider2D other)
     {
@@ -43,8 +47,7 @@ public class PipeController : MonoBehaviour
     private IEnumerator Transition(PlayerController player)
     {
         player.InPipe = true;
-        player.SetInputLockedForPipe(true);
-        pipeAudio.Play();
+        player.SetInputLocked(true);
 
         if (entryPipeSprite == null) entryPipeSprite = GetComponentInChildren<SpriteRenderer>();
         if (entryPipeSprite != null) player.SetSortingBehind(entryPipeSprite);
@@ -58,6 +61,7 @@ public class PipeController : MonoBehaviour
         body.linearVelocity = Vector2.zero;
 
         // 1. slide into the pipe
+        PlaySfx(player, pipeClip);
         Vector2 dir = enterMovingRight ? Vector2.right : Vector2.left;
         yield return player.StartCoroutine(Slide(body, body.position, body.position + dir * slideDistance, slideDuration));
 
@@ -66,28 +70,35 @@ public class PipeController : MonoBehaviour
         Vector2 target = destination.position;
         if (onTeleport != null) onTeleport.Raise();
 
-        if (exitUpward)
-        {
-            // 3. rise out of the vertical pipe
-            if (exitPipeSprite != null) player.SetSortingBehind(exitPipeSprite);
-            Vector2 start = target - Vector2.up * height;
-            MovePlayerInstantly(player, body, start);
-            SnapCamera(target.x);
-            yield return player.StartCoroutine(Slide(body, start, target, exitDuration));
-        }
-        else
+        if (exit == PipeExit.None)
         {
             player.RestoreSorting();
             MovePlayerInstantly(player, body, target);
             SnapCamera(target.x);
-            yield return new WaitForSeconds(0.1f);   // a beat so the camera can settle
+            PlaySfx(player, pipeClip);
+            yield return new WaitForSeconds(0.1f);
+        }
+        else
+        {
+            Vector2 exitDir = exit == PipeExit.Up ? Vector2.up
+                            : exit == PipeExit.Right ? Vector2.right : Vector2.left;
+            float distance = exit == PipeExit.Up ? height : exitDuration;
+            Vector2 start = target - exitDir * distance;
+
+            if (exit != PipeExit.Up) player.FaceRight(exit == PipeExit.Right);
+            if (exitPipeSprite != null) player.SetSortingBehind(exitPipeSprite);
+
+            MovePlayerInstantly(player, body, start);
+            SnapCamera(target.x);
+            PlaySfx(player, pipeClip);
+            yield return player.StartCoroutine(Slide(body, start, target, exitDuration));
         }
 
         // 4. restore control
         player.RestoreSorting();
         col.enabled = true;
         body.gravityScale = player.DefaultGravity;
-        player.SetInputLockedForPipe(false);
+        player.SetInputLocked(false);
         player.InPipe = false;
     }
 
@@ -117,5 +128,10 @@ public class PipeController : MonoBehaviour
 
         if (destinationArea != null) cameraController.SetArea(destinationArea, playerX);
         else cameraController.SetDefaultArea(playerX);
+    }
+
+    private void PlaySfx(PlayerController player, AudioClip clip)
+    {
+        if (clip != null) player.marioAudio.PlayOneShot(clip);
     }
 }

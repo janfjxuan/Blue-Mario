@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     private static readonly int IsStarHash = Animator.StringToHash("isStar");
     private readonly HashSet<Collider2D> groundContacts = new HashSet<Collider2D>();
 
+    // level end
+    public bool InLevelEnd { get; private set; }
+
     [SerializeField] LayerMask groundLayers = (1 << 3) | (1 << 7);
 
     void Awake()
@@ -77,6 +80,8 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         marioCollider.enabled = true;
         marioAnimator.SetBool("onGround", onGroundState);
         marioStartingPosition = marioBody.transform.position;
+
+        if (startWithCastleWalk) StartCoroutine(WalkOutOfCastle());
 
         // subscribe to scene manager scene change
         // SceneManager.activeSceneChanged += SetStartingPosition;
@@ -206,6 +211,11 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         marioFaceRight.SetValue(faceRightState);
     }
 
+    public void FaceRight(bool right)
+    {
+        FlipMarioSprite(right ? 1 : -1);
+    }
+
     public void SetSortingBehind(SpriteRenderer target)
     {
         marioSprite.sortingLayerID = target.sortingLayerID;
@@ -304,6 +314,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
 
     public void DamageMario()
     {
+        if (InLevelEnd) return;
         if (buffStateController.IsStarred) return;
 
         if (marioStateController.currentState.name == "InvincibleSmallMario") return;
@@ -359,6 +370,46 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         transforming = false;
     }
 
+    public void BeginLevelEnd()
+    {
+        if (InLevelEnd) return;
+        InLevelEnd = true;
+        SetInputLocked(true);
+    }
+
+    public void StartCastleWalk()
+    {
+        if (!InLevelEnd || !alive) return;
+        StartCoroutine(CastleWalkRoutine());
+    }
+
+    private IEnumerator CastleWalkRoutine()
+    {
+        float timeout = 3f;
+        while (!onGroundState && timeout > 0f)
+        {
+            timeout -= Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        FlipMarioSprite(1); 
+        moving = true; 
+
+        float walkTimeout = 8f;
+        while (moving && walkTimeout > 0f)
+        {
+            walkTimeout -= Time.unscaledDeltaTime;
+            yield return null;
+        }
+        moving = false;
+    }
+
+    public void ArriveAtCastle()
+    {
+        moving = false;
+        marioBody.linearVelocity = Vector2.zero;
+    }
+
     private IEnumerator WalkOutOfCastle()
     {
         inputLocked = true;
@@ -376,7 +427,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         inputLocked = false;
     }
 
-    public void SetInputLockedForPipe(bool locked)
+    public void SetInputLocked(bool locked)
     {
         inputLocked = locked;
         if (locked) moving = false;
@@ -395,6 +446,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         inputLocked = false;
         Time.timeScale = 1f;
         marioAnimator.updateMode = AnimatorUpdateMode.Normal;
+        InLevelEnd = false;
 
         // reset position
         InPipe = false;

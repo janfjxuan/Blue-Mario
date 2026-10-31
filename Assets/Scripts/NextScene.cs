@@ -7,6 +7,10 @@ public class NextScene : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            var player = other.GetComponent<PlayerController>();
+            if (player == null || !player.InLevelEnd) return;
+
+            player.ArriveAtCastle();
             SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Single);
         }
     }

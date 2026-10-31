@@ -2106,19 +2106,47 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4329858686586412188}
+      objectReference: {fileID: 3104423310223005904}
+    - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonClick
+      value: Hide
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: AfterLevelComplete
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: StartCastleWalk
       objectReference: {fileID: 0}
     - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ContinueButtonController, Assembly-CSharp
+      value: HUDManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371296097464637214, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5972348847157640955, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
       propertyPath: m_Name
@@ -2223,33 +2251,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8746022800670678474, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6623697444188247526}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4684334029756084479, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4329858686586412188}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
 --- !u!1 &1066535624691777802 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5972348847157640955, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
   m_PrefabInstance: {fileID: 6642549818785202161}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2102348862971989774 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4684334029756084479, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}
-  m_PrefabInstance: {fileID: 6642549818785202161}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4329858686586412188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2102348862971989774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0705f0b4161b9d547ad5c689d8176360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ContinueButtonController
 --- !u!114 &2663151904815757383 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8708406222215464886, guid: d26857563e8673c48a6f75322b3ba82d, type: 3}

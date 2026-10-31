@@ -7,6 +7,7 @@ public class GoalController : MonoBehaviour
     private SpriteRenderer goalSprite;
     private Animator goalAnimator;
     private AudioSource goalAudio;
+    private bool triggered = false;
 
     void Start()
     {
@@ -18,10 +19,13 @@ public class GoalController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            goalAnimator.SetTrigger("goalScore");
-        }
+        if (triggered || !other.gameObject.CompareTag("Player")) return;
+        triggered = true;
+
+        var player = other.GetComponent<PlayerController>();
+        if (player != null) player.BeginLevelEnd();
+
+        goalAnimator.SetTrigger("goalScore");
     }
 
     public void GoalScore()
@@ -33,6 +37,7 @@ public class GoalController : MonoBehaviour
 
     public void ResetGoal()
     {
+        triggered = false;
         goalSprite.enabled = true;
         goalAnimator.Play("goal-idle");
     }
