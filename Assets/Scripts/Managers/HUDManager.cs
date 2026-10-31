@@ -20,6 +20,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelCompleteTimeText;
     [SerializeField] private TextMeshProUGUI gameOverHighScoreText;
     [SerializeField] private TextMeshProUGUI levelCompleteHighScoreText;
+    [SerializeField] private GameObject pauseOverlay;
 
     void OnEnable()
     {
@@ -39,6 +40,7 @@ public class HUDManager : MonoBehaviour
         // hide gameover panel
         gameOverPanel.SetActive(false);
         levelCompletePanel.SetActive(false);
+        HidePause();
         gameCoins.SetValue(0);
         SetScore();
         SetCoins();
@@ -98,5 +100,16 @@ public class HUDManager : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         levelCompletePanel.SetActive(false);
+        HidePause();
+    }
+
+    public void ShowPause()
+    {
+        if (pauseOverlay != null) pauseOverlay.SetActive(true);
+    }
+
+    public void HidePause()
+    {
+        if (pauseOverlay != null) pauseOverlay.SetActive(false);
     }
 }
