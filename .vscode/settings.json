@@ -27,5 +27,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Blue-Mario.slnx"
+    "dotnet.defaultSolution": "Blue Mario.slnx"
 }
