@@ -7,5 +7,6 @@ public enum MarioState
     FireMario = 2,
     InvincibleSmallMario = 3,
     StarMario = 4,
+    Sonic = 5,
     DeadMario = 99
 }

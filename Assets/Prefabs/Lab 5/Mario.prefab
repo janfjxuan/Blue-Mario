@@ -615,6 +615,7 @@ MonoBehaviour:
   marioDeathClip: {fileID: 8300000, guid: be79cdf12fa7b4c9e8c01551934257f9, type: 3}
   marioJumpClip: {fileID: 8300000, guid: bc5ca5e0703c54692a186434e1149ccd, type: 3}
   marioSuperJumpClip: {fileID: 8300000, guid: 7988561719a0c40049ae5a3c2870d1e7, type: 3}
+  sonicJumpClip: {fileID: 0}
   groundLayers:
     serializedVersion: 2
     m_Bits: 136

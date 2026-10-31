@@ -74,7 +74,7 @@ public class FireFlowerPowerup : BasePowerup
         bool result = i.TryGetComponent<MarioStateController>(out mario);
         if (result)
         {
-            mario.SetPowerup(this.powerupType);
+            mario.SetPowerup(powerupType);
         }
     }
 

@@ -18,6 +18,9 @@ public class PowerupManager : MonoBehaviour
             case PowerupType.StarMan:
                 powerupAffectsPlayer.Raise(i);
                 break;
+            case PowerupType.Shoe:
+                powerupAffectsPlayer.Raise(i);
+                break;
             default:
                 break;
         }

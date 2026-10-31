@@ -45,12 +45,14 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     public bool IsTransforming => transforming;
     public float DefaultGravity => defaultGravity;
     public bool IsSuper => marioStateController.currentState.name == "SuperMario" || marioStateController.currentState.name == "FireMario";
+    public bool IsSonic => buffStateController.currentState.name == "Sonic";
     // to do clean up states name to enum
 
     // audio
     public AudioClip marioDeathClip;
     public AudioClip marioJumpClip;
     public AudioClip marioSuperJumpClip;
+    public AudioClip sonicJumpClip;
 
     // hash
     private static readonly int IsStarHash = Animator.StringToHash("isStar");
@@ -60,6 +62,16 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     public bool InLevelEnd { get; private set; }
 
     [SerializeField] LayerMask groundLayers = (1 << 3) | (1 << 7);
+
+    // sonic
+
+    private float sonicMaxSpeed = 60;
+    private float sonicMaxSpeedFloat = 1;
+    private float sonicAcc = 25;
+    private float sonicAccFloat = 1;
+    private float sonicDec = 60;
+    private float sonicDecFloat = 1;
+    private float defaultAnimatorSpeed;
 
     void Awake()
     {
@@ -73,6 +85,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         defaultGravity = GetComponent<Rigidbody2D>().gravityScale;
         defaultSortingLayerID = marioSprite.sortingLayerID;
         defaultSortingOrder = marioSprite.sortingOrder;
+        defaultAnimatorSpeed = marioAnimator.speed;
     }
     // Start is called before the first frame update
     void Start()
@@ -231,15 +244,41 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     // FixedUpdate may be called once per frame. See documentation for details.
     void FixedUpdate()
     {
-        if (alive && moving)
+        if (IsSonic)
         {
-            Move(faceRightState == true ? 1 : -1);
+            if (alive && moving)
+            {
+                float dir = faceRightState == true ? 1 : -1;
+                float oldX = marioBody.linearVelocity.x;
+                float newX = Mathf.MoveTowards(oldX, sonicMaxSpeed * sonicMaxSpeedFloat * dir, sonicAcc * sonicAccFloat * Time.fixedDeltaTime);
+                marioBody.linearVelocity = new Vector2(newX, marioBody.linearVelocity.y);
+
+                float oldAnimSpeed = marioAnimator.speed;
+                marioAnimator.speed = Mathf.MoveTowards(oldAnimSpeed, 2.4f, 1.5f * Time.fixedDeltaTime);
+            }
+            else if (alive)
+            {
+                float oldX = marioBody.linearVelocity.x;
+                float newX = Mathf.MoveTowards(oldX, 0f, sonicDec * sonicDecFloat * Time.fixedDeltaTime);
+                marioBody.linearVelocity = new Vector2(newX, marioBody.linearVelocity.y);
+
+                float oldAnimSpeed = marioAnimator.speed;
+                marioAnimator.speed = Mathf.MoveTowards(oldAnimSpeed, defaultAnimatorSpeed, 1.5f * Time.fixedDeltaTime);
+            }
+
         }
-        else if (alive)
+        else
         {
-            float oldX = marioBody.linearVelocity.x;
-            float newX = Mathf.MoveTowards(oldX, 0f, gameConstants.deceleration * Time.fixedDeltaTime);
-            marioBody.linearVelocity = new Vector2(newX, marioBody.linearVelocity.y);
+            if (alive && moving)
+            {
+                Move(faceRightState == true ? 1 : -1);
+            }
+            else if (alive)
+            {
+                float oldX = marioBody.linearVelocity.x;
+                float newX = Mathf.MoveTowards(oldX, 0f, gameConstants.deceleration * Time.fixedDeltaTime);
+                marioBody.linearVelocity = new Vector2(newX, marioBody.linearVelocity.y);
+            }
         }
         if (alive)
         {
@@ -291,7 +330,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
             jumpHeld = true;
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
-            PlaySfx(IsSuper ? marioSuperJumpClip : marioJumpClip);
+            PlaySfx(IsSonic ? sonicJumpClip : IsSuper ? marioSuperJumpClip : marioJumpClip);
         }
     }
 
@@ -392,8 +431,8 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
             yield return null;
         }
 
-        FlipMarioSprite(1); 
-        moving = true; 
+        FlipMarioSprite(1);
+        moving = true;
 
         float walkTimeout = 8f;
         while (moving && walkTimeout > 0f)
@@ -446,6 +485,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         inputLocked = false;
         Time.timeScale = 1f;
         marioAnimator.updateMode = AnimatorUpdateMode.Normal;
+        marioAnimator.speed = defaultAnimatorSpeed;
         InLevelEnd = false;
 
         // reset position
@@ -474,6 +514,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
 
     public void RefreshAnimatorState()
     {
+        marioAnimator.speed = defaultAnimatorSpeed;
         marioAnimator.Rebind();
         SetStarAnimator(buffStateController != null && buffStateController.IsStarred);
         marioAnimator.SetBool("onGround", onGroundState);
