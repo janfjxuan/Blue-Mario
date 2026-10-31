@@ -9,7 +9,7 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
     // base methods
     protected virtual void Start()
     {
-        
+
     }
 
     // interface methods

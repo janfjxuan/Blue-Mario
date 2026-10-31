@@ -32,8 +32,6 @@ public class MagicMushroomPowerup : MovingPowerup
     // interface implementation
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        // base.ApplyPowerup(i);
-        // try
         MarioStateController mario;
         bool result = i.TryGetComponent<MarioStateController>(out mario);
         if (result)

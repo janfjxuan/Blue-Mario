@@ -27,17 +27,10 @@ public class CameraController : MonoBehaviour
 
         initialStartX = startX; initialEndX = endX; initialY = camY;
         initialPosition = transform.position;
-
-        // Handling reference to the correct (Singleton) Mario #1: using tag (assuming Mario's tag is "Player")
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
-        // float desiredX = player.position.x + offset;
-        // // check if desiredX is within startX and endX
-        // if (desiredX > startX && desiredX < endX)
-        //     this.transform.position = new Vector3(desiredX, this.transform.position.y, this.transform.position.z);
         float desiredX = Mathf.Clamp(player.position.x + offset, startX, endX);
         transform.position = new Vector3(desiredX, camY, transform.position.z);
     }

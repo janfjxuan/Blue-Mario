@@ -15,6 +15,8 @@ public class EnemyMovement : MonoBehaviour
     private AudioSource enemyAudio;
     private Vector3 startPosition;
     public float yeetForce = 3f;
+    public GameObject scorePopupPrefab;
+    public int scoreValue = 100;
 
 
     void Awake()
@@ -46,10 +48,18 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    private void SpawnScorePopup()
+    {
+        if (scorePopupPrefab == null) return;
+        GameObject popup = Instantiate(scorePopupPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+        popup.GetComponent<FloatingScore>().Show(scoreValue.ToString());
+    }
+
     public void Stomp()
     {
         if (!alive) return;
         alive = false;
+        SpawnScorePopup();
         enemyCollider.enabled = false;
         enemyBody.linearVelocity = Vector2.zero;
         enemyBody.bodyType = RigidbodyType2D.Kinematic;
@@ -62,6 +72,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (!alive) return;
         alive = false;
+        SpawnScorePopup();
         enemyCollider.enabled = false;
         enemyAudio.Play();
         enemyAnimator.SetTrigger("yeetGoomba");

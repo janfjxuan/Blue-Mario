@@ -200,6 +200,8 @@ MonoBehaviour:
   goomba: {fileID: 692075852036689689}
   speed: 1.5
   yeetForce: 3
+  scorePopupPrefab: {fileID: 2142605002918956030, guid: 0221a5087e8d2d64f8af010083878072, type: 3}
+  scoreValue: 100
 --- !u!95 &6415804969617852663
 Animator:
   serializedVersion: 7
