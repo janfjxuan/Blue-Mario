@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d234796043b8643dc9d5924160c5ce23, type: 3}
+  m_Name: DeadMario
+  m_EditorClassIdentifier: Assembly-CSharp::State
+  setupActions:
+  - {fileID: 11400000, guid: 00f84950ad58c405590bf85db7dc84ed, type: 2}
+  - {fileID: 11400000, guid: a52a887f869f343c9bce051e2cb2f8e9, type: 2}
+  - {fileID: 11400000, guid: fa8d9f767eab44016a888f3fc6715fb4, type: 2}
+  - {fileID: 11400000, guid: 1f2ef80e2a7254fc1be2d2cc3c7462ee, type: 2}
+  actions: []
+  eventTriggeredActions: []
+  exitActions: []
+  transitions: []
+  marioState: 99
+  sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

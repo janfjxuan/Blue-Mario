@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,14 +9,15 @@ public class EnemyMovement : MonoBehaviour
     public float speed;
     private int moveRight = -1;
     private bool alive = true;
-    // private float maxOffset = 5.0f;
-    // private float enemyPatroltime = 2.0f;
-    // private Vector2 velocity;
     private Rigidbody2D enemyBody;
     private Animator enemyAnimator;
     private Collider2D enemyCollider;
     private AudioSource enemyAudio;
     private Vector3 startPosition;
+    public float yeetForce = 3f;
+    public GameObject scorePopupPrefab;
+    public int scoreValue = 100;
+
 
     void Awake()
     {
@@ -27,37 +27,11 @@ public class EnemyMovement : MonoBehaviour
         enemyAudio = GetComponent<AudioSource>();
         // get the starting position
         startPosition = transform.position;
-        // ComputeVelocity();
     }
-    // void ComputeVelocity()
-    // {
-    //     velocity = new Vector2(moveRight * maxOffset / enemyPatroltime, 0);
-    // }
-    // void Movegoomba()
-    // {
-    //     enemyBody.MovePosition(enemyBody.position + velocity * Time.fixedDeltaTime);
-    // }
-
     void FixedUpdate()
     {
-        if (!alive)
-        {
-            enemyBody.linearVelocity = Vector2.zero;
-            return;
-        }
-        ;
+        if (!alive) return;
         enemyBody.linearVelocity = new Vector2(moveRight * speed, enemyBody.linearVelocity.y);
-        // if (Mathf.Abs(enemyBody.position.x - startPosition.x) < maxOffset)
-        // {// move goomba
-        //     Movegoomba();
-        // }
-        // else
-        // {
-        //     // change direction
-        //     moveRight *= -1;
-        //     ComputeVelocity();
-        //     Movegoomba();
-        // }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -74,16 +48,37 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    private void SpawnScorePopup()
+    {
+        if (scorePopupPrefab == null) return;
+        GameObject popup = Instantiate(scorePopupPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+        popup.GetComponent<FloatingScore>().Show(scoreValue.ToString());
+    }
+
     public void Stomp()
     {
         if (!alive) return;
         alive = false;
+        SpawnScorePopup();
         enemyCollider.enabled = false;
+        enemyBody.linearVelocity = Vector2.zero;
         enemyBody.bodyType = RigidbodyType2D.Kinematic;
         enemyAudio.Play();
-        enemyAnimator.SetTrigger("killGoomba");
-        // stomped.Invoke();
-        GameManager.instance.IncreaseScore(100);
+        enemyAnimator.SetTrigger("stompGoomba");
+        stomped.Invoke();
+    }
+
+    public void Yeet(bool launchRight)
+    {
+        if (!alive) return;
+        alive = false;
+        SpawnScorePopup();
+        enemyCollider.enabled = false;
+        enemyAudio.Play();
+        enemyAnimator.SetTrigger("yeetGoomba");
+        Vector2 direction = new Vector2(launchRight ? 1f : -1f, 2f);
+        enemyBody.linearVelocity = direction * yeetForce;
+        stomped.Invoke();
     }
 
     public void KillGoomba()
@@ -93,6 +88,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void GameRestart()
     {
+        CancelInvoke();
         goomba.SetActive(true);
         alive = true;
         enemyBody.bodyType = RigidbodyType2D.Dynamic;
@@ -101,6 +97,8 @@ public class EnemyMovement : MonoBehaviour
         enemyAnimator.Update(0f);
         transform.localPosition = startPosition;
         moveRight = -1;
-        // ComputeVelocity();
+        enemyBody.linearVelocity = Vector2.zero;
+        enemyBody.angularVelocity = 0f;
+        transform.rotation = Quaternion.identity;
     }
 }

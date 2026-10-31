@@ -5,27 +5,22 @@ using UnityEngine.InputSystem;
 public class ActionManager : MonoBehaviour
 {
     public UnityEvent jump;
-    public UnityEvent jumpHold;
+    public UnityEvent jumpRelease;
     public UnityEvent<int> moveCheck;
+    public UnityEvent attack;
 
-    public void OnJumpHoldAction(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            jumpHold.Invoke();
-        }
-    }
-
-    // called twice, when pressed and unpressed
     public void OnJumpAction(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             jump.Invoke();
         }
+        else if (context.canceled)
+        {
+            jumpRelease.Invoke();
+        }
     }
 
-    // called twice, when pressed and unpressed
     public void OnMoveAction(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -39,6 +34,11 @@ public class ActionManager : MonoBehaviour
             moveCheck.Invoke(0);
         }
 
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed) attack.Invoke();
     }
 
     public void OnPointAction(InputAction.CallbackContext context)

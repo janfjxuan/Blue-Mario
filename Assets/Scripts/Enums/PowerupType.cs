@@ -4,5 +4,9 @@ public enum PowerupType
     MagicMushroom = 1,
     OneUpMushroom = 2,
     StarMan = 3,
-    Shoe = 4
+    FireFlower = 4,
+    Shoe = 5,
+    Damage = 99,
+    Kill = 100,
+    Default = -1
 }

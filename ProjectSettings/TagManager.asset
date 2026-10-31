@@ -10,6 +10,7 @@ TagManager:
   - Manager
   - GapHole
   - Goal
+  - Fireball
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Enemies
   - Obstacles
   - Interactive
-  - 
-  - 
+  - Fire Ball
+  - Starman
   - 
   - 
   - 
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: Castle
     uniqueID: 2855143115
+    locked: 0
+  - name: Popup
+    uniqueID: 99197813
     locked: 0
   m_RenderingLayers:
   - Default

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class HUDManager : MonoBehaviour
@@ -6,6 +7,11 @@ public class HUDManager : MonoBehaviour
     public GameObject scoreText;
     public GameObject timerText;
     public Transform restartButton;
+    public IntVariable gameScore;
+    public IntVariable gameCoins;
+    public TextMeshProUGUI coinText;
+    public TextMeshProUGUI worldText;
+    private float lastTime = 0f;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI gameOverScoreText;
     [SerializeField] private TextMeshProUGUI gameOverTimeText;
@@ -14,34 +20,19 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelCompleteTimeText;
     [SerializeField] private TextMeshProUGUI gameOverHighScoreText;
     [SerializeField] private TextMeshProUGUI levelCompleteHighScoreText;
+    [SerializeField] private GameObject pauseOverlay;
 
-
+    void OnEnable()
+    {
+        SetScore();
+    }
     void Start()
     {
-        SetScore(GameManager.instance.gameScore.Value);
-    }
-    void Awake()
-    {
-        // subscribe to events
-        GameManager.instance.gameStart.AddListener(GameStart);
-        GameManager.instance.gameOver.AddListener(GameOver);
-        GameManager.instance.gameRestart.AddListener(GameStart);
-        GameManager.instance.scoreChange.AddListener(SetScore);
-        GameManager.instance.timerChange.AddListener(SetTimer);
-        GameManager.instance.levelComplete.AddListener(LevelComplete);
-    }
-
-    void OnDestroy()
-    {
-        if (GameManager.instance != null)
-        {
-            GameManager.instance.gameStart.RemoveListener(GameStart);
-            GameManager.instance.gameOver.RemoveListener(GameOver);
-            GameManager.instance.gameRestart.RemoveListener(GameStart);
-            GameManager.instance.scoreChange.RemoveListener(SetScore);
-            GameManager.instance.timerChange.RemoveListener(SetTimer);
-            GameManager.instance.levelComplete.RemoveListener(LevelComplete);
-        }
+        gameCoins.SetValue(0);
+        SetScore();
+        SetCoins();
+        if (worldText != null)
+            worldText.text = "WORLD\n" + SceneManager.GetActiveScene().name.Replace("World-", "");
     }
 
     public void GameStart()
@@ -49,49 +40,76 @@ public class HUDManager : MonoBehaviour
         // hide gameover panel
         gameOverPanel.SetActive(false);
         levelCompletePanel.SetActive(false);
+        HidePause();
+        gameCoins.SetValue(0);
+        SetScore();
+        SetCoins();
     }
 
-    public void SetScore(int score)
+    public void SetScore()
     {
-        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
+        scoreText.GetComponent<TextMeshProUGUI>().text = "MARIO\n" + gameScore.Value.ToString("D7");
     }
+
+    public void SetCoins()
+    {
+        coinText.text = "\nx" + gameCoins.Value.ToString("D2");
+    }
+
     public void SetTimer(float timer)
     {
-        int minutes = Mathf.FloorToInt(timer / 60f);
-        int seconds = Mathf.FloorToInt(timer % 60f);
-        timerText.GetComponent<TextMeshProUGUI>().text = "Time : " + minutes + ":" + seconds.ToString("00");
+        lastTime = timer;
+        timerText.GetComponent<TextMeshProUGUI>().text = "TIME\n" + Mathf.FloorToInt(timer).ToString("D3");
     }
+
+    private string PanelScore() { return "Score: " + gameScore.Value; }
+
+    private string PanelTime()
+    {
+        int minutes = Mathf.FloorToInt(lastTime / 60f);
+        int seconds = Mathf.FloorToInt(lastTime % 60f);
+        return "Time : " + minutes + ":" + seconds.ToString("00");
+    }
+
 
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
-        gameOverScoreText.text = scoreText.GetComponent<TextMeshProUGUI>().text;
-        gameOverTimeText.text = timerText.GetComponent<TextMeshProUGUI>().text;
+        gameOverScoreText.text = PanelScore();
+        gameOverTimeText.text = PanelTime();
         if (gameOverHighScoreText != null)
-        {
             gameOverHighScoreText.text = TopScoreString();
-        }
+
     }
 
     public void LevelComplete()
     {
         levelCompletePanel.SetActive(true);
-        levelCompleteScoreText.text = scoreText.GetComponent<TextMeshProUGUI>().text;
-        levelCompleteTimeText.text = timerText.GetComponent<TextMeshProUGUI>().text;
+        levelCompleteScoreText.text = PanelScore();
+        levelCompleteTimeText.text = PanelTime();
         if (levelCompleteHighScoreText != null)
-        {
             levelCompleteHighScoreText.text = TopScoreString();
-        }
     }
 
     public string TopScoreString()
     {
-        return "TOP- " + GameManager.instance.gameScore.previousHighestValue.ToString("D6");
+        return "TOP- " + gameScore.previousHighestValue.ToString("D6");
     }
 
     public void Hide()
     {
         gameOverPanel.SetActive(false);
         levelCompletePanel.SetActive(false);
+        HidePause();
+    }
+
+    public void ShowPause()
+    {
+        if (pauseOverlay != null) pauseOverlay.SetActive(true);
+    }
+
+    public void HidePause()
+    {
+        if (pauseOverlay != null) pauseOverlay.SetActive(false);
     }
 }

@@ -1,50 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CoinPowerup : BasePowerup
 {
     private Animator coinAnimator;
+    public SimpleGameEvent onCoinCollected;
+    public int coinsInBlock = 1;
+    private int coinsLeft;
+
     private void Awake()
     {
         coinAnimator = GetComponent<Animator>();
+        coinsLeft = coinsInBlock;
     }
     // start is called before the first frame update
     protected override void Start()
     {
-        base.Start(); // call base class Start()
+        base.Start();
         type = PowerupType.Coin;
+    }
+
+    public void HideCoin()
+    {
+        gameObject.SetActive(false);
     }
 
     public override void SpawnPowerup()
     {
-        spawned = true;
-        // invoke PowerupCollectedEvent
-        // PowerUpManager.instance.powerupCollected.Invoke(this);
+        if (spawned) return;
+        gameObject.SetActive(true);
+        if (coinsLeft <= 0) return;
+
+        coinsLeft--;
+        if (coinsLeft == 0) spawned = true;
+        
+        onCoinCollected.Raise();
+        coinAnimator.Rebind();
+        coinAnimator.Update(0f);
+        coinAnimator.SetTrigger("spawn");
     }
 
-    public new void DestroyPowerup()
+    public override void DestroyPowerup()
     {
 
     }
 
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        GameManager manager;
-        bool result = i.TryGetComponent<GameManager>(out manager);
-
-        if (result)
-        {
-            // manager.IncreaseScore(i);
-        }
+        
     }
 
     public override void ResetPowerup()
     {
         spawned = false;
+        coinsLeft = coinsInBlock;
+        gameObject.SetActive(true);
         coinAnimator.ResetTrigger("spawn");
         coinAnimator.Rebind();
         coinAnimator.Update(0f);
+        SetActive();
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ShoePowerup : BasePowerup
 {
+    public PowerupGameEvent powerupCollected;
     private Animator shoeAnimator;
     private void Awake()
     {
@@ -17,24 +18,20 @@ public class ShoePowerup : BasePowerup
     public override void SpawnPowerup()
     {
         spawned = true;
-        Debug.Log("Shoes collected");
-        // invoke PowerupCollectedEvent
-        // PowerUpManager.instance.powerupCollected.Invoke(this);
+        shoeAnimator.SetTrigger("spawn");
+        powerupCollected.Raise(this);
     }
 
-    public new void DestroyPowerup()
+    public override void DestroyPowerup()
     {
 
     }
 
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        GameManager manager;
-        bool result = i.TryGetComponent<GameManager>(out manager);
-
-        if (result)
+        if (i.TryGetComponent<BuffStateController>(out var buff))
         {
-            // manager.IncreaseScore(i);
+            buff.SetPowerup(PowerupType.Shoe);
         }
     }
 

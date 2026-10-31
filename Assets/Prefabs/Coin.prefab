@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 382900747150540634}
   - component: {fileID: 4507497239615739798}
   - component: {fileID: 6001245798091550049}
-  - component: {fileID: 977866960359161257}
+  - component: {fileID: 7089794185491590429}
+  - component: {fileID: 3347955153004458238}
   m_Layer: 7
   m_Name: Coin
   m_TagString: Untagged
@@ -213,7 +214,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &977866960359161257
+--- !u!114 &7089794185491590429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,3 +228,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoinPowerup
   type: 0
   spawned: 0
+  onCoinCollected: {fileID: 11400000, guid: 0fd97abe657ce2c4293b2b9a787d9000, type: 2}
+  coinsInBlock: 1
+--- !u!114 &3347955153004458238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954609300398124481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 85a6f71544561f24fba55c976f48f5d8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7089794185491590429}
+        m_TargetAssemblyTypeName: CoinPowerup, Assembly-CSharp
+        m_MethodName: ResetPowerup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

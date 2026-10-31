@@ -7,17 +7,8 @@ public class PauseOverlayController : MonoBehaviour
     void Start()
     {
         overlay.SetActive(false);
-        GameManager.instance.pauseChange.AddListener(SetOverlay);
     }
 
-    void OnDestroy()
-    {
-        if (GameManager.instance != null)
-            GameManager.instance.pauseChange.RemoveListener(SetOverlay);
-    }
-
-    void SetOverlay(bool paused)
-    {
-        overlay.SetActive(paused);
-    }
+    public void Show() { overlay.SetActive(true); }
+    public void Hide() { overlay.SetActive(false); }
 }

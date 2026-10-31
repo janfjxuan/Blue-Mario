@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d234796043b8643dc9d5924160c5ce23, type: 3}
+  m_Name: StarBuff
+  m_EditorClassIdentifier: Assembly-CSharp::State
+  setupActions:
+  - {fileID: 11400000, guid: e67a434b5342f4606bf81c257d7ee1d3, type: 2}
+  - {fileID: 11400000, guid: 6f5aa35c014a446089b5732231845dd3, type: 2}
+  - {fileID: 11400000, guid: 0b1015a1387ce4cbcaf8a9991809cfed, type: 2}
+  - {fileID: 11400000, guid: cbe93cb6fbfaa40789633bdfa70456d9, type: 2}
+  actions: []
+  eventTriggeredActions: []
+  exitActions:
+  - {fileID: 11400000, guid: fa8d9f767eab44016a888f3fc6715fb4, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: fb7f45d3858e9420796ee3ae030f5429, type: 2}
+    trueState: {fileID: 11400000}
+    falseState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
+  - decision: {fileID: 11400000, guid: 5f3cefae395f94eff8bc014c94ae52d3, type: 2}
+    trueState: {fileID: 11400000, guid: fdb13546869a7417c9d21d1863fc03f7, type: 2}
+    falseState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
+  marioState: -1
+  sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

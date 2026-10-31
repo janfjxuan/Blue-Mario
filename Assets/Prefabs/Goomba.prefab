@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7446779539681538172}
   - component: {fileID: 2245777550206949371}
   - component: {fileID: 2407356419180523305}
-  - component: {fileID: 6824602270527771065}
   - component: {fileID: 6415804969617852663}
   - component: {fileID: 1670014889250541168}
   m_Layer: 6
@@ -169,35 +168,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6824602270527771065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692075852036689689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67d710c96a92e4cbd9d29139d4a564ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  stomped:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: IncreaseScore
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  goomba: {fileID: 692075852036689689}
-  speed: 1.5
 --- !u!95 &6415804969617852663
 Animator:
   serializedVersion: 7

@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
 {
-    public Animator powerupAnimator;
     public BasePowerup powerup; // reference to this question box's powerup
     private GameObject powerupGameObject;
     private AudioSource powerupAudio;
@@ -19,13 +15,6 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
         questionBoxAnimator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -33,19 +22,21 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
             ContactPoint2D contact = other.GetContact(0);
             if (contact.normal.y > 0.5f && !powerup.hasSpawned)
             {
-                // show disabled sprite
-                questionBoxAnimator.SetTrigger("spawnPowerup"); // this is the question box's animator
-                ceiling.SetActive(true);
-
                 // spawn the powerup
                 if (powerupGameObject.activeSelf == false)
                 {
                     powerupGameObject.SetActive(true);
                 }
-                powerupAnimator.SetTrigger("spawn"); // this is the animator belonging to the powerup in that question box
+                powerup.SpawnPowerup();
                 if (powerupAudio != null)
                 {
                     powerupAudio.Play();
+                }
+                if (powerup.hasSpawned)
+                {
+                    // show disabled sprite
+                    questionBoxAnimator.SetTrigger("spawnPowerup");
+                    ceiling.SetActive(true);
                 }
             }
         }

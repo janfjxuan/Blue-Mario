@@ -1,6 +1,3 @@
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class NextScene : MonoBehaviour
@@ -10,6 +7,10 @@ public class NextScene : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            var player = other.GetComponent<PlayerController>();
+            if (player == null || !player.InLevelEnd) return;
+
+            player.ArriveAtCastle();
             SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Single);
         }
     }

@@ -1,31 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-using TMPro;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
     // events
-    public UnityEvent gameStart;
-    public UnityEvent gameRestart;
-    public UnityEvent<int> scoreChange;
-    public UnityEvent<float> timerChange;
-    public UnityEvent gameOver;
-    public UnityEvent levelComplete;
-    public UnityEvent<bool> pauseChange;
+    public SimpleGameEvent gameStart;
+    public SimpleGameEvent onUpdateScore;
+    public SimpleGameEvent onUpdateCoins;
+    public FloatGameEvent timerChange;
+    public SimpleGameEvent levelComplete;
 
     private bool levelCompleted = false;
     private bool timerRunning = true;
-    private bool isPaused = false;
+    private int levelStartScore;
     public IntVariable gameScore;
+    public IntVariable gameCoins;
     public float timer = 0f;
 
-    private GameObject obstacles;
-    private AudioSource musicSource;
-    private CameraController gameCameraController;
+    public AudioSource musicSource;
+    public CameraController gameCameraController;
 
     public AudioMixerSnapshot defaultSnapshot;
     public AudioMixerSnapshot gameOverSnapshot;
@@ -33,11 +27,13 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         FindSceneReferences();
-        gameScore.Value = 0;
-        gameStart.Invoke();
+        if (SceneManager.GetActiveScene().name == "World-1-1")
+            gameScore.Value = 0;
+
+        levelStartScore = gameScore.Value;
+        gameStart.Raise();
         Time.timeScale = 1.0f;
-        // subscribe to scene manager scene change
-        SceneManager.activeSceneChanged += SceneSetup;
+        SetScore(gameScore.Value);
     }
 
     public void SceneSetup(Scene current, Scene next)
@@ -47,14 +43,14 @@ public class GameManager : Singleton<GameManager>
         levelCompleted = false;
         timerRunning = true;
         timer = 0f;
-        isPaused = false;
         Time.timeScale = 1f;
         AudioListener.pause = false;
         if (next.name == "World-1-1")
             gameScore.Value = 0;
         // Setup code for the new scene
-        gameStart.Invoke();
+        gameStart.Raise();
         SetScore(gameScore.Value);
+        SetCoins(gameCoins.Value);
     }
 
     private void FindSceneReferences()
@@ -62,7 +58,6 @@ public class GameManager : Singleton<GameManager>
         SceneReferences refs = FindFirstObjectByType<SceneReferences>();
         if (refs == null) return;   // e.g. MainMenu or LoadingScene
 
-        obstacles = refs.obstacles;
         musicSource = refs.musicSource;
         gameCameraController = refs.gameCameraController;
     }
@@ -73,7 +68,7 @@ public class GameManager : Singleton<GameManager>
         if (timerRunning)
         {
             timer += Time.deltaTime;
-            timerChange.Invoke(timer);
+            timerChange.Raise(timer);
         }
     }
 
@@ -85,18 +80,19 @@ public class GameManager : Singleton<GameManager>
     public void GameRestart()
     {
         // reset score
-        gameScore.Value = 0;
+        gameScore.Value = levelStartScore;
         SetScore(gameScore.Value);
+
+        gameCoins.Value = 0;
+        SetCoins(gameCoins.Value);
 
         timerRunning = true;
         timer = 0f;
-        timerChange.Invoke(timer);
+        timerChange.Raise(timer);
 
         Time.timeScale = 1.0f;
 
-        isPaused = false;
         AudioListener.pause = false;
-        pauseChange.Invoke(false);
 
         levelCompleted = false;
 
@@ -106,29 +102,6 @@ public class GameManager : Singleton<GameManager>
         musicSource.Stop();
         musicSource.time = 0f;
         musicSource.Play();
-
-        // reset question box
-        foreach (Transform transform in obstacles.transform)
-        {
-            Transform questionBoxTransform = transform.Find("Question-Box");
-            if (questionBoxTransform != null)
-            {
-                QuestionBoxPowerupController questionBox = questionBoxTransform.GetComponent<QuestionBoxPowerupController>();
-                if (questionBox != null)
-                    questionBox.ResetQuestionBox();
-            }
-            Transform brickTransform = transform.Find("Brick");
-            if (brickTransform != null)
-            {
-                BrickPowerupController brick = brickTransform.GetComponent<BrickPowerupController>();
-                if (brick != null)
-                    brick.ResetBrick();
-            }
-        }
-
-        // reset camera 
-        gameCameraController.ResetCamera();
-        gameRestart.Invoke();
     }
 
     public void IncreaseScore(int increment)
@@ -136,17 +109,25 @@ public class GameManager : Singleton<GameManager>
         gameScore.ApplyChange(increment);
         SetScore(gameScore.Value);
     }
+    public void IncreaseCoins()
+    {
+        gameCoins.ApplyChange(1);
+        SetCoins(gameCoins.Value);
+    }
 
     public void SetScore(int score)
     {
-        scoreChange.Invoke(score);
+        onUpdateScore.Raise();
+    }
+    public void SetCoins(int coins)
+    {
+        onUpdateCoins.Raise();
     }
 
     public void GameOver()
     {
         timerRunning = false;
         gameOverSnapshot.TransitionTo(0f);
-        gameOver.Invoke();
         Time.timeScale = 0.0f;
     }
 
@@ -155,7 +136,7 @@ public class GameManager : Singleton<GameManager>
         if (levelCompleted) return;
         levelCompleted = true;
         timerRunning = false;
-        levelComplete.Invoke();
+        levelComplete.Raise();
         Time.timeScale = 0.0f;
     }
 
@@ -164,19 +145,22 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1.0f;
     }
 
-    public void TogglePause()
+    public void PauseGame()
     {
-        isPaused = !isPaused;
-        Time.timeScale = isPaused ? 0.0f : 1.0f;
-        AudioListener.pause = isPaused;
-        pauseChange.Invoke(isPaused);
+        Time.timeScale = 0.0f;
+        AudioListener.pause = true;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1.0f;
+        AudioListener.pause = false;
     }
 
     public void GoToMainMenu()
     {
         Time.timeScale = 1.0f;
         AudioListener.pause = false;
-        isPaused = false;
         defaultSnapshot.TransitionTo(0f);
 
         SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);

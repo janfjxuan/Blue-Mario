@@ -1,28 +1,27 @@
 using UnityEngine;
-using UnityEngine.Events;
 
-public class PowerupManager : Singleton<PowerupManager>
+public class PowerupManager : MonoBehaviour
 {
-    public UnityEvent<IPowerup> powerupCollected = new UnityEvent<IPowerup>();
-    public UnityEvent<IPowerup> powerupAffectsPlayer = new UnityEvent<IPowerup>();
-    public UnityEvent<IPowerup> powerupAffectsManager = new UnityEvent<IPowerup>();
+    public PowerupGameEvent powerupAffectsPlayer;
+    public PowerupGameEvent powerupAffectsManager;
 
-    public override void Awake()
-    {
-        base.Awake();
-        powerupCollected.AddListener(FilterAndCastPowerup);
-    }
-
-    void FilterAndCastPowerup(IPowerup i)
+    public void FilterAndCastPowerup(IPowerup i)
     {
         switch (i.powerupType)
         {
             case PowerupType.MagicMushroom:
-                powerupAffectsPlayer.Invoke(i);
+                powerupAffectsPlayer.Raise(i);
                 break;
-            // later: coin -> powerupAffectsManager, starman -> player, etc.
+            case PowerupType.FireFlower:
+                powerupAffectsPlayer.Raise(i);
+                break;
+            case PowerupType.StarMan:
+                powerupAffectsPlayer.Raise(i);
+                break;
+            case PowerupType.Shoe:
+                powerupAffectsPlayer.Raise(i);
+                break;
             default:
-                Debug.LogWarning("No handler for powerup type: " + i.powerupType);
                 break;
         }
     }
