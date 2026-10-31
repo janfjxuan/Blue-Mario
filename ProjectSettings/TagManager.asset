@@ -51,6 +51,9 @@ TagManager:
   - name: Castle
     uniqueID: 2855143115
     locked: 0
+  - name: Popup
+    uniqueID: 99197813
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

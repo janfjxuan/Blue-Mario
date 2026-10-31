@@ -20,6 +20,7 @@ MonoBehaviour:
   lowGravityScale: 3
   highGravityScale: 9
   maxFallSpeed: -20
+  stompHeightFraction: 0.7
   stompBounceVelocity: 24
   deathGravityScale: 4
   deathImpulse: 16

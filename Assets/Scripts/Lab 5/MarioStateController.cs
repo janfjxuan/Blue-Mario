@@ -51,13 +51,12 @@ public class MarioStateController : StateController
     }
     private IEnumerator BlinkSpriteRenderer()
     {
-        State blinkState = currentState;
         spriteRenderer.enabled = true;
 
         // let the other setup actions run first (e.g. the shrink animation sets IsTransforming)
         yield return null;
         yield return new WaitUntil(() => !marioController.IsTransforming);
-        while (string.Equals(currentState.name, "InvincibleSmallMario", StringComparison.OrdinalIgnoreCase))
+        while (currentState.marioState == MarioState.InvincibleSmallMario)
         {
             // Toggle the visibility of the sprite renderer
             spriteRenderer.enabled = !spriteRenderer.enabled;

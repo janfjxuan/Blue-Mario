@@ -44,9 +44,8 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     public bool IsGrounded => onGroundState;
     public bool IsTransforming => transforming;
     public float DefaultGravity => defaultGravity;
-    public bool IsSuper => marioStateController.currentState.name == "SuperMario" || marioStateController.currentState.name == "FireMario";
+    public bool IsSuper => marioStateController.currentState.marioState == MarioState.SuperMario || marioStateController.currentState.marioState == MarioState.FireMario;
     public bool IsSonic => buffStateController.currentState.name == "Sonic";
-    // to do clean up states name to enum
 
     // audio
     public AudioClip marioDeathClip;
@@ -95,9 +94,6 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         marioStartingPosition = marioBody.transform.position;
 
         if (startWithCastleWalk) StartCoroutine(WalkOutOfCastle());
-
-        // subscribe to scene manager scene change
-        // SceneManager.activeSceneChanged += SetStartingPosition;
     }
 
     public void PlayDeathImpulse()
@@ -311,17 +307,19 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         if (value == 0)
         {
             moving = false;
+            return;
         }
-        else
-        {
-            FlipMarioSprite(value);
-            moving = true;
-            Move(value);
-        }
+
+        if (Time.timeScale == 0f) return;
+
+        FlipMarioSprite(value);
+        moving = true;
+        Move(value);
     }
 
     public void Jump()
     {
+        if (Time.timeScale == 0f) return;
         if (alive && onGroundState && !inputLocked)
         {
             marioBody.linearVelocity = new Vector2(marioBody.linearVelocity.x, gameConstants.jumpVelocity);
@@ -356,7 +354,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         if (InLevelEnd) return;
         if (buffStateController.IsStarred) return;
 
-        if (marioStateController.currentState.name == "InvincibleSmallMario") return;
+        if (marioStateController.currentState.marioState == MarioState.InvincibleSmallMario) return;
         marioStateController.SetPowerup(PowerupType.Damage);
     }
 

@@ -9,6 +9,7 @@ public class State : ScriptableObject
     public EventAction[] eventTriggeredActions;
     public Action[] exitActions;
     public Transition[] transitions;
+    public MarioState marioState = MarioState.Default;
 
     // for visualisation at the Scene
     public Color sceneGizmoColor = Color.grey;
