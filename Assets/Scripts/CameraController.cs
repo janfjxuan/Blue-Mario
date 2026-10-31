@@ -8,6 +8,9 @@ public class CameraController : MonoBehaviour
     private float offset; // initial x-offset between camera and Mario
     private float startX; // smallest x-coordinate of the Camera
     private float endX; // largest x-coordinate of the camera
+    private float camY;
+
+    private float initialStartX, initialEndX, initialY;
     private Vector3 initialPosition;
     private float viewportHalfWidth;
 
@@ -16,11 +19,14 @@ public class CameraController : MonoBehaviour
         // get coordinate of the bottomleft of the viewport
         // z doesn't matter since the camera is orthographic
         Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)); // the z-component is the distance of the resulting plane from the camera 
-        viewportHalfWidth = Mathf.Abs(bottomLeft.x - this.transform.position.x);
+        viewportHalfWidth = Mathf.Abs(bottomLeft.x - transform.position.x);
         offset = 6.0f;
-        startX = this.transform.position.x;
+        startX = transform.position.x;
         endX = endLimit.transform.position.x - viewportHalfWidth;
-        initialPosition = this.transform.position;
+        camY = transform.position.y;
+
+        initialStartX = startX; initialEndX = endX; initialY = camY;
+        initialPosition = transform.position;
 
         // Handling reference to the correct (Singleton) Mario #1: using tag (assuming Mario's tag is "Player")
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -28,14 +34,39 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        float desiredX = player.position.x + offset;
-        // check if desiredX is within startX and endX
-        if (desiredX > startX && desiredX < endX)
-            this.transform.position = new Vector3(desiredX, this.transform.position.y, this.transform.position.z);
+        // float desiredX = player.position.x + offset;
+        // // check if desiredX is within startX and endX
+        // if (desiredX > startX && desiredX < endX)
+        //     this.transform.position = new Vector3(desiredX, this.transform.position.y, this.transform.position.z);
+        float desiredX = Mathf.Clamp(player.position.x + offset, startX, endX);
+        transform.position = new Vector3(desiredX, camY, transform.position.z);
     }
 
     public void ResetCamera()
     {
-        this.transform.position = initialPosition;
+        startX = initialStartX; endX = initialEndX; camY = initialY;
+        transform.position = initialPosition;
+    }
+
+    // snap to another area (underground room)
+    public void SetArea(CameraArea area, float playerX)
+    {
+        startX = area.cameraStart.position.x;
+        endX = area.endLimit.position.x - viewportHalfWidth;
+        camY = area.cameraStart.position.y;
+        SnapToPlayerX(playerX);
+    }
+
+    // snap back to the main level's area (the one captured in Start)
+    public void SetDefaultArea(float playerX)
+    {
+        startX = initialStartX; endX = initialEndX; camY = initialY;
+        SnapToPlayerX(playerX);
+    }
+
+    private void SnapToPlayerX(float playerX)
+    {
+        float x = Mathf.Clamp(playerX + offset, startX, endX);
+        transform.position = new Vector3(x, camY, transform.position.z);
     }
 }

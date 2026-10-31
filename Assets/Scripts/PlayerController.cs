@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,13 +7,9 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
 {
     private MarioStateController marioStateController;
     private BuffStateController buffStateController;
-    private Rigidbody2D marioBody;
     private SpriteRenderer marioSprite;
     public GameConstants gameConstants;
     private bool transforming = false;
-    public bool IsTransforming => transforming;
-    public bool IsSuper => marioStateController.currentState.name == "SuperMario" || marioStateController.currentState.name == "FireMario";
-    // to do clean up states name to enum
     private bool inputLocked = false;
     public bool startWithCastleWalk = false;
     private BoxCollider2D box;
@@ -21,6 +18,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     public AudioSource marioAudio;
     public Animator marioAnimator;
     public Collider2D marioCollider;
+    public Rigidbody2D marioBody;
     public Vector3 marioStartingPosition;
     public UnityEvent onGameOver;
 
@@ -34,6 +32,21 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     public bool alive = true;
     private bool moving = false;
 
+    // pipe transition
+    private int defaultSortingLayerID;
+    private int defaultSortingOrder;
+    public bool InPipe { get; set; }
+    private float defaultGravity;
+
+    // read only states
+    public bool IsMoving => moving;
+    public bool FacingRight => faceRightState;
+    public bool IsGrounded => onGroundState;
+    public bool IsTransforming => transforming;
+    public float DefaultGravity => defaultGravity;
+    public bool IsSuper => marioStateController.currentState.name == "SuperMario" || marioStateController.currentState.name == "FireMario";
+    // to do clean up states name to enum
+
     // audio
     public AudioClip marioDeathClip;
     public AudioClip marioJumpClip;
@@ -41,6 +54,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
 
     // hash
     private static readonly int IsStarHash = Animator.StringToHash("isStar");
+    private readonly HashSet<Collider2D> groundContacts = new HashSet<Collider2D>();
 
     [SerializeField] LayerMask groundLayers = (1 << 3) | (1 << 7);
 
@@ -53,6 +67,9 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         buffStateController = GetComponent<BuffStateController>();
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
+        defaultGravity = GetComponent<Rigidbody2D>().gravityScale;
+        defaultSortingLayerID = marioSprite.sortingLayerID;
+        defaultSortingOrder = marioSprite.sortingOrder;
     }
     // Start is called before the first frame update
     void Start()
@@ -74,16 +91,19 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
 
     void CheckGrounded(Collision2D col)
     {
-        if (onGroundState) return;
         if ((groundLayers.value & (1 << col.gameObject.layer)) == 0) return;
         if (marioBody.linearVelocity.y > 0.1f) return;
 
-        foreach (ContactPoint2D contact in col.contacts)
+        foreach (ContactPoint2D c in col.contacts)
         {
-            if (contact.normal.y > 0.5f)
+            if (c.normal.y > 0.5f)
             {
-                onGroundState = true;
-                marioAnimator.SetBool("onGround", onGroundState);
+                groundContacts.Add(col.collider);
+                if (!onGroundState)
+                {
+                    onGroundState = true;
+                    marioAnimator.SetBool("onGround", true);
+                }
                 return;
             }
         }
@@ -133,6 +153,21 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         CheckGrounded(col);
     }
 
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (groundContacts.Remove(col.collider) && groundContacts.Count == 0 && onGroundState)
+        {
+            onGroundState = false;
+            // marioAnimator.SetBool("onGround", false);
+        }
+    }
+
+    public void ClearGroundContacts()
+    {
+        groundContacts.Clear();
+        onGroundState = false;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("GapHole"))
@@ -169,6 +204,18 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     {
         faceRightState = value;
         marioFaceRight.SetValue(faceRightState);
+    }
+
+    public void SetSortingBehind(SpriteRenderer target)
+    {
+        marioSprite.sortingLayerID = target.sortingLayerID;
+        marioSprite.sortingOrder = target.sortingOrder - 1;
+    }
+
+    public void RestoreSorting()
+    {
+        marioSprite.sortingLayerID = defaultSortingLayerID;
+        marioSprite.sortingOrder = defaultSortingOrder;
     }
 
     // FixedUpdate may be called once per frame. See documentation for details.
@@ -229,6 +276,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         if (alive && onGroundState && !inputLocked)
         {
             marioBody.linearVelocity = new Vector2(marioBody.linearVelocity.x, gameConstants.jumpVelocity);
+            groundContacts.Clear();
             onGroundState = false;
             jumpHeld = true;
             // update animator state
@@ -328,6 +376,12 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         inputLocked = false;
     }
 
+    public void SetInputLockedForPipe(bool locked)
+    {
+        inputLocked = locked;
+        if (locked) moving = false;
+    }
+
     public void ResetMovementState()
     {
         moving = false;
@@ -339,20 +393,24 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     {
         StopAllCoroutines();
         inputLocked = false;
-        // growing = false;
         Time.timeScale = 1f;
         marioAnimator.updateMode = AnimatorUpdateMode.Normal;
 
         // reset position
+        InPipe = false;
+        marioBody.gravityScale = defaultGravity;
         marioBody.transform.position = marioStartingPosition;
         marioBody.transform.rotation = Quaternion.identity;
         marioBody.linearVelocity = Vector2.zero;
         marioBody.angularVelocity = 0f;
         ResetMovementState();
+        groundContacts.Clear();
+        onGroundState = true;
 
-        // reset sprite direction
+        // reset sprite
         updateMarioShouldFaceRight(true);
         marioSprite.flipX = false;
+        RestoreSorting();
 
         // reset animation
         marioCollider.enabled = true;

@@ -1,0 +1,276 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3065345352344825801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5987113167532445466}
+  - component: {fileID: 1512507199321055801}
+  - component: {fileID: 6866724624489785414}
+  - component: {fileID: 7325981568000895629}
+  - component: {fileID: 6630747869561181136}
+  - component: {fileID: 6711026405320951582}
+  - component: {fileID: 8227078898839943405}
+  - component: {fileID: 2868074864512521716}
+  - component: {fileID: 5865490448663298733}
+  - component: {fileID: 5626080448069527320}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5987113167532445466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065345352344825801}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1512507199321055801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065345352344825801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b97a9dd123144f48c83d561e1c4ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  gameStart: {fileID: 11400000, guid: 862f9fe6c22d2fb499df06960b7f6bda, type: 2}
+  onUpdateScore: {fileID: 11400000, guid: 280e7255d3a0a1f489f8720829c40533, type: 2}
+  onUpdateCoins: {fileID: 11400000, guid: 797ac37e09a5a4e29affdc88f78d0bfa, type: 2}
+  timerChange: {fileID: 11400000, guid: 539263ed26db09843885a5a0469e4705, type: 2}
+  levelComplete: {fileID: 11400000, guid: 130468d4713efb247936d7f8f632f4a5, type: 2}
+  gameScore: {fileID: 11400000, guid: a0d62164732424e0f8cfbf7a4095e693, type: 2}
+  gameCoins: {fileID: 11400000, guid: 1b6cae7e608b45a4aaa522066ce1236c, type: 2}
+  timer: 0
+  musicSource: {fileID: 0}
+  gameCameraController: {fileID: 0}
+  defaultSnapshot: {fileID: 7908243882366253293, guid: 320fac371a4a4e341a63f4aed405054a, type: 2}
+  gameOverSnapshot: {fileID: -3325806520119170698, guid: 320fac371a4a4e341a63f4aed405054a, type: 2}
+--- !u!114 &6866724624489785414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065345352344825801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954a0e910cc45fa409bbcacfc899de73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntGameEventListener
+  Event: {fileID: 11400000, guid: 950b546c06865774b936fa16e205adc3, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1512507199321055801}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: IncreaseScore
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7325981568000895629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065345352344825801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 0fd97abe657ce2c4293b2b9a787d9000, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1512507199321055801}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: IncreaseCoins
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6630747869561181136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065345352344825801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 85a6f71544561f24fba55c976f48f5d8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1512507199321055801}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6711026405320951582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065345352344825801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 1ef2530056fee084a94771ca7d023d7e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1512507199321055801}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8227078898839943405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065345352344825801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a028bf23b30cc440cbaf30338c1b830f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerupManager
+  powerupAffectsPlayer: {fileID: 11400000, guid: dd1ec2a7587b57645acbc02db231ffbd, type: 2}
+  powerupAffectsManager: {fileID: 11400000, guid: 32b1e99b66cbb06479c7382e7de8169c, type: 2}
+--- !u!114 &2868074864512521716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065345352344825801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef5251a7beef0942b14cd2eaede25cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerupGameEventListener
+  Event: {fileID: 11400000, guid: e7ca590319de45c47a5ccc168806121e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8227078898839943405}
+        m_TargetAssemblyTypeName: PowerupManager, Assembly-CSharp
+        m_MethodName: FilterAndCastPowerup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5865490448663298733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065345352344825801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 0fe59bb87ba9f5f4e85928e6d953243d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1512507199321055801}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5626080448069527320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065345352344825801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e616a81eb2d88f4a882c766d26190eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: 29712d6991f76e64ba10f1e80abea60d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1512507199321055801}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

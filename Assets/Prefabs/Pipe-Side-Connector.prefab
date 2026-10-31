@@ -10,8 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 22768323655578631}
   - component: {fileID: 7623212840088771752}
+  - component: {fileID: 5080936842172567482}
   - component: {fileID: 4856353882795334030}
-  m_Layer: 0
+  - component: {fileID: 4755762023484327179}
+  - component: {fileID: 3482633474632738061}
+  m_Layer: 7
   m_Name: Pipe-Head-Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,6 +95,52 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!61 &5080936842172567482
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41477596601768049}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 77cd77b15dad04995b5d397aefcba286, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.6, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1.8}
+  m_EdgeRadius: 0
 --- !u!61 &4856353882795334030
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,6 +187,128 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 1.8}
   m_EdgeRadius: 0
+--- !u!114 &4755762023484327179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41477596601768049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a4a7a85ff5d45368cb2c30b68262af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PipeController
+  canEnter: 1
+  enterMovingRight: 1
+  slideDistance: 1
+  slideDuration: 0.8
+  pipeAudio: {fileID: 3482633474632738061}
+  destination: {fileID: 0}
+  exitUpward: 0
+  exitDuration: 0.8
+  onTeleport: {fileID: 0}
+  entryPipeSprite: {fileID: 0}
+  exitPipeSprite: {fileID: 0}
+  destinationArea: {fileID: 0}
+  cameraController: {fileID: 0}
+--- !u!82 &3482633474632738061
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41477596601768049}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -4280684496294064155, guid: 320fac371a4a4e341a63f4aed405054a, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: b520e6b32619c490a934225b9b162dc2, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4862447436134598986
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +320,7 @@ GameObject:
   - component: {fileID: 8685228529200736177}
   - component: {fileID: 2911235823545663569}
   - component: {fileID: 3187172960482373678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe-Intersection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4713093724125660109}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe-Side-Connector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
