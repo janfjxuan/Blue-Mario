@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4965990763617314357}
+  - component: {fileID: 8557493733338517754}
+  - component: {fileID: 3469143476108853021}
   - component: {fileID: 2218187924470351608}
   - component: {fileID: 2491667227103855117}
   - component: {fileID: 1774899432418347595}
@@ -21,8 +23,6 @@ GameObject:
   - component: {fileID: 3612880985197740088}
   - component: {fileID: 8279109707009882199}
   - component: {fileID: 6377912854922446491}
-  - component: {fileID: 8557493733338517754}
-  - component: {fileID: 3469143476108853021}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Player
@@ -45,6 +45,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8557493733338517754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6945735154310691632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181e090be84804d7c8ce52988d943233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MarioStateController
+  startState: {fileID: 11400000, guid: da3b7bd71c5fa4b6c83c00a86655a4c7, type: 2}
+  previousState: {fileID: 0}
+  currentState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
+  transitionStateChanged: 0
+  stateTimeElapsed: 0
+  isActive: 1
+  currentPowerupType: 4
+  shouldBeNextState: -1
+--- !u!114 &3469143476108853021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6945735154310691632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34191bb0bcf454eb6b023d80c7087746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffStateController
+  startState: {fileID: 11400000, guid: fdb13546869a7417c9d21d1863fc03f7, type: 2}
+  previousState: {fileID: 0}
+  currentState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
+  transitionStateChanged: 0
+  stateTimeElapsed: 0
+  isActive: 1
+  currentPowerupType: -1
 --- !u!212 &2218187924470351608
 SpriteRenderer:
   serializedVersion: 2
@@ -727,44 +768,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8557493733338517754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6945735154310691632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 181e090be84804d7c8ce52988d943233, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MarioStateController
-  startState: {fileID: 11400000, guid: da3b7bd71c5fa4b6c83c00a86655a4c7, type: 2}
-  previousState: {fileID: 0}
-  currentState: {fileID: 0}
-  remainState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
-  transitionStateChanged: 0
-  stateTimeElapsed: 0
-  isActive: 1
-  currentPowerupType: 4
-  shouldBeNextState: -1
---- !u!114 &3469143476108853021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6945735154310691632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34191bb0bcf454eb6b023d80c7087746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BuffStateController
-  startState: {fileID: 11400000, guid: fdb13546869a7417c9d21d1863fc03f7, type: 2}
-  previousState: {fileID: 0}
-  currentState: {fileID: 0}
-  remainState: {fileID: 11400000, guid: c8059c588e0a541eba274555167af72c, type: 2}
-  transitionStateChanged: 0
-  stateTimeElapsed: 0
-  isActive: 1
-  currentPowerupType: -1
